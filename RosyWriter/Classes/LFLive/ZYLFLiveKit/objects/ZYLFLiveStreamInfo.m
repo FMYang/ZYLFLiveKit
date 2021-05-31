@@ -6,8 +6,8 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFLiveStreamInfo.h"
+#import "ZYLFLiveStreamInfo.h"
 
-@implementation LFLiveStreamInfo
+@implementation ZYLFLiveStreamInfo
 
 @end

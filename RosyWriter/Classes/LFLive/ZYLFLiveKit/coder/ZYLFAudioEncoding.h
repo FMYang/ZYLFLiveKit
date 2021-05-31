@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "LFAudioFrame.h"
+#import "ZYLFAudioFrame.h"
 #import "ZYLFLiveAudioConfiguration.h"
 
 
@@ -17,7 +17,7 @@
 /// 编码器编码后回调
 @protocol ZYLFAudioEncodingDelegate <NSObject>
 @required
-- (void)audioEncoder:(nullable id<ZYLFAudioEncoding>)encoder audioFrame:(nullable LFAudioFrame *)frame;
+- (void)audioEncoder:(nullable id<ZYLFAudioEncoding>)encoder audioFrame:(nullable ZYLFAudioFrame *)frame;
 @end
 
 /// 编码器抽象的接口

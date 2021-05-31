@@ -6,10 +6,10 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFFrame.h"
+#import "ZYLFFrame.h"
 
 
-@interface LFVideoFrame : LFFrame
+@interface ZYLFVideoFrame : ZYLFFrame
 
 @property (nonatomic, assign) BOOL isKeyFrame;
 @property (nonatomic, strong) NSData *sps;

@@ -30,7 +30,7 @@
 @property(nonatomic, strong) IBOutlet UILabel *framerateLabel;
 @property(nonatomic, strong) IBOutlet UILabel *dimensionsLabel;
 
-@property (nonatomic, strong) LFLiveDebug *debugInfo;
+@property (nonatomic, strong) ZYLFLiveDebug *debugInfo;
 @property (nonatomic, strong) ZYLFLiveSession *session;
 
 @end
@@ -98,7 +98,7 @@
 }
 
 /** live debug info callback */
-- (void)liveSession:(nullable ZYLFLiveSession *)session debugInfo:(nullable LFLiveDebug *)debugInfo {
+- (void)liveSession:(nullable ZYLFLiveSession *)session debugInfo:(nullable ZYLFLiveDebug *)debugInfo {
 
 }
 
@@ -372,7 +372,7 @@
 - (void)capturePipelineRecordingDidStart:(RosyWriterCapturePipeline *)capturePipeline
 {
 	self.recordButton.enabled = YES;
-    LFLiveStreamInfo *stream = [LFLiveStreamInfo new];
+    ZYLFLiveStreamInfo *stream = [ZYLFLiveStreamInfo new];
     stream.url = @"rtmp://123822.livepush.myqcloud.com/live/kkkk?txSecret=721723140559e456be5aa34d06b81577&txTime=60AF4BF4";
     [self.session startLive:stream];
 }

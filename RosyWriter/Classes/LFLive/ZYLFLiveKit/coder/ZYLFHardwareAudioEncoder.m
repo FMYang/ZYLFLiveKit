@@ -112,7 +112,7 @@
         return;
     }
     
-    LFAudioFrame *audioFrame = [LFAudioFrame new];
+    ZYLFAudioFrame *audioFrame = [ZYLFAudioFrame new];
     audioFrame.timestamp = timeStamp;
     audioFrame.data = [NSData dataWithBytes:aacBuf length:outBufferList.mBuffers[0].mDataByteSize];
     

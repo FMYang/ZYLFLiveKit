@@ -192,7 +192,7 @@ static void VideoCompressonOutputCallback(void *VTref, void *VTFrameRef, OSStatu
 
             NALUnitLength = CFSwapInt32BigToHost(NALUnitLength);
 
-            LFVideoFrame *videoFrame = [LFVideoFrame new];
+            ZYLFVideoFrame *videoFrame = [ZYLFVideoFrame new];
             videoFrame.timestamp = timeStamp;
             videoFrame.data = [[NSData alloc] initWithBytes:(dataPointer + bufferOffset + AVCCHeaderLength) length:NALUnitLength];
             videoFrame.isKeyFrame = keyframe;

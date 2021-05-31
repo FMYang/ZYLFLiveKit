@@ -51,9 +51,9 @@ SAVC(mp4a);
     PILI_RTMP *_rtmp;
 }
 @property (nonatomic, weak) id<ZYLFStreamSocketDelegate> delegate;
-@property (nonatomic, strong) LFLiveStreamInfo *stream;
+@property (nonatomic, strong) ZYLFLiveStreamInfo *stream;
 @property (nonatomic, strong) ZYLFStreamingBuffer *buffer;
-@property (nonatomic, strong) LFLiveDebug *debugInfo;
+@property (nonatomic, strong) ZYLFLiveDebug *debugInfo;
 @property (nonatomic, strong) dispatch_queue_t rtmpSendQueue;
 //错误信息
 @property (nonatomic, assign) RTMPError error;
@@ -74,11 +74,11 @@ SAVC(mp4a);
 @implementation ZYLFStreamRTMPSocket
 
 #pragma mark -- ZYLFStreamSocket
-- (nullable instancetype)initWithStream:(nullable LFLiveStreamInfo *)stream{
+- (nullable instancetype)initWithStream:(nullable ZYLFLiveStreamInfo *)stream{
     return [self initWithStream:stream reconnectInterval:0 reconnectCount:0];
 }
 
-- (nullable instancetype)initWithStream:(nullable LFLiveStreamInfo *)stream reconnectInterval:(NSInteger)reconnectInterval reconnectCount:(NSInteger)reconnectCount{
+- (nullable instancetype)initWithStream:(nullable ZYLFLiveStreamInfo *)stream reconnectInterval:(NSInteger)reconnectInterval reconnectCount:(NSInteger)reconnectCount{
     if (!stream) @throw [NSException exceptionWithName:@"ZYLFStreamRTMPSocket init error" reason:@"stream is nil" userInfo:nil];
     if (self = [super init]) {
         _stream = stream;
@@ -143,7 +143,7 @@ SAVC(mp4a);
     [self clean];
 }
 
-- (void)sendFrame:(LFFrame *)frame {
+- (void)sendFrame:(ZYLFFrame *)frame {
     if (!frame) return;
     [self.buffer appendObject:frame];
     
@@ -169,26 +169,26 @@ SAVC(mp4a);
             }
 
             // 调用发送接口
-            LFFrame *frame = [_self.buffer popFirstObject];
-            if ([frame isKindOfClass:[LFVideoFrame class]]) {
+            ZYLFFrame *frame = [_self.buffer popFirstObject];
+            if ([frame isKindOfClass:[ZYLFVideoFrame class]]) {
                 if (!_self.sendVideoHead) {
                     _self.sendVideoHead = YES;
-                    if(!((LFVideoFrame*)frame).sps || !((LFVideoFrame*)frame).pps){
+                    if(!((ZYLFVideoFrame*)frame).sps || !((ZYLFVideoFrame*)frame).pps){
                         _self.isSending = NO;
                         return;
                     }
-                    [_self sendVideoHeader:(LFVideoFrame *)frame];
+                    [_self sendVideoHeader:(ZYLFVideoFrame *)frame];
                 } else {
-                    [_self sendVideo:(LFVideoFrame *)frame];
+                    [_self sendVideo:(ZYLFVideoFrame *)frame];
                 }
             } else {
                 if (!_self.sendAudioHead) {
                     _self.sendAudioHead = YES;
-                    if(!((LFAudioFrame*)frame).audioInfo){
+                    if(!((ZYLFAudioFrame*)frame).audioInfo){
                         _self.isSending = NO;
                         return;
                     }
-                    [_self sendAudioHeader:(LFAudioFrame *)frame];
+                    [_self sendAudioHeader:(ZYLFAudioFrame *)frame];
                 } else {
                     [_self sendAudio:frame];
                 }
@@ -203,7 +203,7 @@ SAVC(mp4a);
             _self.debugInfo.elapsedMilli = CACurrentMediaTime() * 1000 - _self.debugInfo.timeStamp;
             if (_self.debugInfo.elapsedMilli < 1000) {
                 _self.debugInfo.bandwidth += frame.data.length;
-                if ([frame isKindOfClass:[LFAudioFrame class]]) {
+                if ([frame isKindOfClass:[ZYLFAudioFrame class]]) {
                     _self.debugInfo.capturedAudioCount++;
                 } else {
                     _self.debugInfo.capturedVideoCount++;
@@ -351,7 +351,7 @@ Failed:
     }
 }
 
-- (void)sendVideoHeader:(LFVideoFrame *)videoFrame {
+- (void)sendVideoHeader:(ZYLFVideoFrame *)videoFrame {
 
     unsigned char *body = NULL;
     NSInteger iIndex = 0;
@@ -395,7 +395,7 @@ Failed:
     free(body);
 }
 
-- (void)sendVideo:(LFVideoFrame *)frame {
+- (void)sendVideo:(ZYLFVideoFrame *)frame {
 
     NSInteger i = 0;
     NSInteger rtmpLength = frame.data.length + 9;
@@ -453,7 +453,7 @@ Failed:
     return -1;
 }
 
-- (void)sendAudioHeader:(LFAudioFrame *)audioFrame {
+- (void)sendAudioHeader:(ZYLFAudioFrame *)audioFrame {
 
     NSInteger rtmpLength = audioFrame.audioInfo.length + 2;     /*spec data长度,一般是2*/
     unsigned char *body = (unsigned char *)malloc(rtmpLength);
@@ -467,7 +467,7 @@ Failed:
     free(body);
 }
 
-- (void)sendAudio:(LFFrame *)frame {
+- (void)sendAudio:(ZYLFFrame *)frame {
 
     NSInteger rtmpLength = frame.data.length + 2;    /*spec data长度,一般是2*/
     unsigned char *body = (unsigned char *)malloc(rtmpLength);
@@ -568,9 +568,9 @@ void ConnectionTimeCallback(PILI_CONNECTION_TIME *conn_time, void *userData) {
     return _buffer;
 }
 
-- (LFLiveDebug *)debugInfo {
+- (ZYLFLiveDebug *)debugInfo {
     if (!_debugInfo) {
-        _debugInfo = [[LFLiveDebug alloc] init];
+        _debugInfo = [[ZYLFLiveDebug alloc] init];
     }
     return _debugInfo;
 }

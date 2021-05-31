@@ -12,11 +12,11 @@
 #import "ZYLFLiveSession.h"
 #import "ZYLFLiveAudioConfiguration.h"
 #import "ZYLFLiveVideoConfiguration.h"
-#import "LFAudioFrame.h"
-#import "LFFrame.h"
-#import "LFLiveStreamInfo.h"
-#import "LFVideoFrame.h"
-#import "LFLiveDebug.h"
+#import "ZYLFAudioFrame.h"
+#import "ZYLFFrame.h"
+#import "ZYLFLiveStreamInfo.h"
+#import "ZYLFVideoFrame.h"
+#import "ZYLFLiveDebug.h"
 
 #endif
 

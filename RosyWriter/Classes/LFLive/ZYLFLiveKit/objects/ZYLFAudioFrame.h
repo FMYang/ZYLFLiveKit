@@ -6,9 +6,9 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFFrame.h"
+#import "ZYLFFrame.h"
 
-@interface LFAudioFrame : LFFrame
+@interface ZYLFAudioFrame : ZYLFFrame
 
 /// flv打包中aac的header
 @property (nonatomic, strong) NSData *audioInfo;

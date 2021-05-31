@@ -18,8 +18,8 @@ static const NSUInteger defaultSendBufferMaxCount = 600;///< 最大缓冲区为6
     dispatch_semaphore_t _lock;
 }
 
-@property (nonatomic, strong) NSMutableArray <LFFrame *> *sortList;
-@property (nonatomic, strong, readwrite) NSMutableArray <LFFrame *> *list;
+@property (nonatomic, strong) NSMutableArray <ZYLFFrame *> *sortList;
+@property (nonatomic, strong, readwrite) NSMutableArray <ZYLFFrame *> *list;
 @property (nonatomic, strong) NSMutableArray *thresholdList;
 
 /** 处理buffer缓冲区情况 */
@@ -49,7 +49,7 @@ static const NSUInteger defaultSendBufferMaxCount = 600;///< 最大缓冲区为6
 }
 
 #pragma mark -- Custom
-- (void)appendObject:(LFFrame *)frame {
+- (void)appendObject:(ZYLFFrame *)frame {
     if (!frame) return;
     if (!_startTimer) {
         _startTimer = YES;
@@ -66,16 +66,16 @@ static const NSUInteger defaultSendBufferMaxCount = 600;///< 最大缓冲区为6
         /// 丢帧
         [self removeExpireFrame];
         /// 添加至缓冲区
-        LFFrame *firstFrame = [self.sortList lfPopFirstObject];
+        ZYLFFrame *firstFrame = [self.sortList lfPopFirstObject];
 
         if (firstFrame) [self.list addObject:firstFrame];
     }
     dispatch_semaphore_signal(_lock);
 }
 
-- (LFFrame *)popFirstObject {
+- (ZYLFFrame *)popFirstObject {
     dispatch_semaphore_wait(_lock, DISPATCH_TIME_FOREVER);
-    LFFrame *firstFrame = [self.list lfPopFirstObject];
+    ZYLFFrame *firstFrame = [self.list lfPopFirstObject];
     dispatch_semaphore_signal(_lock);
     return firstFrame;
 }
@@ -109,9 +109,9 @@ static const NSUInteger defaultSendBufferMaxCount = 600;///< 最大缓冲区为6
 - (NSArray *)expirePFrames {
     NSMutableArray *pframes = [[NSMutableArray alloc] init];
     for (NSInteger index = 0; index < self.list.count; index++) {
-        LFFrame *frame = [self.list objectAtIndex:index];
-        if ([frame isKindOfClass:[LFVideoFrame class]]) {
-            LFVideoFrame *videoFrame = (LFVideoFrame *)frame;
+        ZYLFFrame *frame = [self.list objectAtIndex:index];
+        if ([frame isKindOfClass:[ZYLFVideoFrame class]]) {
+            ZYLFVideoFrame *videoFrame = (ZYLFVideoFrame *)frame;
             if (videoFrame.isKeyFrame && pframes.count > 0) {
                 break;
             } else if (!videoFrame.isKeyFrame) {
@@ -126,8 +126,8 @@ static const NSUInteger defaultSendBufferMaxCount = 600;///< 最大缓冲区为6
     NSMutableArray *iframes = [[NSMutableArray alloc] init];
     uint64_t timeStamp = 0;
     for (NSInteger index = 0; index < self.list.count; index++) {
-        LFFrame *frame = [self.list objectAtIndex:index];
-        if ([frame isKindOfClass:[LFVideoFrame class]] && ((LFVideoFrame *)frame).isKeyFrame) {
+        ZYLFFrame *frame = [self.list objectAtIndex:index];
+        if ([frame isKindOfClass:[ZYLFVideoFrame class]] && ((ZYLFVideoFrame *)frame).isKeyFrame) {
             if (timeStamp != 0 && timeStamp != frame.timestamp) break;
             [iframes addObject:frame];
             timeStamp = frame.timestamp;
@@ -137,8 +137,8 @@ static const NSUInteger defaultSendBufferMaxCount = 600;///< 最大缓冲区为6
 }
 
 NSInteger frameDataCompare(id obj1, id obj2, void *context){
-    LFFrame *frame1 = (LFFrame *)obj1;
-    LFFrame *frame2 = (LFFrame *)obj2;
+    ZYLFFrame *frame1 = (ZYLFFrame *)obj1;
+    ZYLFFrame *frame2 = (ZYLFFrame *)obj2;
 
     if (frame1.timestamp == frame2.timestamp)
         return NSOrderedSame;

@@ -36,7 +36,7 @@ typedef NS_ENUM (NSUInteger, LFLiveSocketErrorCode) {
     LFLiveSocketError_ReConnectTimeOut = 205      ///< 重新连接服务器超时
 };
 
-@interface LFLiveStreamInfo : NSObject
+@interface ZYLFLiveStreamInfo : NSObject
 
 @property (nonatomic, copy) NSString *streamId;
 

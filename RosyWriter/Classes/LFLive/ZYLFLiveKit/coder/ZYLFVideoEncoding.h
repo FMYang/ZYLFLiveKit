@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LFVideoFrame.h"
+#import "ZYLFVideoFrame.h"
 #import "ZYLFLiveVideoConfiguration.h"
 
 @protocol ZYLFVideoEncoding;
 /// 编码器编码后回调
 @protocol ZYLFVideoEncodingDelegate <NSObject>
 @required
-- (void)videoEncoder:(nullable id<ZYLFVideoEncoding>)encoder videoFrame:(nullable LFVideoFrame *)frame;
+- (void)videoEncoder:(nullable id<ZYLFVideoEncoding>)encoder videoFrame:(nullable ZYLFVideoFrame *)frame;
 @end
 
 /// 编码器抽象的接口

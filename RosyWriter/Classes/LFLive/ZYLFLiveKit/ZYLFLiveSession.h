@@ -9,12 +9,12 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "LFLiveStreamInfo.h"
-#import "LFAudioFrame.h"
-#import "LFVideoFrame.h"
+#import "ZYLFLiveStreamInfo.h"
+#import "ZYLFAudioFrame.h"
+#import "ZYLFVideoFrame.h"
 #import "ZYLFLiveAudioConfiguration.h"
 #import "ZYLFLiveVideoConfiguration.h"
-#import "LFLiveDebug.h"
+#import "ZYLFLiveDebug.h"
 
 
 
@@ -46,12 +46,12 @@ typedef NS_ENUM(NSInteger,LFLiveCaptureTypeMask) {
 /** live status changed will callback */
 - (void)liveSession:(nullable ZYLFLiveSession *)session liveStateDidChange:(LFLiveState)state;
 /** live debug info callback */
-- (void)liveSession:(nullable ZYLFLiveSession *)session debugInfo:(nullable LFLiveDebug *)debugInfo;
+- (void)liveSession:(nullable ZYLFLiveSession *)session debugInfo:(nullable ZYLFLiveDebug *)debugInfo;
 /** callback socket errorcode */
 - (void)liveSession:(nullable ZYLFLiveSession *)session errorCode:(LFLiveSocketErrorCode)errorCode;
 @end
 
-@class LFLiveStreamInfo;
+@class ZYLFLiveStreamInfo;
 
 @interface ZYLFLiveSession : NSObject
 
@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger,LFLiveCaptureTypeMask) {
 @property (nonatomic, assign) BOOL adaptiveBitrate;
 
 /** The stream control upload and package*/
-@property (nullable, nonatomic, strong, readonly) LFLiveStreamInfo *streamInfo;
+@property (nullable, nonatomic, strong, readonly) ZYLFLiveStreamInfo *streamInfo;
 
 /** The status of the stream .*/
 @property (nonatomic, assign, readonly) LFLiveState state;
@@ -110,7 +110,7 @@ typedef NS_ENUM(NSInteger,LFLiveCaptureTypeMask) {
 - (nullable instancetype)initWithAudioConfiguration:(nullable ZYLFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable ZYLFLiveVideoConfiguration *)videoConfiguration captureType:(LFLiveCaptureTypeMask)captureType NS_DESIGNATED_INITIALIZER;
 
 /** The start stream .*/
-- (void)startLive:(nonnull LFLiveStreamInfo *)streamInfo;
+- (void)startLive:(nonnull ZYLFLiveStreamInfo *)streamInfo;
 
 /** The stop stream .*/
 - (void)stopLive;

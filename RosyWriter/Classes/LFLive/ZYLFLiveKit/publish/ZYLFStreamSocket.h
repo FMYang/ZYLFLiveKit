@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LFLiveStreamInfo.h"
+#import "ZYLFLiveStreamInfo.h"
 #import "ZYLFStreamingBuffer.h"
-#import "LFLiveDebug.h"
+#import "ZYLFLiveDebug.h"
 
 
 
@@ -24,15 +24,15 @@
 - (void)socketDidError:(nullable id <ZYLFStreamSocket>)socket errorCode:(LFLiveSocketErrorCode)errorCode;
 @optional
 /** callback debugInfo */
-- (void)socketDebug:(nullable id <ZYLFStreamSocket>)socket debugInfo:(nullable LFLiveDebug *)debugInfo;
+- (void)socketDebug:(nullable id <ZYLFStreamSocket>)socket debugInfo:(nullable ZYLFLiveDebug *)debugInfo;
 @end
 
 @protocol ZYLFStreamSocket <NSObject>
 - (void)start;
 - (void)stop;
-- (void)sendFrame:(nullable LFFrame *)frame;
+- (void)sendFrame:(nullable ZYLFFrame *)frame;
 - (void)setDelegate:(nullable id <ZYLFStreamSocketDelegate>)delegate;
 @optional
-- (nullable instancetype)initWithStream:(nullable LFLiveStreamInfo *)stream;
-- (nullable instancetype)initWithStream:(nullable LFLiveStreamInfo *)stream reconnectInterval:(NSInteger)reconnectInterval reconnectCount:(NSInteger)reconnectCount;
+- (nullable instancetype)initWithStream:(nullable ZYLFLiveStreamInfo *)stream;
+- (nullable instancetype)initWithStream:(nullable ZYLFLiveStreamInfo *)stream reconnectInterval:(NSInteger)reconnectInterval reconnectCount:(NSInteger)reconnectCount;
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LFAudioFrame.h"
-#import "LFVideoFrame.h"
+#import "ZYLFAudioFrame.h"
+#import "ZYLFVideoFrame.h"
 
 
 /** current buffer status */
@@ -33,7 +33,7 @@ typedef NS_ENUM (NSUInteger, LFLiveBuffferState) {
 @property (nullable, nonatomic, weak) id <LFStreamingBufferDelegate> delegate;
 
 /** current frame buffer */
-@property (nonatomic, strong, readonly) NSMutableArray <LFFrame *> *_Nonnull list;
+@property (nonatomic, strong, readonly) NSMutableArray <ZYLFFrame *> *_Nonnull list;
 
 /** buffer count max size default 1000 */
 @property (nonatomic, assign) NSUInteger maxCount;
@@ -42,10 +42,10 @@ typedef NS_ENUM (NSUInteger, LFLiveBuffferState) {
 @property (nonatomic, assign) NSInteger lastDropFrames;
 
 /** add frame to buffer */
-- (void)appendObject:(nullable LFFrame *)frame;
+- (void)appendObject:(nullable ZYLFFrame *)frame;
 
 /** pop the first frome buffer */
-- (nullable LFFrame *)popFirstObject;
+- (nullable ZYLFFrame *)popFirstObject;
 
 /** remove all objects from Buffer */
 - (void)removeAllObject;

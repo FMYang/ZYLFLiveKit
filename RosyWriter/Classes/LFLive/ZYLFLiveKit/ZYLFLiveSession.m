@@ -12,7 +12,7 @@
 #import "ZYLFHardwareAudioEncoder.h"
 #import "ZYLFH264VideoEncoder.h"
 #import "ZYLFStreamRTMPSocket.h"
-#import "LFLiveStreamInfo.h"
+#import "ZYLFLiveStreamInfo.h"
 #import "ZYLFH264VideoEncoder.h"
 
 
@@ -34,9 +34,9 @@
 
 #pragma mark -- 内部标识
 /// 调试信息
-@property (nonatomic, strong) LFLiveDebug *debugInfo;
+@property (nonatomic, strong) ZYLFLiveDebug *debugInfo;
 /// 流信息
-@property (nonatomic, strong) LFLiveStreamInfo *streamInfo;
+@property (nonatomic, strong) ZYLFLiveStreamInfo *streamInfo;
 /// 是否开始上传
 @property (nonatomic, assign) BOOL uploading;
 /// 当前状态
@@ -90,7 +90,7 @@
 }
 
 #pragma mark -- CustomMethod
-- (void)startLive:(LFLiveStreamInfo *)streamInfo {
+- (void)startLive:(ZYLFLiveStreamInfo *)streamInfo {
     if (!streamInfo) return;
     _streamInfo = streamInfo;
     _streamInfo.videoConfiguration = _videoConfiguration;
@@ -117,7 +117,7 @@
 }
 
 #pragma mark -- PrivateMethod
-- (void)pushSendBuffer:(LFFrame*)frame{
+- (void)pushSendBuffer:(ZYLFFrame*)frame{
     if(self.relativeTimestamps == 0){
         self.relativeTimestamps = frame.timestamp;
     }
@@ -132,7 +132,7 @@
 
 
 #pragma mark -- EncoderDelegate
-- (void)audioEncoder:(nullable id<ZYLFAudioEncoding>)encoder audioFrame:(nullable LFAudioFrame *)frame {
+- (void)audioEncoder:(nullable id<ZYLFAudioEncoding>)encoder audioFrame:(nullable ZYLFAudioFrame *)frame {
     //<上传  时间戳对齐
     if (self.uploading){
         self.hasCaptureAudio = YES;
@@ -140,7 +140,7 @@
     }
 }
 
-- (void)videoEncoder:(nullable id<ZYLFVideoEncoding>)encoder videoFrame:(nullable LFVideoFrame *)frame {
+- (void)videoEncoder:(nullable id<ZYLFVideoEncoding>)encoder videoFrame:(nullable ZYLFVideoFrame *)frame {
     //<上传 时间戳对齐
     if (self.uploading){
         if(frame.isKeyFrame && self.hasCaptureAudio) self.hasKeyFrameVideo = YES;
@@ -177,7 +177,7 @@
     });
 }
 
-- (void)socketDebug:(nullable id<ZYLFStreamSocket>)socket debugInfo:(nullable LFLiveDebug *)debugInfo {
+- (void)socketDebug:(nullable id<ZYLFStreamSocket>)socket debugInfo:(nullable ZYLFLiveDebug *)debugInfo {
     self.debugInfo = debugInfo;
     if (self.showDebugInfo) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -263,9 +263,9 @@
     return _socket;
 }
 
-- (LFLiveStreamInfo *)streamInfo {
+- (ZYLFLiveStreamInfo *)streamInfo {
     if (!_streamInfo) {
-        _streamInfo = [[LFLiveStreamInfo alloc] init];
+        _streamInfo = [[ZYLFLiveStreamInfo alloc] init];
     }
     return _streamInfo;
 }

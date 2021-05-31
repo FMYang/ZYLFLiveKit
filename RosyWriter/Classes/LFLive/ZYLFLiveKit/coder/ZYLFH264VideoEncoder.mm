@@ -11,7 +11,7 @@
 #import "ZYLFNALUnit.h"
 #import "ZYLFAVEncoder.h"
 #import "ZYLFH264VideoEncoder.h"
-#import "LFVideoFrame.h"
+#import "ZYLFVideoFrame.h"
 
 @interface ZYLFH264VideoEncoder() {
     FILE *fp;
@@ -193,7 +193,7 @@
         }
         [aggregateFrameData appendData:videoData];
         
-        LFVideoFrame *videoFrame = [LFVideoFrame new];
+        ZYLFVideoFrame *videoFrame = [ZYLFVideoFrame new];
         const char *dataBuffer = (const char *)aggregateFrameData.bytes;
         videoFrame.data = [NSMutableData dataWithBytes:dataBuffer + _naluStartCode.length length:aggregateFrameData.length - _naluStartCode.length];
         videoFrame.timestamp = pts.value;
