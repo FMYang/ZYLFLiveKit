@@ -559,7 +559,7 @@ static int
             obj = o2;
         }
     }
-    AMF_AddProp(obj, &prop);
+    ZYAMF_AddProp(obj, &prop);
     if (prop.p_type == AMF_OBJECT)
         (*depth)++;
     return 0;
@@ -1243,7 +1243,7 @@ int PILI_RTMP_ClientPacket(PILI_RTMP *r, PILI_RTMPPacket *packet) {
             uint32_t nTimeStamp = packet->m_nTimeStamp;
 
             while (pos + 11 < packet->m_nBodySize) {
-                uint32_t dataSize = AMF_DecodeInt24(packet->m_body + pos + 1); /* size without header (11) and prevTagSize (4) */
+                uint32_t dataSize = ZYAMF_DecodeInt24(packet->m_body + pos + 1); /* size without header (11) and prevTagSize (4) */
 
                 if (pos + 11 + dataSize + 4 > packet->m_nBodySize) {
                     RTMP_Log(RTMP_LOGWARNING, "Stream corrupt?!");
@@ -1252,7 +1252,7 @@ int PILI_RTMP_ClientPacket(PILI_RTMP *r, PILI_RTMPPacket *packet) {
                 if (packet->m_body[pos] == 0x12) {
                     HandleMetadata(r, packet->m_body + pos + 11, dataSize);
                 } else if (packet->m_body[pos] == 8 || packet->m_body[pos] == 9) {
-                    nTimeStamp = AMF_DecodeInt24(packet->m_body + pos + 4);
+                    nTimeStamp = ZYAMF_DecodeInt24(packet->m_body + pos + 4);
                     nTimeStamp |= (packet->m_body[pos + 7] << 24);
                 }
                 pos += (11 + dataSize + 4);
@@ -1508,57 +1508,57 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_connect);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_connect);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_OBJECT;
 
-    enc = AMF_EncodeNamedString(enc, pend, &av_app, &r->Link.app);
+    enc = ZYAMF_EncodeNamedString(enc, pend, &av_app, &r->Link.app);
     if (!enc)
         return FALSE;
     if (r->Link.protocol & RTMP_FEATURE_WRITE) {
-        enc = AMF_EncodeNamedString(enc, pend, &av_type, &av_nonprivate);
+        enc = ZYAMF_EncodeNamedString(enc, pend, &av_type, &av_nonprivate);
         if (!enc)
             return FALSE;
     }
     if (r->Link.flashVer.av_len) {
-        enc = AMF_EncodeNamedString(enc, pend, &av_flashVer, &r->Link.flashVer);
+        enc = ZYAMF_EncodeNamedString(enc, pend, &av_flashVer, &r->Link.flashVer);
         if (!enc)
             return FALSE;
     }
     if (r->Link.swfUrl.av_len) {
-        enc = AMF_EncodeNamedString(enc, pend, &av_swfUrl, &r->Link.swfUrl);
+        enc = ZYAMF_EncodeNamedString(enc, pend, &av_swfUrl, &r->Link.swfUrl);
         if (!enc)
             return FALSE;
     }
     if (r->Link.tcUrl.av_len) {
-        enc = AMF_EncodeNamedString(enc, pend, &av_tcUrl, &r->Link.tcUrl);
+        enc = ZYAMF_EncodeNamedString(enc, pend, &av_tcUrl, &r->Link.tcUrl);
         if (!enc)
             return FALSE;
     }
     if (!(r->Link.protocol & RTMP_FEATURE_WRITE)) {
-        enc = AMF_EncodeNamedBoolean(enc, pend, &av_fpad, FALSE);
+        enc = ZYAMF_EncodeNamedBoolean(enc, pend, &av_fpad, FALSE);
         if (!enc)
             return FALSE;
-        enc = AMF_EncodeNamedNumber(enc, pend, &av_capabilities, 15.0);
+        enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_capabilities, 15.0);
         if (!enc)
             return FALSE;
-        enc = AMF_EncodeNamedNumber(enc, pend, &av_audioCodecs, r->m_fAudioCodecs);
+        enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_audioCodecs, r->m_fAudioCodecs);
         if (!enc)
             return FALSE;
-        enc = AMF_EncodeNamedNumber(enc, pend, &av_videoCodecs, r->m_fVideoCodecs);
+        enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_videoCodecs, r->m_fVideoCodecs);
         if (!enc)
             return FALSE;
-        enc = AMF_EncodeNamedNumber(enc, pend, &av_videoFunction, 1.0);
+        enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_videoFunction, 1.0);
         if (!enc)
             return FALSE;
         if (r->Link.pageUrl.av_len) {
-            enc = AMF_EncodeNamedString(enc, pend, &av_pageUrl, &r->Link.pageUrl);
+            enc = ZYAMF_EncodeNamedString(enc, pend, &av_pageUrl, &r->Link.pageUrl);
             if (!enc)
                 return FALSE;
         }
     }
     if (r->m_fEncoding != 0.0 || r->m_bSendEncoding) { /* AMF0, AMF3 not fully supported yet */
-        enc = AMF_EncodeNamedNumber(enc, pend, &av_objectEncoding, r->m_fEncoding);
+        enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_objectEncoding, r->m_fEncoding);
         if (!enc)
             return FALSE;
     }
@@ -1570,17 +1570,17 @@ static int
 
     /* add auth string */
     if (r->Link.auth.av_len) {
-        enc = AMF_EncodeBoolean(enc, pend, r->Link.lFlags & RTMP_LF_AUTH);
+        enc = ZYAMF_EncodeBoolean(enc, pend, r->Link.lFlags & RTMP_LF_AUTH);
         if (!enc)
             return FALSE;
-        enc = AMF_EncodeString(enc, pend, &r->Link.auth);
+        enc = ZYAMF_EncodeString(enc, pend, &r->Link.auth);
         if (!enc)
             return FALSE;
     }
     if (r->Link.extras.o_num) {
         int i;
         for (i = 0; i < r->Link.extras.o_num; i++) {
-            enc = AMFProp_Encode(&r->Link.extras.o_props[i], enc, pend);
+            enc = ZYAMFProp_Encode(&r->Link.extras.o_props[i], enc, pend);
             if (!enc)
                 return FALSE;
         }
@@ -1610,7 +1610,7 @@ SendBGHasStream(PILI_RTMP *r, double dId, AVal *playpath)
 
   enc = packet.m_body;
   enc = AMF_EncodeString(enc, pend, &av_bgHasStream);
-  enc = AMF_EncodeNumber(enc, pend, dId);
+  enc = ZYAMF_EncodeNumber(enc, pend, dId);
   *enc++ = AMF_NULL;
 
   enc = AMF_EncodeString(enc, pend, playpath);
@@ -1639,8 +1639,8 @@ int PILI_RTMP_SendCreateStream(PILI_RTMP *r, RTMPError *error) {
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_createStream);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_createStream);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL; /* NULL */
 
     packet.m_nBodySize = enc - packet.m_body;
@@ -1665,10 +1665,10 @@ static int
 
     RTMP_Log(RTMP_LOGDEBUG, "FCSubscribe: %s", subscribepath->av_val);
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_FCSubscribe);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_FCSubscribe);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeString(enc, pend, subscribepath);
+    enc = ZYAMF_EncodeString(enc, pend, subscribepath);
 
     if (!enc)
         return FALSE;
@@ -1695,10 +1695,10 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_releaseStream);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_releaseStream);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeString(enc, pend, &r->Link.playpath);
+    enc = ZYAMF_EncodeString(enc, pend, &r->Link.playpath);
     if (!enc)
         return FALSE;
 
@@ -1724,10 +1724,10 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_FCPublish);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_FCPublish);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeString(enc, pend, &r->Link.playpath);
+    enc = ZYAMF_EncodeString(enc, pend, &r->Link.playpath);
     if (!enc)
         return FALSE;
 
@@ -1753,10 +1753,10 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_FCUnpublish);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_FCUnpublish);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeString(enc, pend, &r->Link.playpath);
+    enc = ZYAMF_EncodeString(enc, pend, &r->Link.playpath);
     if (!enc)
         return FALSE;
 
@@ -1784,15 +1784,15 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_publish);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_publish);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeString(enc, pend, &r->Link.playpath);
+    enc = ZYAMF_EncodeString(enc, pend, &r->Link.playpath);
     if (!enc)
         return FALSE;
 
     /* FIXME: should we choose live based on Link.lFlags & RTMP_LF_LIVE? */
-    enc = AMF_EncodeString(enc, pend, &av_live);
+    enc = ZYAMF_EncodeString(enc, pend, &av_live);
     if (!enc)
         return FALSE;
 
@@ -1818,10 +1818,10 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_deleteStream);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_deleteStream);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeNumber(enc, pend, dStreamId);
+    enc = ZYAMF_EncodeNumber(enc, pend, dStreamId);
 
     packet.m_nBodySize = enc - packet.m_body;
 
@@ -1845,11 +1845,11 @@ int PILI_RTMP_SendPause(PILI_RTMP *r, int DoPause, int iTime, RTMPError *error) 
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_pause);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_pause);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeBoolean(enc, pend, DoPause);
-    enc = AMF_EncodeNumber(enc, pend, (double)iTime);
+    enc = ZYAMF_EncodeBoolean(enc, pend, DoPause);
+    enc = ZYAMF_EncodeNumber(enc, pend, (double)iTime);
 
     packet.m_nBodySize = enc - packet.m_body;
 
@@ -1879,10 +1879,10 @@ int PILI_RTMP_SendSeek(PILI_RTMP *r, int iTime, RTMPError *error) {
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_seek);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_seek);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeNumber(enc, pend, (double)iTime);
+    enc = ZYAMF_EncodeNumber(enc, pend, (double)iTime);
 
     packet.m_nBodySize = enc - packet.m_body;
 
@@ -1906,7 +1906,7 @@ int PILI_RTMP_SendServerBW(PILI_RTMP *r, RTMPError *error) {
 
     packet.m_nBodySize = 4;
 
-    AMF_EncodeInt32(packet.m_body, pend, r->m_nServerBW);
+    ZYAMF_EncodeInt32(packet.m_body, pend, r->m_nServerBW);
     return PILI_RTMP_SendPacket(r, &packet, FALSE, error);
 }
 
@@ -1924,7 +1924,7 @@ int PILI_RTMP_SendClientBW(PILI_RTMP *r, RTMPError *error) {
 
     packet.m_nBodySize = 5;
 
-    AMF_EncodeInt32(packet.m_body, pend, r->m_nClientBW);
+    ZYAMF_EncodeInt32(packet.m_body, pend, r->m_nClientBW);
     packet.m_body[4] = r->m_nClientBW2;
     return PILI_RTMP_SendPacket(r, &packet, FALSE, error);
 }
@@ -1944,7 +1944,7 @@ static int
 
     packet.m_nBodySize = 4;
 
-    AMF_EncodeInt32(packet.m_body, pend, r->m_nBytesIn); /* hard coded for now */
+    ZYAMF_EncodeInt32(packet.m_body, pend, r->m_nBytesIn); /* hard coded for now */
     r->m_nBytesInSent = r->m_nBytesIn;
 
     /*RTMP_Log(RTMP_LOGDEBUG, "Send bytes report. 0x%x (%d bytes)", (unsigned int)m_nBytesIn, m_nBytesIn); */
@@ -1968,8 +1968,8 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av__checkbw);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av__checkbw);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
 
     packet.m_nBodySize = enc - packet.m_body;
@@ -1995,10 +1995,10 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av__result);
-    enc = AMF_EncodeNumber(enc, pend, txn);
+    enc = ZYAMF_EncodeString(enc, pend, &av__result);
+    enc = ZYAMF_EncodeNumber(enc, pend, txn);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeNumber(enc, pend, (double)r->m_nBWCheckCounter++);
+    enc = ZYAMF_EncodeNumber(enc, pend, (double)r->m_nBWCheckCounter++);
 
     packet.m_nBodySize = enc - packet.m_body;
 
@@ -2023,8 +2023,8 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_pong);
-    enc = AMF_EncodeNumber(enc, pend, txn);
+    enc = ZYAMF_EncodeString(enc, pend, &av_pong);
+    enc = ZYAMF_EncodeNumber(enc, pend, txn);
     *enc++ = AMF_NULL;
 
     packet.m_nBodySize = enc - packet.m_body;
@@ -2049,14 +2049,14 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_play);
-    enc = AMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
+    enc = ZYAMF_EncodeString(enc, pend, &av_play);
+    enc = ZYAMF_EncodeNumber(enc, pend, ++r->m_numInvokes);
     *enc++ = AMF_NULL;
 
     RTMP_Log(RTMP_LOGDEBUG, "%s, seekTime=%d, stopTime=%d, sending play: %s",
              __FUNCTION__, r->Link.seekTime, r->Link.stopTime,
              r->Link.playpath.av_val);
-    enc = AMF_EncodeString(enc, pend, &r->Link.playpath);
+    enc = ZYAMF_EncodeString(enc, pend, &r->Link.playpath);
     if (!enc)
         return FALSE;
 
@@ -2069,12 +2069,12 @@ static int
    * >=0: plays a recorded streams from 'start' milliseconds
    */
     if (r->Link.lFlags & RTMP_LF_LIVE)
-        enc = AMF_EncodeNumber(enc, pend, -1000.0);
+        enc = ZYAMF_EncodeNumber(enc, pend, -1000.0);
     else {
         if (r->Link.seekTime > 0.0)
-            enc = AMF_EncodeNumber(enc, pend, r->Link.seekTime); /* resume from here */
+            enc = ZYAMF_EncodeNumber(enc, pend, r->Link.seekTime); /* resume from here */
         else
-            enc = AMF_EncodeNumber(enc, pend, 0.0); /*-2000.0);*/ /* recorded as default, -2000.0 is not reliable since that freezes the player if the stream is not found */
+            enc = ZYAMF_EncodeNumber(enc, pend, 0.0); /*-2000.0);*/ /* recorded as default, -2000.0 is not reliable since that freezes the player if the stream is not found */
     }
     if (!enc)
         return FALSE;
@@ -2086,7 +2086,7 @@ static int
    */
     /*enc += EncodeNumber(enc, -1.0); */ /* len */
     if (r->Link.stopTime) {
-        enc = AMF_EncodeNumber(enc, pend, r->Link.stopTime - r->Link.seekTime);
+        enc = ZYAMF_EncodeNumber(enc, pend, r->Link.stopTime - r->Link.seekTime);
         if (!enc)
             return FALSE;
     }
@@ -2114,15 +2114,15 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_set_playlist);
-    enc = AMF_EncodeNumber(enc, pend, 0);
+    enc = ZYAMF_EncodeString(enc, pend, &av_set_playlist);
+    enc = ZYAMF_EncodeNumber(enc, pend, 0);
     *enc++ = AMF_NULL;
     *enc++ = AMF_ECMA_ARRAY;
     *enc++ = 0;
     *enc++ = 0;
     *enc++ = 0;
     *enc++ = AMF_OBJECT;
-    enc = AMF_EncodeNamedString(enc, pend, &av_0, &r->Link.playpath);
+    enc = ZYAMF_EncodeNamedString(enc, pend, &av_0, &r->Link.playpath);
     if (!enc)
         return FALSE;
     if (enc + 3 >= pend)
@@ -2151,10 +2151,10 @@ static int
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_secureTokenResponse);
-    enc = AMF_EncodeNumber(enc, pend, 0.0);
+    enc = ZYAMF_EncodeString(enc, pend, &av_secureTokenResponse);
+    enc = ZYAMF_EncodeNumber(enc, pend, 0.0);
     *enc++ = AMF_NULL;
-    enc = AMF_EncodeString(enc, pend, resp);
+    enc = ZYAMF_EncodeString(enc, pend, resp);
     if (!enc)
         return FALSE;
 
@@ -2213,7 +2213,7 @@ int PILI_RTMP_SendCtrl(PILI_RTMP *r, short nType, unsigned int nObject, unsigned
     packet.m_nBodySize = nSize;
 
     buf = packet.m_body;
-    buf = AMF_EncodeInt16(buf, pend, nType);
+    buf = ZYAMF_EncodeInt16(buf, pend, nType);
 
     if (nType == 0x1B) {
 #ifdef CRYPTO
@@ -2225,10 +2225,10 @@ int PILI_RTMP_SendCtrl(PILI_RTMP *r, short nType, unsigned int nObject, unsigned
         *buf = nObject & 0xff;
     } else {
         if (nSize > 2)
-            buf = AMF_EncodeInt32(buf, pend, nObject);
+            buf = ZYAMF_EncodeInt32(buf, pend, nObject);
 
         if (nSize > 6)
-            buf = AMF_EncodeInt32(buf, pend, nTime);
+            buf = ZYAMF_EncodeInt32(buf, pend, nTime);
     }
 
     return PILI_RTMP_SendPacket(r, &packet, FALSE, error);
@@ -2312,15 +2312,15 @@ static int
         return 0;
     }
 
-    nRes = AMF_Decode(&obj, body, nBodySize, FALSE);
+    nRes = ZYAMF_Decode(&obj, body, nBodySize, FALSE);
     if (nRes < 0) {
         RTMP_Log(RTMP_LOGERROR, "%s, error decoding invoke packet", __FUNCTION__);
         return 0;
     }
 
-    AMF_Dump(&obj);
-    AMFProp_GetString(AMF_GetProp(&obj, NULL, 0), &method);
-    txn = (int)AMFProp_GetNumber(AMF_GetProp(&obj, NULL, 1));
+    ZYAMF_Dump(&obj);
+    ZYAMFProp_GetString(ZYAMF_GetProp(&obj, NULL, 0), &method);
+    txn = (int)ZYAMFProp_GetNumber(ZYAMF_GetProp(&obj, NULL, 1));
     RTMP_Log(RTMP_LOGDEBUG, "%s, server invoking <%s>", __FUNCTION__, method.av_val);
 
     RTMPError error = {0};
@@ -2370,7 +2370,7 @@ static int
                     SendFCSubscribe(r, &r->Link.playpath, &error);
             }
         } else if (AVMATCH(&methodInvoked, &av_createStream)) {
-            r->m_stream_id = (int)AMFProp_GetNumber(AMF_GetProp(&obj, NULL, 3));
+            r->m_stream_id = (int)ZYAMFProp_GetNumber(ZYAMF_GetProp(&obj, NULL, 3));
 
             if (r->Link.protocol & RTMP_FEATURE_WRITE) {
                 SendPublish(r, &error);
@@ -2420,9 +2420,9 @@ static int
     } else if (AVMATCH(&method, &av_onStatus)) {
         AMFObject obj2;
         AVal code, level;
-        AMFProp_GetObject(AMF_GetProp(&obj, NULL, 3), &obj2);
-        AMFProp_GetString(AMF_GetProp(&obj2, &av_code, -1), &code);
-        AMFProp_GetString(AMF_GetProp(&obj2, &av_level, -1), &level);
+        ZYAMFProp_GetObject(ZYAMF_GetProp(&obj, NULL, 3), &obj2);
+        ZYAMFProp_GetString(ZYAMF_GetProp(&obj2, &av_code, -1), &code);
+        ZYAMFProp_GetString(ZYAMF_GetProp(&obj2, &av_level, -1), &level);
 
         RTMP_Log(RTMP_LOGDEBUG, "%s, onStatus: %s", __FUNCTION__, code.av_val);
         if (AVMATCH(&code, &av_NetStream_Failed) || AVMATCH(&code, &av_NetStream_Play_Failed) || AVMATCH(&code, &av_NetStream_Play_StreamNotFound) || AVMATCH(&code, &av_NetConnection_Connect_InvalidApp)) {
@@ -2509,7 +2509,7 @@ static int
     } else {
     }
 leave:
-    AMF_Reset(&obj);
+    ZYAMF_Reset(&obj);
     return ret;
 }
 
@@ -2518,7 +2518,7 @@ int PILI_RTMP_FindFirstMatchingProperty(AMFObject *obj, const AVal *name,
     int n;
     /* this is a small object search to locate the "duration" property */
     for (n = 0; n < obj->o_num; n++) {
-        AMFObjectProperty *prop = AMF_GetProp(obj, NULL, n);
+        AMFObjectProperty *prop = ZYAMF_GetProp(obj, NULL, n);
 
         if (AVMATCH(&prop->p_name, name)) {
             *p = *prop;
@@ -2538,7 +2538,7 @@ int PILI_RTMP_FindPrefixProperty(AMFObject *obj, const AVal *name,
                                  AMFObjectProperty *p) {
     int n;
     for (n = 0; n < obj->o_num; n++) {
-        AMFObjectProperty *prop = AMF_GetProp(obj, NULL, n);
+        AMFObjectProperty *prop = ZYAMF_GetProp(obj, NULL, n);
 
         if (prop->p_name.av_len > name->av_len &&
             !memcmp(prop->p_name.av_val, name->av_val, name->av_len)) {
@@ -2559,7 +2559,7 @@ static int
     AMFObjectProperty *prop;
     int n;
     for (n = 0; n < obj->o_num; n++) {
-        prop = AMF_GetProp(obj, NULL, n);
+        prop = ZYAMF_GetProp(obj, NULL, n);
         if (prop->p_type != AMF_OBJECT) {
             char str[256] = "";
             switch (prop->p_type) {
@@ -2611,14 +2611,14 @@ static int
     AVal metastring;
     int ret = FALSE;
 
-    int nRes = AMF_Decode(&obj, body, len, FALSE);
+    int nRes = ZYAMF_Decode(&obj, body, len, FALSE);
     if (nRes < 0) {
         RTMP_Log(RTMP_LOGERROR, "%s, error decoding meta data packet", __FUNCTION__);
         return FALSE;
     }
 
-    AMF_Dump(&obj);
-    AMFProp_GetString(AMF_GetProp(&obj, NULL, 0), &metastring);
+    ZYAMF_Dump(&obj);
+    ZYAMFProp_GetString(ZYAMF_GetProp(&obj, NULL, 0), &metastring);
 
     if (AVMATCH(&metastring, &av_onMetaData)) {
         AMFObjectProperty prop;
@@ -2636,14 +2636,14 @@ static int
             r->m_read.dataType |= 4;
         ret = TRUE;
     }
-    AMF_Reset(&obj);
+    ZYAMF_Reset(&obj);
     return ret;
 }
 
 static void
     HandleChangeChunkSize(PILI_RTMP *r, const PILI_RTMPPacket *packet) {
     if (packet->m_nBodySize >= 4) {
-        r->m_inChunkSize = AMF_DecodeInt32(packet->m_body);
+        r->m_inChunkSize = ZYAMF_DecodeInt32(packet->m_body);
         RTMP_Log(RTMP_LOGDEBUG, "%s, received: chunk size change to %d", __FUNCTION__,
                  r->m_inChunkSize);
     }
@@ -2662,7 +2662,7 @@ static void
     short nType = -1;
     unsigned int tmp;
     if (packet->m_body && packet->m_nBodySize >= 2)
-        nType = AMF_DecodeInt16(packet->m_body);
+        nType = ZYAMF_DecodeInt16(packet->m_body);
     RTMP_Log(RTMP_LOGDEBUG, "%s, received ctrl. type: %d, len: %d", __FUNCTION__, nType,
              packet->m_nBodySize);
     /*RTMP_LogHex(packet.m_body, packet.m_nBodySize); */
@@ -2670,29 +2670,29 @@ static void
     if (packet->m_nBodySize >= 6) {
         switch (nType) {
             case 0:
-                tmp = AMF_DecodeInt32(packet->m_body + 2);
+                tmp = ZYAMF_DecodeInt32(packet->m_body + 2);
                 RTMP_Log(RTMP_LOGDEBUG, "%s, Stream Begin %d", __FUNCTION__, tmp);
                 break;
 
             case 1:
-                tmp = AMF_DecodeInt32(packet->m_body + 2);
+                tmp = ZYAMF_DecodeInt32(packet->m_body + 2);
                 RTMP_Log(RTMP_LOGDEBUG, "%s, Stream EOF %d", __FUNCTION__, tmp);
                 if (r->m_pausing == 1)
                     r->m_pausing = 2;
                 break;
 
             case 2:
-                tmp = AMF_DecodeInt32(packet->m_body + 2);
+                tmp = ZYAMF_DecodeInt32(packet->m_body + 2);
                 RTMP_Log(RTMP_LOGDEBUG, "%s, Stream Dry %d", __FUNCTION__, tmp);
                 break;
 
             case 4:
-                tmp = AMF_DecodeInt32(packet->m_body + 2);
+                tmp = ZYAMF_DecodeInt32(packet->m_body + 2);
                 RTMP_Log(RTMP_LOGDEBUG, "%s, Stream IsRecorded %d", __FUNCTION__, tmp);
                 break;
 
             case 6: /* server ping. reply with pong. */
-                tmp = AMF_DecodeInt32(packet->m_body + 2);
+                tmp = ZYAMF_DecodeInt32(packet->m_body + 2);
                 RTMP_Log(RTMP_LOGDEBUG, "%s, Ping %d", __FUNCTION__, tmp);
                 PILI_RTMP_SendCtrl(r, 0x07, tmp, 0, NULL);
                 break;
@@ -2734,7 +2734,7 @@ static void
 	 * slower than the media bitrate.
 	 */
             case 31:
-                tmp = AMF_DecodeInt32(packet->m_body + 2);
+                tmp = ZYAMF_DecodeInt32(packet->m_body + 2);
                 RTMP_Log(RTMP_LOGDEBUG, "%s, Stream BufferEmpty %d", __FUNCTION__, tmp);
                 if (!(r->Link.lFlags & RTMP_LF_BUFX))
                     break;
@@ -2749,12 +2749,12 @@ static void
                 break;
 
             case 32:
-                tmp = AMF_DecodeInt32(packet->m_body + 2);
+                tmp = ZYAMF_DecodeInt32(packet->m_body + 2);
                 RTMP_Log(RTMP_LOGDEBUG, "%s, Stream BufferReady %d", __FUNCTION__, tmp);
                 break;
 
             default:
-                tmp = AMF_DecodeInt32(packet->m_body + 2);
+                tmp = ZYAMF_DecodeInt32(packet->m_body + 2);
                 RTMP_Log(RTMP_LOGDEBUG, "%s, Stream xx %d", __FUNCTION__, tmp);
                 break;
         }
@@ -2783,13 +2783,13 @@ static void
 
 static void
     HandleServerBW(PILI_RTMP *r, const PILI_RTMPPacket *packet) {
-    r->m_nServerBW = AMF_DecodeInt32(packet->m_body);
+    r->m_nServerBW = ZYAMF_DecodeInt32(packet->m_body);
     RTMP_Log(RTMP_LOGDEBUG, "%s: server BW = %d", __FUNCTION__, r->m_nServerBW);
 }
 
 static void
     HandleClientBW(PILI_RTMP *r, const PILI_RTMPPacket *packet) {
-    r->m_nClientBW = AMF_DecodeInt32(packet->m_body);
+    r->m_nClientBW = ZYAMF_DecodeInt32(packet->m_body);
     if (packet->m_nBodySize > 4)
         r->m_nClientBW2 = packet->m_body[4];
     else
@@ -2879,12 +2879,12 @@ int PILI_RTMP_ReadPacket(PILI_RTMP *r, PILI_RTMPPacket *packet) {
     hSize = nSize + (header - (char *)hbuf);
 
     if (nSize >= 3) {
-        packet->m_nTimeStamp = AMF_DecodeInt24(header);
+        packet->m_nTimeStamp = ZYAMF_DecodeInt24(header);
 
         /*RTMP_Log(RTMP_LOGDEBUG, "%s, reading PILI_RTMP packet chunk on channel %x, headersz %i, timestamp %i, abs timestamp %i", __FUNCTION__, packet.m_nChannel, nSize, packet.m_nTimeStamp, packet.m_hasAbsTimestamp); */
 
         if (nSize >= 6) {
-            packet->m_nBodySize = AMF_DecodeInt24(header + 3);
+            packet->m_nBodySize = ZYAMF_DecodeInt24(header + 3);
             packet->m_nBytesRead = 0;
             PILI_RTMPPacket_Free(packet);
 
@@ -2901,7 +2901,7 @@ int PILI_RTMP_ReadPacket(PILI_RTMP *r, PILI_RTMPPacket *packet) {
                          __FUNCTION__);
                 return FALSE;
             }
-            packet->m_nTimeStamp = AMF_DecodeInt32(header + nSize);
+            packet->m_nTimeStamp = ZYAMF_DecodeInt32(header + nSize);
             hSize += 4;
         }
     }
@@ -3192,11 +3192,11 @@ int PILI_RTMP_SendPacket(PILI_RTMP *r, PILI_RTMPPacket *packet, int queue, RTMPE
     }
 
     if (nSize > 1) {
-        hptr = AMF_EncodeInt24(hptr, hend, t > 0xffffff ? 0xffffff : t);
+        hptr = ZYAMF_EncodeInt24(hptr, hend, t > 0xffffff ? 0xffffff : t);
     }
 
     if (nSize > 4) {
-        hptr = AMF_EncodeInt24(hptr, hend, packet->m_nBodySize);
+        hptr = ZYAMF_EncodeInt24(hptr, hend, packet->m_nBodySize);
         *hptr++ = packet->m_packetType;
     }
 
@@ -3204,7 +3204,7 @@ int PILI_RTMP_SendPacket(PILI_RTMP *r, PILI_RTMPPacket *packet, int queue, RTMPE
         hptr += EncodeInt32LE(hptr, packet->m_nInfoField2);
 
     if (nSize > 1 && t >= 0xffffff)
-        hptr = AMF_EncodeInt32(hptr, hend, t);
+        hptr = ZYAMF_EncodeInt32(hptr, hend, t);
 
     nSize = packet->m_nBodySize;
     buffer = packet->m_body;
@@ -3272,13 +3272,13 @@ int PILI_RTMP_SendPacket(PILI_RTMP *r, PILI_RTMPPacket *packet, int queue, RTMPE
         AVal method;
         char *ptr;
         ptr = packet->m_body + 1;
-        AMF_DecodeString(ptr, &method);
+        ZYAMF_DecodeString(ptr, &method);
         RTMP_Log(RTMP_LOGDEBUG, "Invoking %s", method.av_val);
         /* keep it in call queue till result arrives */
         if (queue) {
             int txn;
             ptr += 3 + method.av_len;
-            txn = (int)AMF_DecodeNumber(ptr);
+            txn = (int)ZYAMF_DecodeNumber(ptr);
             AV_queue(&r->m_methodCalls, &r->m_numCalls, &method, txn);
         }
     }
@@ -3648,10 +3648,10 @@ static int
                 if (r->m_read.nMetaHeaderSize > 0 && packet.m_packetType == 0x12) {
                     AMFObject metaObj;
                     int nRes =
-                        AMF_Decode(&metaObj, packetBody, nPacketLen, FALSE);
+                        ZYAMF_Decode(&metaObj, packetBody, nPacketLen, FALSE);
                     if (nRes >= 0) {
                         AVal metastring;
-                        AMFProp_GetString(AMF_GetProp(&metaObj, NULL, 0),
+                        ZYAMFProp_GetString(ZYAMF_GetProp(&metaObj, NULL, 0),
                                           &metastring);
 
                         if (AVMATCH(&metastring, &av_onMetaData)) {
@@ -3662,7 +3662,7 @@ static int
                                 ret = RTMP_READ_ERROR;
                             }
                         }
-                        AMF_Reset(&metaObj);
+                        ZYAMF_Reset(&metaObj);
                         if (ret == RTMP_READ_ERROR)
                             break;
                     }
@@ -3706,8 +3706,8 @@ static int
                         while (pos + 11 < nPacketLen) {
                             /* size without header (11) and prevTagSize (4) */
                             uint32_t dataSize =
-                                AMF_DecodeInt24(packetBody + pos + 1);
-                            ts = AMF_DecodeInt24(packetBody + pos + 4);
+                                ZYAMF_DecodeInt24(packetBody + pos + 1);
+                            ts = ZYAMF_DecodeInt24(packetBody + pos + 4);
                             ts |= (packetBody[pos + 7] << 24);
 
 #ifdef _DEBUG
@@ -3864,7 +3864,7 @@ static int
 
             *ptr = packet.m_packetType;
             ptr++;
-            ptr = AMF_EncodeInt24(ptr, pend, nPacketLen);
+            ptr = ZYAMF_EncodeInt24(ptr, pend, nPacketLen);
 
 #if 0
 	    if(packet.m_packetType == 0x09) { /* video */
@@ -3885,12 +3885,12 @@ static int
 	     }
 #endif
 
-            ptr = AMF_EncodeInt24(ptr, pend, nTimeStamp);
+            ptr = ZYAMF_EncodeInt24(ptr, pend, nTimeStamp);
             *ptr = (char)((nTimeStamp & 0xFF000000) >> 24);
             ptr++;
 
             /* stream id */
-            ptr = AMF_EncodeInt24(ptr, pend, 0);
+            ptr = ZYAMF_EncodeInt24(ptr, pend, 0);
         }
 
         memcpy(ptr, packetBody, nPacketLen);
@@ -3902,19 +3902,19 @@ static int
             int delta;
 
             /* grab first timestamp and see if it needs fixing */
-            nTimeStamp = AMF_DecodeInt24(packetBody + 4);
+            nTimeStamp = ZYAMF_DecodeInt24(packetBody + 4);
             nTimeStamp |= (packetBody[7] << 24);
             delta = packet.m_nTimeStamp - nTimeStamp;
 
             while (pos + 11 < nPacketLen) {
                 /* size without header (11) and without prevTagSize (4) */
-                uint32_t dataSize = AMF_DecodeInt24(packetBody + pos + 1);
-                nTimeStamp = AMF_DecodeInt24(packetBody + pos + 4);
+                uint32_t dataSize = ZYAMF_DecodeInt24(packetBody + pos + 1);
+                nTimeStamp = ZYAMF_DecodeInt24(packetBody + pos + 4);
                 nTimeStamp |= (packetBody[pos + 7] << 24);
 
                 if (delta) {
                     nTimeStamp += delta;
-                    AMF_EncodeInt24(ptr + pos + 4, pend, nTimeStamp);
+                    ZYAMF_EncodeInt24(ptr + pos + 4, pend, nTimeStamp);
                     ptr[pos + 7] = nTimeStamp >> 24;
                 }
 
@@ -3934,13 +3934,13 @@ static int
 
                     /* we have to append a last tagSize! */
                     prevTagSize = dataSize + 11;
-                    AMF_EncodeInt32(ptr + pos + 11 + dataSize, pend,
+                    ZYAMF_EncodeInt32(ptr + pos + 11 + dataSize, pend,
                                     prevTagSize);
                     size += 4;
                     len += 4;
                 } else {
                     prevTagSize =
-                        AMF_DecodeInt32(packetBody + pos + 11 + dataSize);
+                        ZYAMF_DecodeInt32(packetBody + pos + 11 + dataSize);
 
 #ifdef _DEBUG
                     RTMP_Log(RTMP_LOGDEBUG,
@@ -3957,7 +3957,7 @@ static int
 #endif
 
                         prevTagSize = dataSize + 11;
-                        AMF_EncodeInt32(ptr + pos + 11 + dataSize, pend,
+                        ZYAMF_EncodeInt32(ptr + pos + 11 + dataSize, pend,
                                         prevTagSize);
                     }
                 }
@@ -3969,7 +3969,7 @@ static int
 
         if (packet.m_packetType != 0x16) {
             /* FLV tag packets contain their own prevTagSize */
-            AMF_EncodeInt32(ptr, pend, prevTagSize);
+            ZYAMF_EncodeInt32(ptr, pend, prevTagSize);
         }
 
         /* In non-live this nTimeStamp can contain an absolute TS.
@@ -4082,9 +4082,9 @@ int PILI_RTMP_Write(PILI_RTMP *r, const char *buf, int size, RTMPError *error) {
             }
 
             pkt->m_packetType = *buf++;
-            pkt->m_nBodySize = AMF_DecodeInt24(buf);
+            pkt->m_nBodySize = ZYAMF_DecodeInt24(buf);
             buf += 3;
-            pkt->m_nTimeStamp = AMF_DecodeInt24(buf);
+            pkt->m_nTimeStamp = ZYAMF_DecodeInt24(buf);
             buf += 3;
             pkt->m_nTimeStamp |= *buf++ << 24;
             buf += 3;
@@ -4107,7 +4107,7 @@ int PILI_RTMP_Write(PILI_RTMP *r, const char *buf, int size, RTMPError *error) {
             enc = pkt->m_body;
             pend = enc + pkt->m_nBodySize;
             if (pkt->m_packetType == 0x12) {
-                enc = AMF_EncodeString(enc, pend, &av_setDataFrame);
+                enc = ZYAMF_EncodeString(enc, pend, &av_setDataFrame);
                 pkt->m_nBytesRead = enc - pkt->m_body;
             }
         } else {

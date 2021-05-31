@@ -102,65 +102,65 @@ typedef struct AMFObjectProperty {
     int16_t p_UTCoffset;
 } AMFObjectProperty;
 
-char *AMF_EncodeString(char *output, char *outend, const AVal *str);
-char *AMF_EncodeNumber(char *output, char *outend, double dVal);
-char *AMF_EncodeInt16(char *output, char *outend, short nVal);
-char *AMF_EncodeInt24(char *output, char *outend, int nVal);
-char *AMF_EncodeInt32(char *output, char *outend, int nVal);
-char *AMF_EncodeBoolean(char *output, char *outend, int bVal);
+char *ZYAMF_EncodeString(char *output, char *outend, const AVal *str);
+char *ZYAMF_EncodeNumber(char *output, char *outend, double dVal);
+char *ZYAMF_EncodeInt16(char *output, char *outend, short nVal);
+char *ZYAMF_EncodeInt24(char *output, char *outend, int nVal);
+char *ZYAMF_EncodeInt32(char *output, char *outend, int nVal);
+char *ZYAMF_EncodeBoolean(char *output, char *outend, int bVal);
 
 /* Shortcuts for AMFProp_Encode */
-char *AMF_EncodeNamedString(char *output, char *outend, const AVal *name,
+char *ZYAMF_EncodeNamedString(char *output, char *outend, const AVal *name,
                             const AVal *value);
-char *AMF_EncodeNamedNumber(char *output, char *outend, const AVal *name,
+char *ZYAMF_EncodeNamedNumber(char *output, char *outend, const AVal *name,
                             double dVal);
-char *AMF_EncodeNamedBoolean(char *output, char *outend, const AVal *name,
+char *ZYAMF_EncodeNamedBoolean(char *output, char *outend, const AVal *name,
                              int bVal);
 
-unsigned short AMF_DecodeInt16(const char *data);
-unsigned int AMF_DecodeInt24(const char *data);
-unsigned int AMF_DecodeInt32(const char *data);
-void AMF_DecodeString(const char *data, AVal *str);
-void AMF_DecodeLongString(const char *data, AVal *str);
-int AMF_DecodeBoolean(const char *data);
-double AMF_DecodeNumber(const char *data);
+unsigned short ZYAMF_DecodeInt16(const char *data);
+unsigned int ZYAMF_DecodeInt24(const char *data);
+unsigned int ZYAMF_DecodeInt32(const char *data);
+void ZYAMF_DecodeString(const char *data, AVal *str);
+void ZYAMF_DecodeLongString(const char *data, AVal *str);
+int ZYAMF_DecodeBoolean(const char *data);
+double ZYAMF_DecodeNumber(const char *data);
 
-char *AMF_Encode(AMFObject *obj, char *pBuffer, char *pBufEnd);
-int AMF_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bDecodeName);
-int AMF_DecodeArray(AMFObject *obj, const char *pBuffer, int nSize,
+char *ZYAMF_Encode(AMFObject *obj, char *pBuffer, char *pBufEnd);
+int ZYAMF_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bDecodeName);
+int ZYAMF_DecodeArray(AMFObject *obj, const char *pBuffer, int nSize,
                     int nArrayLen, int bDecodeName);
-int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize,
+int ZYAMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize,
                 int bDecodeName);
-void AMF_Dump(AMFObject *obj);
-void AMF_Reset(AMFObject *obj);
+void ZYAMF_Dump(AMFObject *obj);
+void ZYAMF_Reset(AMFObject *obj);
 
-void AMF_AddProp(AMFObject *obj, const AMFObjectProperty *prop);
-int AMF_CountProp(AMFObject *obj);
-AMFObjectProperty *AMF_GetProp(AMFObject *obj, const AVal *name, int nIndex);
+void ZYAMF_AddProp(AMFObject *obj, const AMFObjectProperty *prop);
+int ZYAMF_CountProp(AMFObject *obj);
+AMFObjectProperty *ZYAMF_GetProp(AMFObject *obj, const AVal *name, int nIndex);
 
-AMFDataType AMFProp_GetType(AMFObjectProperty *prop);
-void AMFProp_SetNumber(AMFObjectProperty *prop, double dval);
-void AMFProp_SetBoolean(AMFObjectProperty *prop, int bflag);
-void AMFProp_SetString(AMFObjectProperty *prop, AVal *str);
-void AMFProp_SetObject(AMFObjectProperty *prop, AMFObject *obj);
+AMFDataType ZYAMFProp_GetType(AMFObjectProperty *prop);
+void ZYAMFProp_SetNumber(AMFObjectProperty *prop, double dval);
+void ZYAMFProp_SetBoolean(AMFObjectProperty *prop, int bflag);
+void ZYAMFProp_SetString(AMFObjectProperty *prop, AVal *str);
+void ZYAMFProp_SetObject(AMFObjectProperty *prop, AMFObject *obj);
 
-void AMFProp_GetName(AMFObjectProperty *prop, AVal *name);
-void AMFProp_SetName(AMFObjectProperty *prop, AVal *name);
-double AMFProp_GetNumber(AMFObjectProperty *prop);
-int AMFProp_GetBoolean(AMFObjectProperty *prop);
-void AMFProp_GetString(AMFObjectProperty *prop, AVal *str);
-void AMFProp_GetObject(AMFObjectProperty *prop, AMFObject *obj);
+void ZYAMFProp_GetName(AMFObjectProperty *prop, AVal *name);
+void ZYAMFProp_SetName(AMFObjectProperty *prop, AVal *name);
+double ZYAMFProp_GetNumber(AMFObjectProperty *prop);
+int ZYAMFProp_GetBoolean(AMFObjectProperty *prop);
+void ZYAMFProp_GetString(AMFObjectProperty *prop, AVal *str);
+void ZYAMFProp_GetObject(AMFObjectProperty *prop, AMFObject *obj);
 
-int AMFProp_IsValid(AMFObjectProperty *prop);
+int ZYAMFProp_IsValid(AMFObjectProperty *prop);
 
-char *AMFProp_Encode(AMFObjectProperty *prop, char *pBuffer, char *pBufEnd);
-int AMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
+char *ZYAMFProp_Encode(AMFObjectProperty *prop, char *pBuffer, char *pBufEnd);
+int ZYAMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
                     int bDecodeName);
-int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
+int ZYAMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
                    int bDecodeName);
 
-void AMFProp_Dump(AMFObjectProperty *prop);
-void AMFProp_Reset(AMFObjectProperty *prop);
+void ZYAMFProp_Dump(AMFObjectProperty *prop);
+void ZYAMFProp_Reset(AMFObjectProperty *prop);
 
 typedef struct AMF3ClassDef {
     AVal cd_name;
@@ -170,8 +170,8 @@ typedef struct AMF3ClassDef {
     AVal *cd_props;
 } AMF3ClassDef;
 
-void AMF3CD_AddProp(AMF3ClassDef *cd, AVal *prop);
-AVal *AMF3CD_GetProp(AMF3ClassDef *cd, int idx);
+void ZYAMF3CD_AddProp(AMF3ClassDef *cd, AVal *prop);
+AVal *ZYAMF3CD_GetProp(AMF3ClassDef *cd, int idx);
 
 #ifdef __cplusplus
 }

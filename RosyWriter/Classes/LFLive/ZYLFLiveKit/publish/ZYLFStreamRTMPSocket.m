@@ -257,7 +257,7 @@ SAVC(mp4a);
         goto Failed;
     }
 
-    _rtmp->m_errorCallback = RTMPErrorCallback;
+    _rtmp->m_errorCallback = ZYRTMPErrorCallback;
     _rtmp->m_connCallback = ConnectionTimeCallback;
     _rtmp->m_userData = (__bridge void *)self;
     _rtmp->m_msgCounter = 1;
@@ -312,34 +312,34 @@ Failed:
     packet.m_body = pbuf + RTMP_MAX_HEADER_SIZE;
 
     char *enc = packet.m_body;
-    enc = AMF_EncodeString(enc, pend, &av_setDataFrame);
-    enc = AMF_EncodeString(enc, pend, &av_onMetaData);
+    enc = ZYAMF_EncodeString(enc, pend, &av_setDataFrame);
+    enc = ZYAMF_EncodeString(enc, pend, &av_onMetaData);
 
     *enc++ = AMF_OBJECT;
 
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_duration, 0.0);
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_fileSize, 0.0);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_duration, 0.0);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_fileSize, 0.0);
 
     // videosize
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_width, _stream.videoConfiguration.videoSize.width);
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_height, _stream.videoConfiguration.videoSize.height);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_width, _stream.videoConfiguration.videoSize.width);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_height, _stream.videoConfiguration.videoSize.height);
 
     // video
-    enc = AMF_EncodeNamedString(enc, pend, &av_videocodecid, &av_avc1);
+    enc = ZYAMF_EncodeNamedString(enc, pend, &av_videocodecid, &av_avc1);
 
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_videodatarate, _stream.videoConfiguration.videoBitRate / 1000.f);
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_framerate, _stream.videoConfiguration.videoFrameRate);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_videodatarate, _stream.videoConfiguration.videoBitRate / 1000.f);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_framerate, _stream.videoConfiguration.videoFrameRate);
 
     // audio
-    enc = AMF_EncodeNamedString(enc, pend, &av_audiocodecid, &av_mp4a);
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_audiodatarate, _stream.audioConfiguration.audioBitrate);
+    enc = ZYAMF_EncodeNamedString(enc, pend, &av_audiocodecid, &av_mp4a);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_audiodatarate, _stream.audioConfiguration.audioBitrate);
 
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_audiosamplerate, _stream.audioConfiguration.audioSampleRate);
-    enc = AMF_EncodeNamedNumber(enc, pend, &av_audiosamplesize, 16.0);
-    enc = AMF_EncodeNamedBoolean(enc, pend, &av_stereo, _stream.audioConfiguration.numberOfChannels == 2);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_audiosamplerate, _stream.audioConfiguration.audioSampleRate);
+    enc = ZYAMF_EncodeNamedNumber(enc, pend, &av_audiosamplesize, 16.0);
+    enc = ZYAMF_EncodeNamedBoolean(enc, pend, &av_stereo, _stream.audioConfiguration.numberOfChannels == 2);
 
     // sdk version
-    enc = AMF_EncodeNamedString(enc, pend, &av_encoder, &av_SDKVersion);
+    enc = ZYAMF_EncodeNamedString(enc, pend, &av_encoder, &av_SDKVersion);
 
     *enc++ = 0;
     *enc++ = 0;
@@ -531,7 +531,7 @@ Failed:
 }
 
 #pragma mark -- CallBack
-void RTMPErrorCallback(RTMPError *error, void *userData) {
+void ZYRTMPErrorCallback(RTMPError *error, void *userData) {
     ZYLFStreamRTMPSocket *socket = (__bridge ZYLFStreamRTMPSocket *)userData;
     if (error->code < 0) {
         [socket reconnect];

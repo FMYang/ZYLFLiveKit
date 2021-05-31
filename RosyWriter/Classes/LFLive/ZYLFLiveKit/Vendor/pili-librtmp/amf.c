@@ -37,7 +37,7 @@ static const AVal AV_empty = {0, 0};
 
 /* Data is Big-Endian */
 unsigned short
-    AMF_DecodeInt16(const char *data) {
+    ZYAMF_DecodeInt16(const char *data) {
     unsigned char *c = (unsigned char *)data;
     unsigned short val;
     val = (c[0] << 8) | c[1];
@@ -45,7 +45,7 @@ unsigned short
 }
 
 unsigned int
-    AMF_DecodeInt24(const char *data) {
+    ZYAMF_DecodeInt24(const char *data) {
     unsigned char *c = (unsigned char *)data;
     unsigned int val;
     val = (c[0] << 16) | (c[1] << 8) | c[2];
@@ -53,25 +53,25 @@ unsigned int
 }
 
 unsigned int
-    AMF_DecodeInt32(const char *data) {
+    ZYAMF_DecodeInt32(const char *data) {
     unsigned char *c = (unsigned char *)data;
     unsigned int val;
     val = (c[0] << 24) | (c[1] << 16) | (c[2] << 8) | c[3];
     return val;
 }
 
-void AMF_DecodeString(const char *data, AVal *bv) {
-    bv->av_len = AMF_DecodeInt16(data);
+void ZYAMF_DecodeString(const char *data, AVal *bv) {
+    bv->av_len = ZYAMF_DecodeInt16(data);
     bv->av_val = (bv->av_len > 0) ? (char *)data + 2 : NULL;
 }
 
-void AMF_DecodeLongString(const char *data, AVal *bv) {
-    bv->av_len = AMF_DecodeInt32(data);
+void ZYAMF_DecodeLongString(const char *data, AVal *bv) {
+    bv->av_len = ZYAMF_DecodeInt32(data);
     bv->av_val = (bv->av_len > 0) ? (char *)data + 4 : NULL;
 }
 
 double
-    AMF_DecodeNumber(const char *data) {
+    ZYAMF_DecodeNumber(const char *data) {
     double dVal;
 #if __FLOAT_WORD_ORDER == __BYTE_ORDER
 #if __BYTE_ORDER == __BIG_ENDIAN
@@ -119,12 +119,12 @@ double
     return dVal;
 }
 
-int AMF_DecodeBoolean(const char *data) {
+int ZYAMF_DecodeBoolean(const char *data) {
     return *data != 0;
 }
 
 char *
-    AMF_EncodeInt16(char *output, char *outend, short nVal) {
+    ZYAMF_EncodeInt16(char *output, char *outend, short nVal) {
     if (output + 2 > outend)
         return NULL;
 
@@ -134,7 +134,7 @@ char *
 }
 
 char *
-    AMF_EncodeInt24(char *output, char *outend, int nVal) {
+    ZYAMF_EncodeInt24(char *output, char *outend, int nVal) {
     if (output + 3 > outend)
         return NULL;
 
@@ -145,7 +145,7 @@ char *
 }
 
 char *
-    AMF_EncodeInt32(char *output, char *outend, int nVal) {
+    ZYAMF_EncodeInt32(char *output, char *outend, int nVal) {
     if (output + 4 > outend)
         return NULL;
 
@@ -157,7 +157,7 @@ char *
 }
 
 char *
-    AMF_EncodeString(char *output, char *outend, const AVal *bv) {
+    ZYAMF_EncodeString(char *output, char *outend, const AVal *bv) {
     if ((bv->av_len < 65536 && output + 1 + 2 + bv->av_len > outend) ||
         output + 1 + 4 + bv->av_len > outend)
         return NULL;
@@ -165,11 +165,11 @@ char *
     if (bv->av_len < 65536) {
         *output++ = AMF_STRING;
 
-        output = AMF_EncodeInt16(output, outend, bv->av_len);
+        output = ZYAMF_EncodeInt16(output, outend, bv->av_len);
     } else {
         *output++ = AMF_LONG_STRING;
 
-        output = AMF_EncodeInt32(output, outend, bv->av_len);
+        output = ZYAMF_EncodeInt32(output, outend, bv->av_len);
     }
     memcpy(output, bv->av_val, bv->av_len);
     output += bv->av_len;
@@ -178,7 +178,7 @@ char *
 }
 
 char *
-    AMF_EncodeNumber(char *output, char *outend, double dVal) {
+    ZYAMF_EncodeNumber(char *output, char *outend, double dVal) {
     if (output + 1 + 8 > outend)
         return NULL;
 
@@ -238,7 +238,7 @@ char *
 }
 
 char *
-    AMF_EncodeBoolean(char *output, char *outend, int bVal) {
+    ZYAMF_EncodeBoolean(char *output, char *outend, int bVal) {
     if (output + 2 > outend)
         return NULL;
 
@@ -250,77 +250,77 @@ char *
 }
 
 char *
-    AMF_EncodeNamedString(char *output, char *outend, const AVal *strName, const AVal *strValue) {
+    ZYAMF_EncodeNamedString(char *output, char *outend, const AVal *strName, const AVal *strValue) {
     if (output + 2 + strName->av_len > outend)
         return NULL;
-    output = AMF_EncodeInt16(output, outend, strName->av_len);
+    output = ZYAMF_EncodeInt16(output, outend, strName->av_len);
 
     memcpy(output, strName->av_val, strName->av_len);
     output += strName->av_len;
 
-    return AMF_EncodeString(output, outend, strValue);
+    return ZYAMF_EncodeString(output, outend, strValue);
 }
 
 char *
-    AMF_EncodeNamedNumber(char *output, char *outend, const AVal *strName, double dVal) {
+    ZYAMF_EncodeNamedNumber(char *output, char *outend, const AVal *strName, double dVal) {
     if (output + 2 + strName->av_len > outend)
         return NULL;
-    output = AMF_EncodeInt16(output, outend, strName->av_len);
+    output = ZYAMF_EncodeInt16(output, outend, strName->av_len);
 
     memcpy(output, strName->av_val, strName->av_len);
     output += strName->av_len;
 
-    return AMF_EncodeNumber(output, outend, dVal);
+    return ZYAMF_EncodeNumber(output, outend, dVal);
 }
 
 char *
-    AMF_EncodeNamedBoolean(char *output, char *outend, const AVal *strName, int bVal) {
+    ZYAMF_EncodeNamedBoolean(char *output, char *outend, const AVal *strName, int bVal) {
     if (output + 2 + strName->av_len > outend)
         return NULL;
-    output = AMF_EncodeInt16(output, outend, strName->av_len);
+    output = ZYAMF_EncodeInt16(output, outend, strName->av_len);
 
     memcpy(output, strName->av_val, strName->av_len);
     output += strName->av_len;
 
-    return AMF_EncodeBoolean(output, outend, bVal);
+    return ZYAMF_EncodeBoolean(output, outend, bVal);
 }
 
-void AMFProp_GetName(AMFObjectProperty *prop, AVal *name) {
+void ZYAMFProp_GetName(AMFObjectProperty *prop, AVal *name) {
     *name = prop->p_name;
 }
 
-void AMFProp_SetName(AMFObjectProperty *prop, AVal *name) {
+void ZYAMFProp_SetName(AMFObjectProperty *prop, AVal *name) {
     prop->p_name = *name;
 }
 
 AMFDataType
-    AMFProp_GetType(AMFObjectProperty *prop) {
+    ZYAMFProp_GetType(AMFObjectProperty *prop) {
     return prop->p_type;
 }
 
 double
-    AMFProp_GetNumber(AMFObjectProperty *prop) {
+    ZYAMFProp_GetNumber(AMFObjectProperty *prop) {
     return prop->p_vu.p_number;
 }
 
-int AMFProp_GetBoolean(AMFObjectProperty *prop) {
+int ZYAMFProp_GetBoolean(AMFObjectProperty *prop) {
     return prop->p_vu.p_number != 0;
 }
 
-void AMFProp_GetString(AMFObjectProperty *prop, AVal *str) {
+void ZYAMFProp_GetString(AMFObjectProperty *prop, AVal *str) {
     *str = prop->p_vu.p_aval;
 }
 
-void AMFProp_GetObject(AMFObjectProperty *prop, AMFObject *obj) {
+void ZYAMFProp_GetObject(AMFObjectProperty *prop, AMFObject *obj) {
     *obj = prop->p_vu.p_object;
 }
 
-int AMFProp_IsValid(AMFObjectProperty *prop) {
+int ZYAMFProp_IsValid(AMFObjectProperty *prop) {
     return prop->p_type != AMF_INVALID;
 }
 
 char *
-    AMFProp_Encode(AMFObjectProperty *prop, char *pBuffer, char *pBufEnd) {
+    ZYAMFProp_Encode(AMFObjectProperty *prop, char *pBuffer, char *pBufEnd) {
     if (prop->p_type == AMF_INVALID)
         return NULL;
 
@@ -336,15 +336,15 @@ char *
 
     switch (prop->p_type) {
         case AMF_NUMBER:
-            pBuffer = AMF_EncodeNumber(pBuffer, pBufEnd, prop->p_vu.p_number);
+            pBuffer = ZYAMF_EncodeNumber(pBuffer, pBufEnd, prop->p_vu.p_number);
             break;
 
         case AMF_BOOLEAN:
-            pBuffer = AMF_EncodeBoolean(pBuffer, pBufEnd, prop->p_vu.p_number != 0);
+            pBuffer = ZYAMF_EncodeBoolean(pBuffer, pBufEnd, prop->p_vu.p_number != 0);
             break;
 
         case AMF_STRING:
-            pBuffer = AMF_EncodeString(pBuffer, pBufEnd, &prop->p_vu.p_aval);
+            pBuffer = ZYAMF_EncodeString(pBuffer, pBufEnd, &prop->p_vu.p_aval);
             break;
 
         case AMF_NULL:
@@ -354,7 +354,7 @@ char *
             break;
 
         case AMF_OBJECT:
-            pBuffer = AMF_Encode(&prop->p_vu.p_object, pBuffer, pBufEnd);
+            pBuffer = ZYAMF_Encode(&prop->p_vu.p_object, pBuffer, pBufEnd);
             break;
 
         default:
@@ -368,7 +368,7 @@ char *
 #define AMF3_INTEGER_MAX 268435455
 #define AMF3_INTEGER_MIN -268435456
 
-int AMF3ReadInteger(const char *data, int32_t *valp) {
+int ZYAMF3ReadInteger(const char *data, int32_t *valp) {
     int i = 0;
     int32_t val = 0;
 
@@ -399,12 +399,12 @@ int AMF3ReadInteger(const char *data, int32_t *valp) {
     return i > 2 ? 4 : i + 1;
 }
 
-int AMF3ReadString(const char *data, AVal *str) {
+int ZYAMF3ReadString(const char *data, AVal *str) {
     int32_t ref = 0;
     int len;
     assert(str != 0);
 
-    len = AMF3ReadInteger(data, &ref);
+    len = ZYAMF3ReadInteger(data, &ref);
     data += len;
 
     if ((ref & 0x1) == 0) { /* reference: 0xxx */
@@ -424,7 +424,7 @@ int AMF3ReadString(const char *data, AVal *str) {
     return len;
 }
 
-int AMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
+int ZYAMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
                     int bDecodeName) {
     int nOriginalSize = nSize;
     AMF3DataType type;
@@ -440,7 +440,7 @@ int AMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
     /* decode name */
     if (bDecodeName) {
         AVal name;
-        int nRes = AMF3ReadString(pBuffer, &name);
+        int nRes = ZYAMF3ReadString(pBuffer, &name);
 
         if (name.av_len <= 0)
             return nRes;
@@ -469,7 +469,7 @@ int AMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
             break;
         case AMF3_INTEGER: {
             int32_t res = 0;
-            int len = AMF3ReadInteger(pBuffer, &res);
+            int len = ZYAMF3ReadInteger(pBuffer, &res);
             prop->p_vu.p_number = (double)res;
             prop->p_type = AMF_NUMBER;
             nSize -= len;
@@ -478,21 +478,21 @@ int AMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
         case AMF3_DOUBLE:
             if (nSize < 8)
                 return -1;
-            prop->p_vu.p_number = AMF_DecodeNumber(pBuffer);
+            prop->p_vu.p_number = ZYAMF_DecodeNumber(pBuffer);
             prop->p_type = AMF_NUMBER;
             nSize -= 8;
             break;
         case AMF3_STRING:
         case AMF3_XML_DOC:
         case AMF3_XML: {
-            int len = AMF3ReadString(pBuffer, &prop->p_vu.p_aval);
+            int len = ZYAMF3ReadString(pBuffer, &prop->p_vu.p_aval);
             prop->p_type = AMF_STRING;
             nSize -= len;
             break;
         }
         case AMF3_DATE: {
             int32_t res = 0;
-            int len = AMF3ReadInteger(pBuffer, &res);
+            int len = ZYAMF3ReadInteger(pBuffer, &res);
 
             nSize -= len;
             pBuffer += len;
@@ -504,14 +504,14 @@ int AMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
                 if (nSize < 8)
                     return -1;
 
-                prop->p_vu.p_number = AMF_DecodeNumber(pBuffer);
+                prop->p_vu.p_number = ZYAMF_DecodeNumber(pBuffer);
                 nSize -= 8;
                 prop->p_type = AMF_NUMBER;
             }
             break;
         }
         case AMF3_OBJECT: {
-            int nRes = AMF3_Decode(&prop->p_vu.p_object, pBuffer, nSize, TRUE);
+            int nRes = ZYAMF3_Decode(&prop->p_vu.p_object, pBuffer, nSize, TRUE);
             if (nRes == -1)
                 return -1;
             nSize -= nRes;
@@ -529,7 +529,7 @@ int AMF3Prop_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
     return nOriginalSize - nSize;
 }
 
-int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
+int ZYAMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
                    int bDecodeName) {
     int nOriginalSize = nSize;
     int nRes;
@@ -550,7 +550,7 @@ int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
     }
 
     if (bDecodeName) {
-        unsigned short nNameSize = AMF_DecodeInt16(pBuffer);
+        unsigned short nNameSize = ZYAMF_DecodeInt16(pBuffer);
         if (nNameSize > nSize - 2) {
             RTMP_Log(RTMP_LOGDEBUG,
                      "%s: Name size out of range: namesize (%d) > len (%d) - 2",
@@ -558,7 +558,7 @@ int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
             return -1;
         }
 
-        AMF_DecodeString(pBuffer, &prop->p_name);
+        ZYAMF_DecodeString(pBuffer, &prop->p_name);
         nSize -= 2 + nNameSize;
         pBuffer += 2 + nNameSize;
     }
@@ -574,26 +574,26 @@ int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
         case AMF_NUMBER:
             if (nSize < 8)
                 return -1;
-            prop->p_vu.p_number = AMF_DecodeNumber(pBuffer);
+            prop->p_vu.p_number = ZYAMF_DecodeNumber(pBuffer);
             nSize -= 8;
             break;
         case AMF_BOOLEAN:
             if (nSize < 1)
                 return -1;
-            prop->p_vu.p_number = (double)AMF_DecodeBoolean(pBuffer);
+            prop->p_vu.p_number = (double)ZYAMF_DecodeBoolean(pBuffer);
             nSize--;
             break;
         case AMF_STRING: {
-            unsigned short nStringSize = AMF_DecodeInt16(pBuffer);
+            unsigned short nStringSize = ZYAMF_DecodeInt16(pBuffer);
 
             if (nSize < (long)nStringSize + 2)
                 return -1;
-            AMF_DecodeString(pBuffer, &prop->p_vu.p_aval);
+            ZYAMF_DecodeString(pBuffer, &prop->p_vu.p_aval);
             nSize -= (2 + nStringSize);
             break;
         }
         case AMF_OBJECT: {
-            int nRes = AMF_Decode(&prop->p_vu.p_object, pBuffer, nSize, TRUE);
+            int nRes = ZYAMF_Decode(&prop->p_vu.p_object, pBuffer, nSize, TRUE);
             if (nRes == -1)
                 return -1;
             nSize -= nRes;
@@ -618,7 +618,7 @@ int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
             nSize -= 4;
 
             /* next comes the rest, mixed array has a final 0x000009 mark and names, so its an object */
-            nRes = AMF_Decode(&prop->p_vu.p_object, pBuffer + 4, nSize, TRUE);
+            nRes = ZYAMF_Decode(&prop->p_vu.p_object, pBuffer + 4, nSize, TRUE);
             if (nRes == -1)
                 return -1;
             nSize -= nRes;
@@ -630,10 +630,10 @@ int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
             break;
         }
         case AMF_STRICT_ARRAY: {
-            unsigned int nArrayLen = AMF_DecodeInt32(pBuffer);
+            unsigned int nArrayLen = ZYAMF_DecodeInt32(pBuffer);
             nSize -= 4;
 
-            nRes = AMF_DecodeArray(&prop->p_vu.p_object, pBuffer + 4, nSize,
+            nRes = ZYAMF_DecodeArray(&prop->p_vu.p_object, pBuffer + 4, nSize,
                                    nArrayLen, FALSE);
             if (nRes == -1)
                 return -1;
@@ -647,17 +647,17 @@ int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
             if (nSize < 10)
                 return -1;
 
-            prop->p_vu.p_number = AMF_DecodeNumber(pBuffer);
-            prop->p_UTCoffset = AMF_DecodeInt16(pBuffer + 8);
+            prop->p_vu.p_number = ZYAMF_DecodeNumber(pBuffer);
+            prop->p_UTCoffset = ZYAMF_DecodeInt16(pBuffer + 8);
 
             nSize -= 10;
             break;
         }
         case AMF_LONG_STRING: {
-            unsigned int nStringSize = AMF_DecodeInt32(pBuffer);
+            unsigned int nStringSize = ZYAMF_DecodeInt32(pBuffer);
             if (nSize < (long)nStringSize + 4)
                 return -1;
-            AMF_DecodeLongString(pBuffer, &prop->p_vu.p_aval);
+            ZYAMF_DecodeLongString(pBuffer, &prop->p_vu.p_aval);
             nSize -= (4 + nStringSize);
             prop->p_type = AMF_STRING;
             break;
@@ -678,7 +678,7 @@ int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
             break;
         }
         case AMF_AVMPLUS: {
-            int nRes = AMF3_Decode(&prop->p_vu.p_object, pBuffer, nSize, TRUE);
+            int nRes = ZYAMF3_Decode(&prop->p_vu.p_object, pBuffer, nSize, TRUE);
             if (nRes == -1)
                 return -1;
             nSize -= nRes;
@@ -694,7 +694,7 @@ int AMFProp_Decode(AMFObjectProperty *prop, const char *pBuffer, int nSize,
     return nOriginalSize - nSize;
 }
 
-void AMFProp_Dump(AMFObjectProperty *prop) {
+void ZYAMFProp_Dump(AMFObjectProperty *prop) {
     char strRes[256];
     char str[256];
     AVal name;
@@ -722,7 +722,7 @@ void AMFProp_Dump(AMFObjectProperty *prop) {
 
     if (prop->p_type == AMF_OBJECT) {
         RTMP_Log(RTMP_LOGDEBUG, "Property: <%sOBJECT>", strRes);
-        AMF_Dump(&prop->p_vu.p_object);
+        ZYAMF_Dump(&prop->p_vu.p_object);
         return;
     }
 
@@ -749,9 +749,9 @@ void AMFProp_Dump(AMFObjectProperty *prop) {
     RTMP_Log(RTMP_LOGDEBUG, "Property: <%s%s>", strRes, str);
 }
 
-void AMFProp_Reset(AMFObjectProperty *prop) {
+void ZYAMFProp_Reset(AMFObjectProperty *prop) {
     if (prop->p_type == AMF_OBJECT)
-        AMF_Reset(&prop->p_vu.p_object);
+        ZYAMF_Reset(&prop->p_vu.p_object);
     else {
         prop->p_vu.p_aval.av_len = 0;
         prop->p_vu.p_aval.av_val = NULL;
@@ -762,7 +762,7 @@ void AMFProp_Reset(AMFObjectProperty *prop) {
 /* AMFObject */
 
 char *
-    AMF_Encode(AMFObject *obj, char *pBuffer, char *pBufEnd) {
+    ZYAMF_Encode(AMFObject *obj, char *pBuffer, char *pBufEnd) {
     int i;
 
     if (pBuffer + 4 >= pBufEnd)
@@ -771,7 +771,7 @@ char *
     *pBuffer++ = AMF_OBJECT;
 
     for (i = 0; i < obj->o_num; i++) {
-        char *res = AMFProp_Encode(&obj->o_props[i], pBuffer, pBufEnd);
+        char *res = ZYAMFProp_Encode(&obj->o_props[i], pBuffer, pBufEnd);
         if (res == NULL) {
             RTMP_Log(RTMP_LOGERROR, "AMF_Encode - failed to encode property in index %d",
                      i);
@@ -784,12 +784,12 @@ char *
     if (pBuffer + 3 >= pBufEnd)
         return NULL; /* no room for the end marker */
 
-    pBuffer = AMF_EncodeInt24(pBuffer, pBufEnd, AMF_OBJECT_END);
+    pBuffer = ZYAMF_EncodeInt24(pBuffer, pBufEnd, AMF_OBJECT_END);
 
     return pBuffer;
 }
 
-int AMF_DecodeArray(AMFObject *obj, const char *pBuffer, int nSize,
+int ZYAMF_DecodeArray(AMFObject *obj, const char *pBuffer, int nSize,
                     int nArrayLen, int bDecodeName) {
     int nOriginalSize = nSize;
     int bError = FALSE;
@@ -801,13 +801,13 @@ int AMF_DecodeArray(AMFObject *obj, const char *pBuffer, int nSize,
         int nRes;
         nArrayLen--;
 
-        nRes = AMFProp_Decode(&prop, pBuffer, nSize, bDecodeName);
+        nRes = ZYAMFProp_Decode(&prop, pBuffer, nSize, bDecodeName);
         if (nRes == -1)
             bError = TRUE;
         else {
             nSize -= nRes;
             pBuffer += nRes;
-            AMF_AddProp(obj, &prop);
+            ZYAMF_AddProp(obj, &prop);
         }
     }
     if (bError)
@@ -816,7 +816,7 @@ int AMF_DecodeArray(AMFObject *obj, const char *pBuffer, int nSize,
     return nOriginalSize - nSize;
 }
 
-int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
+int ZYAMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
     int nOriginalSize = nSize;
     int32_t ref;
     int len;
@@ -832,7 +832,7 @@ int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
     }
 
     ref = 0;
-    len = AMF3ReadInteger(pBuffer, &ref);
+    len = ZYAMF3ReadInteger(pBuffer, &ref);
     pBuffer += len;
     nSize -= len;
 
@@ -861,7 +861,7 @@ int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
 
             /* class name */
 
-            len = AMF3ReadString(pBuffer, &cd.cd_name);
+            len = ZYAMF3ReadString(pBuffer, &cd.cd_name);
             nSize -= len;
             pBuffer += len;
 
@@ -874,9 +874,9 @@ int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
 
             for (i = 0; i < cd.cd_num; i++) {
                 AVal memberName;
-                len = AMF3ReadString(pBuffer, &memberName);
+                len = ZYAMF3ReadString(pBuffer, &memberName);
                 RTMP_Log(RTMP_LOGDEBUG, "Member: %s", memberName.av_val);
-                AMF3CD_AddProp(&cd, &memberName);
+                ZYAMF3CD_AddProp(&cd, &memberName);
                 nSize -= len;
                 pBuffer += len;
             }
@@ -890,7 +890,7 @@ int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
 
             RTMP_Log(RTMP_LOGDEBUG, "Externalizable, TODO check");
 
-            nRes = AMF3Prop_Decode(&prop, pBuffer, nSize, FALSE);
+            nRes = ZYAMF3Prop_Decode(&prop, pBuffer, nSize, FALSE);
             if (nRes == -1)
                 RTMP_Log(RTMP_LOGDEBUG, "%s, failed to decode AMF3 property!",
                          __FUNCTION__);
@@ -899,19 +899,19 @@ int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
                 pBuffer += nRes;
             }
 
-            AMFProp_SetName(&prop, &name);
-            AMF_AddProp(obj, &prop);
+            ZYAMFProp_SetName(&prop, &name);
+            ZYAMF_AddProp(obj, &prop);
         } else {
             int nRes, i;
             for (i = 0; i < cd.cd_num; i++) /* non-dynamic */
             {
-                nRes = AMF3Prop_Decode(&prop, pBuffer, nSize, FALSE);
+                nRes = ZYAMF3Prop_Decode(&prop, pBuffer, nSize, FALSE);
                 if (nRes == -1)
                     RTMP_Log(RTMP_LOGDEBUG, "%s, failed to decode AMF3 property!",
                              __FUNCTION__);
 
-                AMFProp_SetName(&prop, AMF3CD_GetProp(&cd, i));
-                AMF_AddProp(obj, &prop);
+                ZYAMFProp_SetName(&prop, ZYAMF3CD_GetProp(&cd, i));
+                ZYAMF_AddProp(obj, &prop);
 
                 pBuffer += nRes;
                 nSize -= nRes;
@@ -920,8 +920,8 @@ int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
                 int len = 0;
 
                 do {
-                    nRes = AMF3Prop_Decode(&prop, pBuffer, nSize, TRUE);
-                    AMF_AddProp(obj, &prop);
+                    nRes = ZYAMF3Prop_Decode(&prop, pBuffer, nSize, TRUE);
+                    ZYAMF_AddProp(obj, &prop);
 
                     pBuffer += nRes;
                     nSize -= nRes;
@@ -935,7 +935,7 @@ int AMF3_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bAMFData) {
     return nOriginalSize - nSize;
 }
 
-int AMF_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bDecodeName) {
+int ZYAMF_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bDecodeName) {
     int nOriginalSize = nSize;
     int bError = FALSE; /* if there is an error while decoding - try to at least find the end mark AMF_OBJECT_END */
 
@@ -945,7 +945,7 @@ int AMF_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bDecodeName) 
         AMFObjectProperty prop;
         int nRes;
 
-        if (nSize >= 3 && AMF_DecodeInt24(pBuffer) == AMF_OBJECT_END) {
+        if (nSize >= 3 && ZYAMF_DecodeInt24(pBuffer) == AMF_OBJECT_END) {
             nSize -= 3;
             bError = FALSE;
             break;
@@ -959,13 +959,13 @@ int AMF_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bDecodeName) 
             continue;
         }
 
-        nRes = AMFProp_Decode(&prop, pBuffer, nSize, bDecodeName);
+        nRes = ZYAMFProp_Decode(&prop, pBuffer, nSize, bDecodeName);
         if (nRes == -1)
             bError = TRUE;
         else {
             nSize -= nRes;
             pBuffer += nRes;
-            AMF_AddProp(obj, &prop);
+            ZYAMF_AddProp(obj, &prop);
         }
     }
 
@@ -975,19 +975,19 @@ int AMF_Decode(AMFObject *obj, const char *pBuffer, int nSize, int bDecodeName) 
     return nOriginalSize - nSize;
 }
 
-void AMF_AddProp(AMFObject *obj, const AMFObjectProperty *prop) {
+void ZYAMF_AddProp(AMFObject *obj, const AMFObjectProperty *prop) {
     if (!(obj->o_num & 0x0f))
         obj->o_props =
             realloc(obj->o_props, (obj->o_num + 16) * sizeof(AMFObjectProperty));
     obj->o_props[obj->o_num++] = *prop;
 }
 
-int AMF_CountProp(AMFObject *obj) {
+int ZYAMF_CountProp(AMFObject *obj) {
     return obj->o_num;
 }
 
 AMFObjectProperty *
-    AMF_GetProp(AMFObject *obj, const AVal *name, int nIndex) {
+    ZYAMF_GetProp(AMFObject *obj, const AVal *name, int nIndex) {
     if (nIndex >= 0) {
         if (nIndex <= obj->o_num)
             return &obj->o_props[nIndex];
@@ -1002,19 +1002,19 @@ AMFObjectProperty *
     return (AMFObjectProperty *)&AMFProp_Invalid;
 }
 
-void AMF_Dump(AMFObject *obj) {
+void ZYAMF_Dump(AMFObject *obj) {
     int n;
     RTMP_Log(RTMP_LOGDEBUG, "(object begin)");
     for (n = 0; n < obj->o_num; n++) {
-        AMFProp_Dump(&obj->o_props[n]);
+        ZYAMFProp_Dump(&obj->o_props[n]);
     }
     RTMP_Log(RTMP_LOGDEBUG, "(object end)");
 }
 
-void AMF_Reset(AMFObject *obj) {
+void ZYAMF_Reset(AMFObject *obj) {
     int n;
     for (n = 0; n < obj->o_num; n++) {
-        AMFProp_Reset(&obj->o_props[n]);
+        ZYAMFProp_Reset(&obj->o_props[n]);
     }
     free(obj->o_props);
     obj->o_props = NULL;
@@ -1023,14 +1023,14 @@ void AMF_Reset(AMFObject *obj) {
 
 /* AMF3ClassDefinition */
 
-void AMF3CD_AddProp(AMF3ClassDef *cd, AVal *prop) {
+void ZYAMF3CD_AddProp(AMF3ClassDef *cd, AVal *prop) {
     if (!(cd->cd_num & 0x0f))
         cd->cd_props = realloc(cd->cd_props, (cd->cd_num + 16) * sizeof(AVal));
     cd->cd_props[cd->cd_num++] = *prop;
 }
 
 AVal *
-    AMF3CD_GetProp(AMF3ClassDef *cd, int nIndex) {
+    ZYAMF3CD_GetProp(AMF3ClassDef *cd, int nIndex) {
     if (nIndex >= cd->cd_num)
         return (AVal *)&AV_empty;
     return &cd->cd_props[nIndex];
