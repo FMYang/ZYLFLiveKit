@@ -194,7 +194,7 @@ HTTPResult
 #endif
     }
 #endif
-    PILI_RTMPSockBuf_Send(&sb, sb.sb_buf, i);
+    ZYPILI_RTMPSockBuf_Send(&sb, sb.sb_buf, i);
 
 /* set timeout */
 #define HTTP_TIMEOUT 5
@@ -208,7 +208,7 @@ HTTPResult
 
     sb.sb_size = 0;
     sb.sb_timedout = FALSE;
-    if (PILI_RTMPSockBuf_Fill(&sb) < 1) {
+    if (ZYPILI_RTMPSockBuf_Fill(&sb) < 1) {
         ret = HTTPRES_LOST_CONNECTION;
         goto leave;
     }
@@ -258,7 +258,7 @@ HTTPResult
         sb.sb_size -= p2 - sb.sb_start;
         sb.sb_start = p2;
         if (sb.sb_size < 1) {
-            if (PILI_RTMPSockBuf_Fill(&sb) < 1) {
+            if (ZYPILI_RTMPSockBuf_Fill(&sb) < 1) {
                 ret = HTTPRES_LOST_CONNECTION;
                 goto leave;
             }
@@ -267,7 +267,7 @@ HTTPResult
 
     len_known = flen > 0;
     while ((!len_known || flen > 0) &&
-           (sb.sb_size > 0 || PILI_RTMPSockBuf_Fill(&sb) > 0)) {
+           (sb.sb_size > 0 || ZYPILI_RTMPSockBuf_Fill(&sb) > 0)) {
         cb(sb.sb_start, 1, sb.sb_size, http->data);
         if (len_known)
             flen -= sb.sb_size;
@@ -279,7 +279,7 @@ HTTPResult
         ret = HTTPRES_LOST_CONNECTION;
 
 leave:
-    PILI_RTMPSockBuf_Close(&sb);
+    ZYPILI_RTMPSockBuf_Close(&sb);
     freeaddrinfo(ai);
     return ret;
 }

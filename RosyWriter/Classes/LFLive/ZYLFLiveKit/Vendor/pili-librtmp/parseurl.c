@@ -30,7 +30,7 @@
 #include "log.h"
 #include "rtmp_sys.h"
 
-int PILI_RTMP_ParseURL2(const char *url, int *protocol, AVal *host, unsigned int *port,
+int ZYPILI_RTMP_ParseURL2(const char *url, int *protocol, AVal *host, unsigned int *port,
                         AVal *playpath, AVal *app, AVal *domainName) {
     char *p, *end, *col, *ques, *slash;
 
@@ -198,7 +198,7 @@ parsehost:
 
     if (end - p) {
         AVal av = {p, end - p};
-        PILI_RTMP_ParsePlaypath(&av, playpath);
+        ZYPILI_RTMP_ParsePlaypath(&av, playpath);
     }
 
     return TRUE;
@@ -216,7 +216,7 @@ parsehost:
  * mp3 streams: prepend "mp3:", remove extension
  * flv streams: remove extension
  */
-void PILI_RTMP_ParsePlaypath(AVal *in, AVal *out) {
+void ZYPILI_RTMP_ParsePlaypath(AVal *in, AVal *out) {
     int addMP4 = 0;
     int addMP3 = 0;
     int subExt = 0;
@@ -306,7 +306,7 @@ void PILI_RTMP_ParsePlaypath(AVal *in, AVal *out) {
     out->av_len = destptr - streamname;
 }
 
-int PILI_RTMP_ParseURL(const char *url, int *protocol, AVal *host,
+int ZYPILI_RTMP_ParseURL(const char *url, int *protocol, AVal *host,
                        unsigned int *port, AVal *playpath, AVal *app) {
-    return PILI_RTMP_ParseURL2(url, protocol, host, port, playpath, app, NULL);
+    return ZYPILI_RTMP_ParseURL2(url, protocol, host, port, playpath, app, NULL);
 }

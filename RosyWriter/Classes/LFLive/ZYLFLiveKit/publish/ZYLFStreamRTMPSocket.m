@@ -118,8 +118,8 @@ SAVC(mp4a);
     }
     
     if (_rtmp != NULL) {
-        PILI_RTMP_Close(_rtmp, &_error);
-        PILI_RTMP_Free(_rtmp);
+        ZYPILI_RTMP_Close(_rtmp, &_error);
+        ZYPILI_RTMP_Free(_rtmp);
     }
     [self RTMP264_Connect:(char *)[_stream.url cStringUsingEncoding:NSASCIIStringEncoding]];
 }
@@ -136,8 +136,8 @@ SAVC(mp4a);
         [self.delegate socketStatus:self status:LFLiveStop];
     }
     if (_rtmp != NULL) {
-        PILI_RTMP_Close(_rtmp, &_error);
-        PILI_RTMP_Free(_rtmp);
+        ZYPILI_RTMP_Close(_rtmp, &_error);
+        ZYPILI_RTMP_Free(_rtmp);
         _rtmp = NULL;
     }
     [self clean];
@@ -248,11 +248,11 @@ SAVC(mp4a);
 - (NSInteger)RTMP264_Connect:(char *)push_url {
     //由于摄像头的timestamp是一直在累加，需要每次得到相对时间戳
     //分配与初始化
-    _rtmp = PILI_RTMP_Alloc();
-    PILI_RTMP_Init(_rtmp);
+    _rtmp = ZYPILI_RTMP_Alloc();
+    ZYPILI_RTMP_Init(_rtmp);
 
     //设置URL
-    if (PILI_RTMP_SetupURL(_rtmp, push_url, &_error) == FALSE) {
+    if (ZYPILI_RTMP_SetupURL(_rtmp, push_url, &_error) == FALSE) {
         //log(LOG_ERR, "RTMP_SetupURL() failed!");
         goto Failed;
     }
@@ -264,15 +264,15 @@ SAVC(mp4a);
     _rtmp->Link.timeout = RTMP_RECEIVE_TIMEOUT;
     
     //设置可写，即发布流，这个函数必须在连接前使用，否则无效
-    PILI_RTMP_EnableWrite(_rtmp);
+    ZYPILI_RTMP_EnableWrite(_rtmp);
 
     //连接服务器
-    if (PILI_RTMP_Connect(_rtmp, NULL, &_error) == FALSE) {
+    if (ZYPILI_RTMP_Connect(_rtmp, NULL, &_error) == FALSE) {
         goto Failed;
     }
 
     //连接流
-    if (PILI_RTMP_ConnectStream(_rtmp, 0, &_error) == FALSE) {
+    if (ZYPILI_RTMP_ConnectStream(_rtmp, 0, &_error) == FALSE) {
         goto Failed;
     }
 
@@ -289,8 +289,8 @@ SAVC(mp4a);
     return 0;
 
 Failed:
-    PILI_RTMP_Close(_rtmp, &_error);
-    PILI_RTMP_Free(_rtmp);
+    ZYPILI_RTMP_Close(_rtmp, &_error);
+    ZYPILI_RTMP_Free(_rtmp);
     _rtmp = NULL;
     [self reconnect];
     return -1;
@@ -346,7 +346,7 @@ Failed:
     *enc++ = AMF_OBJECT_END;
 
     packet.m_nBodySize = (uint32_t)(enc - packet.m_body);
-    if (!PILI_RTMP_SendPacket(_rtmp, &packet, FALSE, &_error)) {
+    if (!ZYPILI_RTMP_SendPacket(_rtmp, &packet, FALSE, &_error)) {
         return;
     }
 }
@@ -424,8 +424,8 @@ Failed:
 - (NSInteger)sendPacket:(unsigned int)nPacketType data:(unsigned char *)data size:(NSInteger)size nTimestamp:(uint64_t)nTimestamp {
     NSInteger rtmpLength = size;
     PILI_RTMPPacket rtmp_pack;
-    PILI_RTMPPacket_Reset(&rtmp_pack);
-    PILI_RTMPPacket_Alloc(&rtmp_pack, (uint32_t)rtmpLength);
+    ZYPILI_RTMPPacket_Reset(&rtmp_pack);
+    ZYPILI_RTMPPacket_Alloc(&rtmp_pack, (uint32_t)rtmpLength);
 
     rtmp_pack.m_nBodySize = (uint32_t)size;
     memcpy(rtmp_pack.m_body, data, size);
@@ -441,13 +441,13 @@ Failed:
 
     NSInteger nRet = [self RtmpPacketSend:&rtmp_pack];
 
-    PILI_RTMPPacket_Free(&rtmp_pack);
+    ZYPILI_RTMPPacket_Free(&rtmp_pack);
     return nRet;
 }
 
 - (NSInteger)RtmpPacketSend:(PILI_RTMPPacket *)packet {
-    if (_rtmp && PILI_RTMP_IsConnected(_rtmp)) {
-        int success = PILI_RTMP_SendPacket(_rtmp, packet, 0, &_error);
+    if (_rtmp && ZYPILI_RTMP_IsConnected(_rtmp)) {
+        int success = ZYPILI_RTMP_SendPacket(_rtmp, packet, 0, &_error);
         return success;
     }
     return -1;
@@ -512,8 +512,8 @@ Failed:
     _isReconnecting = NO;
     if (_isConnected) return;
     if (_rtmp != NULL) {
-        PILI_RTMP_Close(_rtmp, &_error);
-        PILI_RTMP_Free(_rtmp);
+        ZYPILI_RTMP_Close(_rtmp, &_error);
+        ZYPILI_RTMP_Free(_rtmp);
         _rtmp = NULL;
     }
     _sendAudioHead = NO;
@@ -524,8 +524,8 @@ Failed:
     }
     
     if (_rtmp != NULL) {
-        PILI_RTMP_Close(_rtmp, &_error);
-        PILI_RTMP_Free(_rtmp);
+        ZYPILI_RTMP_Close(_rtmp, &_error);
+        ZYPILI_RTMP_Free(_rtmp);
     }
     [self RTMP264_Connect:(char *)[_stream.url cStringUsingEncoding:NSASCIIStringEncoding]];
 }
