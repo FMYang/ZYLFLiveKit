@@ -6,9 +6,9 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFVideoEncoding.h"
+#import "ZYLFVideoEncoding.h"
 
-@interface LFHardwareVideoEncoder : NSObject<LFVideoEncoding>
+@interface ZYLFHardwareVideoEncoder : NSObject<ZYLFVideoEncoding>
 
 #pragma mark - Initializer
 ///=============================================================================

@@ -8,15 +8,15 @@
 
 #import "ZYLFLiveSession.h"
 #import "ZYLFAudioCapture.h"
-#import "LFHardwareVideoEncoder.h"
-#import "LFHardwareAudioEncoder.h"
-#import "LFH264VideoEncoder.h"
+#import "ZYLFHardwareVideoEncoder.h"
+#import "ZYLFHardwareAudioEncoder.h"
+#import "ZYLFH264VideoEncoder.h"
 #import "ZYLFStreamRTMPSocket.h"
 #import "LFLiveStreamInfo.h"
-#import "LFH264VideoEncoder.h"
+#import "ZYLFH264VideoEncoder.h"
 
 
-@interface ZYLFLiveSession ()<LFAudioCaptureDelegate, LFAudioEncodingDelegate, LFVideoEncodingDelegate, ZYLFStreamSocketDelegate>
+@interface ZYLFLiveSession ()<LFAudioCaptureDelegate, ZYLFAudioEncodingDelegate, ZYLFVideoEncodingDelegate, ZYLFStreamSocketDelegate>
 
 /// 音频配置
 @property (nonatomic, strong) ZYLFLiveAudioConfiguration *audioConfiguration;
@@ -25,9 +25,9 @@
 /// 声音采集
 @property (nonatomic, strong) ZYLFAudioCapture *audioCaptureSource;
 /// 音频编码
-@property (nonatomic, strong) id<LFAudioEncoding> audioEncoder;
+@property (nonatomic, strong) id<ZYLFAudioEncoding> audioEncoder;
 /// 视频编码
-@property (nonatomic, strong) id<LFVideoEncoding> videoEncoder;
+@property (nonatomic, strong) id<ZYLFVideoEncoding> videoEncoder;
 /// 上传
 @property (nonatomic, strong) id<ZYLFStreamSocket> socket;
 
@@ -132,7 +132,7 @@
 
 
 #pragma mark -- EncoderDelegate
-- (void)audioEncoder:(nullable id<LFAudioEncoding>)encoder audioFrame:(nullable LFAudioFrame *)frame {
+- (void)audioEncoder:(nullable id<ZYLFAudioEncoding>)encoder audioFrame:(nullable LFAudioFrame *)frame {
     //<上传  时间戳对齐
     if (self.uploading){
         self.hasCaptureAudio = YES;
@@ -140,7 +140,7 @@
     }
 }
 
-- (void)videoEncoder:(nullable id<LFVideoEncoding>)encoder videoFrame:(nullable LFVideoFrame *)frame {
+- (void)videoEncoder:(nullable id<ZYLFVideoEncoding>)encoder videoFrame:(nullable LFVideoFrame *)frame {
     //<上传 时间戳对齐
     if (self.uploading){
         if(frame.isKeyFrame && self.hasCaptureAudio) self.hasKeyFrameVideo = YES;
@@ -235,20 +235,20 @@
     return _audioCaptureSource;
 }
 
-- (id<LFAudioEncoding>)audioEncoder {
+- (id<ZYLFAudioEncoding>)audioEncoder {
     if (!_audioEncoder) {
-        _audioEncoder = [[LFHardwareAudioEncoder alloc] initWithAudioStreamConfiguration:_audioConfiguration];
+        _audioEncoder = [[ZYLFHardwareAudioEncoder alloc] initWithAudioStreamConfiguration:_audioConfiguration];
         [_audioEncoder setDelegate:self];
     }
     return _audioEncoder;
 }
 
-- (id<LFVideoEncoding>)videoEncoder {
+- (id<ZYLFVideoEncoding>)videoEncoder {
     if (!_videoEncoder) {
         if([[UIDevice currentDevice].systemVersion floatValue] < 8.0){
-            _videoEncoder = [[LFH264VideoEncoder alloc] initWithVideoStreamConfiguration:_videoConfiguration];
+            _videoEncoder = [[ZYLFH264VideoEncoder alloc] initWithVideoStreamConfiguration:_videoConfiguration];
         }else{
-            _videoEncoder = [[LFHardwareVideoEncoder alloc] initWithVideoStreamConfiguration:_videoConfiguration];
+            _videoEncoder = [[ZYLFHardwareVideoEncoder alloc] initWithVideoStreamConfiguration:_videoConfiguration];
         }
         [_videoEncoder setDelegate:self];
     }

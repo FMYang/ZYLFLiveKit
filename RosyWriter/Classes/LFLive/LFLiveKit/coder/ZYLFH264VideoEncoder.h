@@ -6,9 +6,9 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFVideoEncoding.h"
+#import "ZYLFVideoEncoding.h"
 
-@interface LFH264VideoEncoder : NSObject <LFVideoEncoding> {
+@interface ZYLFH264VideoEncoder : NSObject <ZYLFVideoEncoding> {
  
 }
 

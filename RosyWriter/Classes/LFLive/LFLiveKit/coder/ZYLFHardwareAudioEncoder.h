@@ -6,9 +6,9 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFAudioEncoding.h"
+#import "ZYLFAudioEncoding.h"
 
-@interface LFHardwareAudioEncoder : NSObject<LFAudioEncoding>
+@interface ZYLFHardwareAudioEncoder : NSObject<ZYLFAudioEncoding>
 
 #pragma mark - Initializer
 ///=============================================================================

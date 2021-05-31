@@ -13,21 +13,21 @@
 
 
 
-@protocol LFAudioEncoding;
+@protocol ZYLFAudioEncoding;
 /// 编码器编码后回调
-@protocol LFAudioEncodingDelegate <NSObject>
+@protocol ZYLFAudioEncodingDelegate <NSObject>
 @required
-- (void)audioEncoder:(nullable id<LFAudioEncoding>)encoder audioFrame:(nullable LFAudioFrame *)frame;
+- (void)audioEncoder:(nullable id<ZYLFAudioEncoding>)encoder audioFrame:(nullable LFAudioFrame *)frame;
 @end
 
 /// 编码器抽象的接口
-@protocol LFAudioEncoding <NSObject>
+@protocol ZYLFAudioEncoding <NSObject>
 @required
 - (void)encodeAudioData:(nullable NSData*)audioData timeStamp:(uint64_t)timeStamp;
 - (void)stopEncoder;
 @optional
 - (nullable instancetype)initWithAudioStreamConfiguration:(nullable ZYLFLiveAudioConfiguration *)configuration;
-- (void)setDelegate:(nullable id<LFAudioEncodingDelegate>)delegate;
+- (void)setDelegate:(nullable id<ZYLFAudioEncodingDelegate>)delegate;
 - (nullable NSData *)adtsData:(NSInteger)channel rawDataLength:(NSInteger)rawDataLength;
 @end
 

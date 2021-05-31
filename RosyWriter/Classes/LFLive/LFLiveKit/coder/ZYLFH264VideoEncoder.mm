@@ -10,16 +10,16 @@
 #import <mach/mach_time.h>
 #import "ZYLFNALUnit.h"
 #import "ZYLFAVEncoder.h"
-#import "LFH264VideoEncoder.h"
+#import "ZYLFH264VideoEncoder.h"
 #import "LFVideoFrame.h"
 
-@interface LFH264VideoEncoder() {
+@interface ZYLFH264VideoEncoder() {
     FILE *fp;
     NSInteger frameCount;
     BOOL enabledWriteVideoFile;
 }
 @property (nonatomic, strong) ZYLFLiveVideoConfiguration *configuration;
-@property (nonatomic, weak) id<LFVideoEncodingDelegate> h264Delegate;
+@property (nonatomic, weak) id<ZYLFVideoEncodingDelegate> h264Delegate;
 @property (nonatomic) BOOL isBackGround;
 @property (nonatomic) NSInteger currentVideoBitRate;
 @property (nonatomic, strong) dispatch_queue_t sendQueue;
@@ -37,7 +37,7 @@
 @property (nonatomic) CMTime lastPTS;
 @end
 
-@implementation LFH264VideoEncoder
+@implementation ZYLFH264VideoEncoder
 
 #pragma mark -- LifeCycle
 - (instancetype)initWithVideoStreamConfiguration:(ZYLFLiveVideoConfiguration *)configuration {
@@ -118,7 +118,7 @@
     return _currentVideoBitRate;
 }
 
-- (void)setDelegate:(id<LFVideoEncodingDelegate>)delegate{
+- (void)setDelegate:(id<ZYLFVideoEncodingDelegate>)delegate{
     _h264Delegate = delegate;
 }
 

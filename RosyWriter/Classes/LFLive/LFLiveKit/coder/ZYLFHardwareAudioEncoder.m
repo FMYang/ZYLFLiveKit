@@ -6,9 +6,9 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFHardwareAudioEncoder.h"
+#import "ZYLFHardwareAudioEncoder.h"
 
-@interface LFHardwareAudioEncoder (){
+@interface ZYLFHardwareAudioEncoder (){
     AudioConverterRef m_converter;
     char *leftBuf;
     char *aacBuf;
@@ -17,11 +17,11 @@
     BOOL enabledWriteVideoFile;
 }
 @property (nonatomic, strong) ZYLFLiveAudioConfiguration *configuration;
-@property (nonatomic, weak) id<LFAudioEncodingDelegate> aacDeleage;
+@property (nonatomic, weak) id<ZYLFAudioEncodingDelegate> aacDeleage;
 
 @end
 
-@implementation LFHardwareAudioEncoder
+@implementation ZYLFHardwareAudioEncoder
 
 - (instancetype)initWithAudioStreamConfiguration:(nullable ZYLFLiveAudioConfiguration *)configuration {
     if (self = [super init]) {
@@ -51,7 +51,7 @@
 }
 
 #pragma mark -- LFAudioEncoder
-- (void)setDelegate:(id<LFAudioEncodingDelegate>)delegate {
+- (void)setDelegate:(id<ZYLFAudioEncodingDelegate>)delegate {
     _aacDeleage = delegate;
 }
 

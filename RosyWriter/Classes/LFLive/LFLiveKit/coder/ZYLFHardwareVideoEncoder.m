@@ -5,10 +5,10 @@
 //  Created by LaiFeng on 16/5/20.
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
-#import "LFHardwareVideoEncoder.h"
+#import "ZYLFHardwareVideoEncoder.h"
 #import <VideoToolbox/VideoToolbox.h>
 
-@interface LFHardwareVideoEncoder (){
+@interface ZYLFHardwareVideoEncoder (){
     VTCompressionSessionRef compressionSession;
     NSInteger frameCount;
     NSData *sps;
@@ -18,13 +18,13 @@
 }
 
 @property (nonatomic, strong) ZYLFLiveVideoConfiguration *configuration;
-@property (nonatomic, weak) id<LFVideoEncodingDelegate> h264Delegate;
+@property (nonatomic, weak) id<ZYLFVideoEncodingDelegate> h264Delegate;
 @property (nonatomic) NSInteger currentVideoBitRate;
 @property (nonatomic) BOOL isBackGround;
 
 @end
 
-@implementation LFHardwareVideoEncoder
+@implementation ZYLFHardwareVideoEncoder
 
 #pragma mark -- LifeCycle
 - (instancetype)initWithVideoStreamConfiguration:(ZYLFLiveVideoConfiguration *)configuration {
@@ -119,7 +119,7 @@
     VTCompressionSessionCompleteFrames(compressionSession, kCMTimeIndefinite);
 }
 
-- (void)setDelegate:(id<LFVideoEncodingDelegate>)delegate {
+- (void)setDelegate:(id<ZYLFVideoEncodingDelegate>)delegate {
     _h264Delegate = delegate;
 }
 
@@ -144,7 +144,7 @@ static void VideoCompressonOutputCallback(void *VTref, void *VTFrameRef, OSStatu
     BOOL keyframe = !CFDictionaryContainsKey(dic, kCMSampleAttachmentKey_NotSync);
     uint64_t timeStamp = [((__bridge_transfer NSNumber *)VTFrameRef) longLongValue];
 
-    LFHardwareVideoEncoder *videoEncoder = (__bridge LFHardwareVideoEncoder *)VTref;
+    ZYLFHardwareVideoEncoder *videoEncoder = (__bridge ZYLFHardwareVideoEncoder *)VTref;
     if (status != noErr) {
         return;
     }
