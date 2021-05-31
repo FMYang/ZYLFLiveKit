@@ -6,30 +6,30 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFLiveSession.h"
-#import "LFAudioCapture.h"
+#import "ZYLFLiveSession.h"
+#import "ZYLFAudioCapture.h"
 #import "LFHardwareVideoEncoder.h"
 #import "LFHardwareAudioEncoder.h"
 #import "LFH264VideoEncoder.h"
-#import "LFStreamRTMPSocket.h"
+#import "ZYLFStreamRTMPSocket.h"
 #import "LFLiveStreamInfo.h"
 #import "LFH264VideoEncoder.h"
 
 
-@interface LFLiveSession ()<LFAudioCaptureDelegate, LFAudioEncodingDelegate, LFVideoEncodingDelegate, LFStreamSocketDelegate>
+@interface ZYLFLiveSession ()<LFAudioCaptureDelegate, LFAudioEncodingDelegate, LFVideoEncodingDelegate, ZYLFStreamSocketDelegate>
 
 /// 音频配置
-@property (nonatomic, strong) LFLiveAudioConfiguration *audioConfiguration;
+@property (nonatomic, strong) ZYLFLiveAudioConfiguration *audioConfiguration;
 /// 视频配置
-@property (nonatomic, strong) LFLiveVideoConfiguration *videoConfiguration;
+@property (nonatomic, strong) ZYLFLiveVideoConfiguration *videoConfiguration;
 /// 声音采集
-@property (nonatomic, strong) LFAudioCapture *audioCaptureSource;
+@property (nonatomic, strong) ZYLFAudioCapture *audioCaptureSource;
 /// 音频编码
 @property (nonatomic, strong) id<LFAudioEncoding> audioEncoder;
 /// 视频编码
 @property (nonatomic, strong) id<LFVideoEncoding> videoEncoder;
 /// 上传
-@property (nonatomic, strong) id<LFStreamSocket> socket;
+@property (nonatomic, strong) id<ZYLFStreamSocket> socket;
 
 
 #pragma mark -- 内部标识
@@ -53,7 +53,7 @@
 #define NOW (CACurrentMediaTime()*1000)
 #define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
-@interface LFLiveSession ()
+@interface ZYLFLiveSession ()
 
 /// 上传相对时间戳
 @property (nonatomic, assign) uint64_t relativeTimestamps;
@@ -66,14 +66,14 @@
 
 @end
 
-@implementation LFLiveSession
+@implementation ZYLFLiveSession
 
 #pragma mark -- LifeCycle
-- (instancetype)initWithAudioConfiguration:(nullable LFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable LFLiveVideoConfiguration *)videoConfiguration {
+- (instancetype)initWithAudioConfiguration:(nullable ZYLFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable ZYLFLiveVideoConfiguration *)videoConfiguration {
     return [self initWithAudioConfiguration:audioConfiguration videoConfiguration:videoConfiguration captureType:LFLiveCaptureDefaultMask];
 }
 
-- (nullable instancetype)initWithAudioConfiguration:(nullable LFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable LFLiveVideoConfiguration *)videoConfiguration captureType:(LFLiveCaptureTypeMask)captureType{
+- (nullable instancetype)initWithAudioConfiguration:(nullable ZYLFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable ZYLFLiveVideoConfiguration *)videoConfiguration captureType:(LFLiveCaptureTypeMask)captureType{
     if((captureType & LFLiveCaptureMaskAudio || captureType & LFLiveInputMaskAudio) && !audioConfiguration) @throw [NSException exceptionWithName:@"LFLiveSession init error" reason:@"audioConfiguration is nil " userInfo:nil];
     if((captureType & LFLiveCaptureMaskVideo || captureType & LFLiveInputMaskVideo) && !videoConfiguration) @throw [NSException exceptionWithName:@"LFLiveSession init error" reason:@"videoConfiguration is nil " userInfo:nil];
     if (self = [super init]) {
@@ -126,7 +126,7 @@
 }
 
 #pragma mark -- CaptureDelegate
-- (void)captureOutput:(nullable LFAudioCapture *)capture audioData:(nullable NSData*)audioData {
+- (void)captureOutput:(nullable ZYLFAudioCapture *)capture audioData:(nullable NSData*)audioData {
     if (self.uploading) [self.audioEncoder encodeAudioData:audioData timeStamp:NOW];
 }
 
@@ -149,7 +149,7 @@
 }
 
 #pragma mark -- LFStreamTcpSocketDelegate
-- (void)socketStatus:(nullable id<LFStreamSocket>)socket status:(LFLiveState)status {
+- (void)socketStatus:(nullable id<ZYLFStreamSocket>)socket status:(LFLiveState)status {
     if (status == LFLiveStart) {
         if (!self.uploading) {
             self.AVAlignment = NO;
@@ -169,7 +169,7 @@
     });
 }
 
-- (void)socketDidError:(nullable id<LFStreamSocket>)socket errorCode:(LFLiveSocketErrorCode)errorCode {
+- (void)socketDidError:(nullable id<ZYLFStreamSocket>)socket errorCode:(LFLiveSocketErrorCode)errorCode {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.delegate && [self.delegate respondsToSelector:@selector(liveSession:errorCode:)]) {
             [self.delegate liveSession:self errorCode:errorCode];
@@ -177,7 +177,7 @@
     });
 }
 
-- (void)socketDebug:(nullable id<LFStreamSocket>)socket debugInfo:(nullable LFLiveDebug *)debugInfo {
+- (void)socketDebug:(nullable id<ZYLFStreamSocket>)socket debugInfo:(nullable LFLiveDebug *)debugInfo {
     self.debugInfo = debugInfo;
     if (self.showDebugInfo) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -188,7 +188,7 @@
     }
 }
 
-- (void)socketBufferStatus:(nullable id<LFStreamSocket>)socket status:(LFLiveBuffferState)status {
+- (void)socketBufferStatus:(nullable id<ZYLFStreamSocket>)socket status:(LFLiveBuffferState)status {
     if((self.captureType & LFLiveCaptureMaskVideo || self.captureType & LFLiveInputMaskVideo) && self.adaptiveBitrate){
         NSUInteger videoBitRate = [self.videoEncoder videoBitRate];
         if (status == LFLiveBuffferDecline) {
@@ -225,10 +225,10 @@
     return self.audioCaptureSource.muted;
 }
 
-- (LFAudioCapture *)audioCaptureSource {
+- (ZYLFAudioCapture *)audioCaptureSource {
     if (!_audioCaptureSource) {
         if(self.captureType & LFLiveCaptureMaskAudio){
-            _audioCaptureSource = [[LFAudioCapture alloc] initWithAudioConfiguration:_audioConfiguration];
+            _audioCaptureSource = [[ZYLFAudioCapture alloc] initWithAudioConfiguration:_audioConfiguration];
             _audioCaptureSource.delegate = self;
         }
     }
@@ -255,9 +255,9 @@
     return _videoEncoder;
 }
 
-- (id<LFStreamSocket>)socket {
+- (id<ZYLFStreamSocket>)socket {
     if (!_socket) {
-        _socket = [[LFStreamRTMPSocket alloc] initWithStream:self.streamInfo reconnectInterval:self.reconnectInterval reconnectCount:self.reconnectCount];
+        _socket = [[ZYLFStreamRTMPSocket alloc] initWithStream:self.streamInfo reconnectInterval:self.reconnectInterval reconnectCount:self.reconnectCount];
         [_socket setDelegate:self];
     }
     return _socket;

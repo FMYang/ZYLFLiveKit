@@ -6,26 +6,26 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFAudioCapture.h"
+#import "ZYLFAudioCapture.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
 NSString *const LFAudioComponentFailedToCreateNotification = @"LFAudioComponentFailedToCreateNotification";
 
-@interface LFAudioCapture ()
+@interface ZYLFAudioCapture ()
 
 @property (nonatomic, assign) AudioComponentInstance componetInstance;
 @property (nonatomic, assign) AudioComponent component;
 @property (nonatomic, strong) dispatch_queue_t taskQueue;
 @property (nonatomic, assign) BOOL isRunning;
-@property (nonatomic, strong,nullable) LFLiveAudioConfiguration *configuration;
+@property (nonatomic, strong,nullable) ZYLFLiveAudioConfiguration *configuration;
 
 @end
 
-@implementation LFAudioCapture
+@implementation ZYLFAudioCapture
 
 #pragma mark -- LiftCycle
-- (instancetype)initWithAudioConfiguration:(LFLiveAudioConfiguration *)configuration{
+- (instancetype)initWithAudioConfiguration:(ZYLFLiveAudioConfiguration *)configuration{
     if(self = [super init]){
         _configuration = configuration;
         self.isRunning = NO;
@@ -220,7 +220,7 @@ static OSStatus handleInputBuffer(void *inRefCon,
                                   UInt32 inNumberFrames,
                                   AudioBufferList *ioData) {
     @autoreleasepool {
-        LFAudioCapture *source = (__bridge LFAudioCapture *)inRefCon;
+        ZYLFAudioCapture *source = (__bridge ZYLFAudioCapture *)inRefCon;
         if (!source) return -1;
 
         AudioBuffer buffer;

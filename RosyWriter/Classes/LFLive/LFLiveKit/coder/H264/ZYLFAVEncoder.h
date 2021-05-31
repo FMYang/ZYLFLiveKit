@@ -13,19 +13,19 @@
 #import <AVFoundation/AVVideoSettings.h>
 #import <sys/stat.h>
 
-#import "LFVideoEncoder.h"
-#import "LFMP4Atom.h"
+#import "ZYLFVideoEncoder.h"
+#import "ZYLFMP4Atom.h"
 
 
 
 typedef int (^encoder_handler_t)(NSArray *data, CMTimeValue ptsValue);
 typedef int (^param_handler_t)(NSData *params);
 
-@interface LFAVEncoder : NSObject
+@interface ZYLFAVEncoder : NSObject
 
 @property (atomic) NSUInteger bitrate;
 
-+ (LFAVEncoder *)encoderForHeight:(int)height andWidth:(int)width bitrate:(int)bitrate;
++ (ZYLFAVEncoder *)encoderForHeight:(int)height andWidth:(int)width bitrate:(int)bitrate;
 
 - (void)encodeWithBlock:(encoder_handler_t)block onParams:(param_handler_t)paramsHandler;
 - (void)encodeFrame:(CMSampleBufferRef)sampleBuffer;

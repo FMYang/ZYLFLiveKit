@@ -16,14 +16,14 @@
     FILE *fp;
     BOOL enabledWriteVideoFile;
 }
-@property (nonatomic, strong) LFLiveAudioConfiguration *configuration;
+@property (nonatomic, strong) ZYLFLiveAudioConfiguration *configuration;
 @property (nonatomic, weak) id<LFAudioEncodingDelegate> aacDeleage;
 
 @end
 
 @implementation LFHardwareAudioEncoder
 
-- (instancetype)initWithAudioStreamConfiguration:(nullable LFLiveAudioConfiguration *)configuration {
+- (instancetype)initWithAudioStreamConfiguration:(nullable ZYLFLiveAudioConfiguration *)configuration {
     if (self = [super init]) {
         NSLog(@"USE LFHardwareAudioEncoder");
         _configuration = configuration;

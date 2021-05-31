@@ -18,15 +18,15 @@ typedef NS_ENUM (NSUInteger, LFLiveBuffferState) {
     LFLiveBuffferDecline = 2      //< 缓冲区状态好应该提升码率
 };
 
-@class LFStreamingBuffer;
+@class ZYLFStreamingBuffer;
 /** this two method will control videoBitRate */
 @protocol LFStreamingBufferDelegate <NSObject>
 @optional
 /** 当前buffer变动（增加or减少） 根据buffer中的updateInterval时间回调*/
-- (void)streamingBuffer:(nullable LFStreamingBuffer *)buffer bufferState:(LFLiveBuffferState)state;
+- (void)streamingBuffer:(nullable ZYLFStreamingBuffer *)buffer bufferState:(LFLiveBuffferState)state;
 @end
 
-@interface LFStreamingBuffer : NSObject
+@interface ZYLFStreamingBuffer : NSObject
 
 
 /** The delegate of the buffer. buffer callback */

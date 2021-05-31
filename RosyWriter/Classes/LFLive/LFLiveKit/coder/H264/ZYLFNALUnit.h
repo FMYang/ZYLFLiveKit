@@ -18,25 +18,25 @@ typedef unsigned long ULONG;
 #define NULL 0
 #endif
 
-class LFNALUnit
+class ZYLFNALUnit
 {
 public:
-    LFNALUnit();
-    LFNALUnit(const BYTE* pStart, int len){
+    ZYLFNALUnit();
+    ZYLFNALUnit(const BYTE* pStart, int len){
         m_pStart = m_pStartCodeStart = pStart;
         m_cBytes = len;
         ResetBitstream();
     }
-    virtual ~LFNALUnit() {
+    virtual ~ZYLFNALUnit() {
     }
 
     // assignment copies a pointer into a fixed buffer managed elsewhere. We do not copy the data
-    LFNALUnit(const LFNALUnit &r){
+    ZYLFNALUnit(const ZYLFNALUnit &r){
         m_pStart = r.m_pStart;
         m_cBytes = r.m_cBytes;
         ResetBitstream();
     }
-    const LFNALUnit& operator = (const LFNALUnit &r)
+    const ZYLFNALUnit& operator = (const ZYLFNALUnit &r)
     {
         m_pStart = r.m_pStart;
         m_cBytes = r.m_cBytes;
@@ -113,7 +113,7 @@ class LFSeqParamSet
 {
 public:
     LFSeqParamSet();
-    bool Parse(LFNALUnit *pnalu);
+    bool Parse(ZYLFNALUnit *pnalu);
     int FrameBits(){
         return m_FrameBits;
     }
@@ -162,12 +162,12 @@ public:
         return m_Compatibility;
     }
 
-    LFNALUnit *NALU() {
+    ZYLFNALUnit *NALU() {
         return &m_nalu;
     }
 
 private:
-    LFNALUnit m_nalu;
+    ZYLFNALUnit m_nalu;
     int m_FrameBits;
     long m_cx;
     long m_cy;
@@ -188,7 +188,7 @@ public:
         m_nBitsFrame(nBitsFrame){
     }
 
-    bool Parse(LFNALUnit *pnalu);
+    bool Parse(ZYLFNALUnit *pnalu);
     int FrameNum(){
         return m_framenum;
     }
@@ -202,7 +202,7 @@ private:
 class LFSEIMessage
 {
 public:
-    LFSEIMessage(LFNALUnit* pnalu);
+    LFSEIMessage(ZYLFNALUnit* pnalu);
     int Type() {
         return m_type;
     }
@@ -216,7 +216,7 @@ public:
     }
 
 private:
-    LFNALUnit *m_pnalu;
+    ZYLFNALUnit *m_pnalu;
     int m_type;
     int m_length;
     int m_idxPayload;
@@ -227,16 +227,16 @@ class LFavcCHeader
 {
 public:
     LFavcCHeader(const BYTE* header, int cBytes);
-    LFNALUnit *sps() {
+    ZYLFNALUnit *sps() {
         return &m_sps;
     }
 
-    LFNALUnit *pps() {
+    ZYLFNALUnit *pps() {
         return &m_pps;
     }
 
 private:
-    LFNALUnit m_sps;
-    LFNALUnit m_pps;
+    ZYLFNALUnit m_sps;
+    ZYLFNALUnit m_pps;
 };
 

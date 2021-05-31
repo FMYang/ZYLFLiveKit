@@ -6,26 +6,26 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFLiveVideoConfiguration.h"
+#import "ZYLFLiveVideoConfiguration.h"
 #import <AVFoundation/AVFoundation.h>
 
 
-@implementation LFLiveVideoConfiguration
+@implementation ZYLFLiveVideoConfiguration
 
 #pragma mark -- LifeCycle
 
 + (instancetype)defaultConfiguration {
-    LFLiveVideoConfiguration *configuration = [LFLiveVideoConfiguration defaultConfigurationForQuality:LFLiveVideoQuality_Default];
+    ZYLFLiveVideoConfiguration *configuration = [ZYLFLiveVideoConfiguration defaultConfigurationForQuality:LFLiveVideoQuality_Default];
     return configuration;
 }
 
 + (instancetype)defaultConfigurationForQuality:(LFLiveVideoQuality)videoQuality {
-    LFLiveVideoConfiguration *configuration = [LFLiveVideoConfiguration defaultConfigurationForQuality:videoQuality outputImageOrientation:UIInterfaceOrientationPortrait];
+    ZYLFLiveVideoConfiguration *configuration = [ZYLFLiveVideoConfiguration defaultConfigurationForQuality:videoQuality outputImageOrientation:UIInterfaceOrientationPortrait];
     return configuration;
 }
 
 + (instancetype)defaultConfigurationForQuality:(LFLiveVideoQuality)videoQuality outputImageOrientation:(UIInterfaceOrientation)outputImageOrientation {
-    LFLiveVideoConfiguration *configuration = [LFLiveVideoConfiguration new];
+    ZYLFLiveVideoConfiguration *configuration = [ZYLFLiveVideoConfiguration new];
     switch (videoQuality) {
     case LFLiveVideoQuality_Low1:{
         configuration.sessionPreset = LFCaptureSessionPreset360x640;
@@ -329,7 +329,7 @@
     } else if (![super isEqual:other]) {
         return NO;
     } else {
-        LFLiveVideoConfiguration *object = other;
+        ZYLFLiveVideoConfiguration *object = other;
         return CGSizeEqualToSize(object.videoSize, self.videoSize) &&
                object.videoFrameRate == self.videoFrameRate &&
                object.videoMaxFrameRate == self.videoMaxFrameRate &&
@@ -347,7 +347,7 @@
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {
-    LFLiveVideoConfiguration *other = [self.class defaultConfiguration];
+    ZYLFLiveVideoConfiguration *other = [self.class defaultConfiguration];
     return other;
 }
 

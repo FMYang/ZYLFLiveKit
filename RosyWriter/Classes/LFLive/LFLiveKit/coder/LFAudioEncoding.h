@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 #import "LFAudioFrame.h"
-#import "LFLiveAudioConfiguration.h"
+#import "ZYLFLiveAudioConfiguration.h"
 
 
 
@@ -26,7 +26,7 @@
 - (void)encodeAudioData:(nullable NSData*)audioData timeStamp:(uint64_t)timeStamp;
 - (void)stopEncoder;
 @optional
-- (nullable instancetype)initWithAudioStreamConfiguration:(nullable LFLiveAudioConfiguration *)configuration;
+- (nullable instancetype)initWithAudioStreamConfiguration:(nullable ZYLFLiveAudioConfiguration *)configuration;
 - (void)setDelegate:(nullable id<LFAudioEncodingDelegate>)delegate;
 - (nullable NSData *)adtsData:(NSInteger)channel rawDataLength:(NSInteger)rawDataLength;
 @end

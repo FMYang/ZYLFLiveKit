@@ -6,19 +6,19 @@
 //  Copyright (c) 2013 GDCL http://www.gdcl.co.uk/license.htm
 //
 
-#import "LFMP4Atom.h"
+#import "ZYLFMP4Atom.h"
 
 static unsigned int to_host(unsigned char *p){
     return (p[0] << 24) + (p[1] << 16) + (p[2] << 8) + p[3];
 }
 
-@implementation LFMP4Atom
+@implementation ZYLFMP4Atom
 
 @synthesize type = _type;
 @synthesize length = _length;
 
-+ (LFMP4Atom *)atomAt:(int64_t)offset size:(int)length type:(OSType)fourcc inFile:(NSFileHandle *)handle {
-    LFMP4Atom *atom = [LFMP4Atom alloc];
++ (ZYLFMP4Atom *)atomAt:(int64_t)offset size:(int)length type:(OSType)fourcc inFile:(NSFileHandle *)handle {
+    ZYLFMP4Atom *atom = [ZYLFMP4Atom alloc];
     if (![atom init:offset size:length type:fourcc inFile:handle]) {
         return nil;
     }
@@ -45,7 +45,7 @@ static unsigned int to_host(unsigned char *p){
     return YES;
 }
 
-- (LFMP4Atom *)nextChild {
+- (ZYLFMP4Atom *)nextChild {
     if (_nextChild <= (_length - 8)) {
         [_file seekToFileOffset:_offset + _nextChild];
         NSData *data = [_file readDataOfLength:8];
@@ -73,14 +73,14 @@ static unsigned int to_host(unsigned char *p){
         int64_t offset = _nextChild + cHeader;
         _nextChild += len;
         len -= cHeader;
-        return [LFMP4Atom atomAt:offset+_offset size:(int)len type:fourcc inFile:_file];
+        return [ZYLFMP4Atom atomAt:offset+_offset size:(int)len type:fourcc inFile:_file];
     }
     return nil;
 }
 
-- (LFMP4Atom *)childOfType:(OSType)fourcc startAt:(int64_t)offset {
+- (ZYLFMP4Atom *)childOfType:(OSType)fourcc startAt:(int64_t)offset {
     [self setChildOffset:offset];
-    LFMP4Atom *child = nil;
+    ZYLFMP4Atom *child = nil;
     do {
         child = [self nextChild];
     } while ((child != nil) && (child.type != fourcc));

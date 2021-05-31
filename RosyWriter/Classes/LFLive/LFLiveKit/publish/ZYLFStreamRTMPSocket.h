@@ -1,14 +1,14 @@
 //
-//  LFStreamRTMPSocket.h
+//  ZYLFStreamRTMPSocket.h
 //  LaiFeng
 //
 //  Created by LaiFeng on 16/5/20.
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFStreamSocket.h"
+#import "ZYLFStreamSocket.h"
 
-@interface LFStreamRTMPSocket : NSObject<LFStreamSocket>
+@interface ZYLFStreamRTMPSocket : NSObject<ZYLFStreamSocket>
 
 #pragma mark - Initializer
 ///=============================================================================

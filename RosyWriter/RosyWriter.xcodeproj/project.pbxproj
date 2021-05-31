@@ -106,18 +106,18 @@
 		6FF11C9516A877B100E14D71 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 6FF11C9116A877B100E14D71 /* matrix.c */; };
 		6FF11C9616A877B100E14D71 /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 6FF11C9316A877B100E14D71 /* ShaderUtilities.c */; };
 		7214DBCE182AEF8900EA3F99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7214DBCD182AEF8900EA3F99 /* Images.xcassets */; };
-		7F1F20F9265E34E20094FA78 /* LFLiveVideoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F55265E34E00094FA78 /* LFLiveVideoConfiguration.m */; };
-		7F1F20FA265E34E20094FA78 /* LFLiveVideoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F55265E34E00094FA78 /* LFLiveVideoConfiguration.m */; };
-		7F1F20FB265E34E20094FA78 /* LFLiveVideoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F55265E34E00094FA78 /* LFLiveVideoConfiguration.m */; };
-		7F1F20FC265E34E20094FA78 /* LFLiveVideoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F55265E34E00094FA78 /* LFLiveVideoConfiguration.m */; };
-		7F1F20FD265E34E20094FA78 /* LFLiveAudioConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F56265E34E00094FA78 /* LFLiveAudioConfiguration.m */; };
-		7F1F20FE265E34E20094FA78 /* LFLiveAudioConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F56265E34E00094FA78 /* LFLiveAudioConfiguration.m */; };
-		7F1F20FF265E34E20094FA78 /* LFLiveAudioConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F56265E34E00094FA78 /* LFLiveAudioConfiguration.m */; };
-		7F1F2100265E34E20094FA78 /* LFLiveAudioConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F56265E34E00094FA78 /* LFLiveAudioConfiguration.m */; };
-		7F1F2105265E34E20094FA78 /* LFAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F5C265E34E00094FA78 /* LFAudioCapture.m */; };
-		7F1F2106265E34E20094FA78 /* LFAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F5C265E34E00094FA78 /* LFAudioCapture.m */; };
-		7F1F2107265E34E20094FA78 /* LFAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F5C265E34E00094FA78 /* LFAudioCapture.m */; };
-		7F1F2108265E34E20094FA78 /* LFAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F5C265E34E00094FA78 /* LFAudioCapture.m */; };
+		7F1F20F9265E34E20094FA78 /* ZYLFLiveVideoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F55265E34E00094FA78 /* ZYLFLiveVideoConfiguration.m */; };
+		7F1F20FA265E34E20094FA78 /* ZYLFLiveVideoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F55265E34E00094FA78 /* ZYLFLiveVideoConfiguration.m */; };
+		7F1F20FB265E34E20094FA78 /* ZYLFLiveVideoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F55265E34E00094FA78 /* ZYLFLiveVideoConfiguration.m */; };
+		7F1F20FC265E34E20094FA78 /* ZYLFLiveVideoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F55265E34E00094FA78 /* ZYLFLiveVideoConfiguration.m */; };
+		7F1F20FD265E34E20094FA78 /* ZYLFLiveAudioConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F56265E34E00094FA78 /* ZYLFLiveAudioConfiguration.m */; };
+		7F1F20FE265E34E20094FA78 /* ZYLFLiveAudioConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F56265E34E00094FA78 /* ZYLFLiveAudioConfiguration.m */; };
+		7F1F20FF265E34E20094FA78 /* ZYLFLiveAudioConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F56265E34E00094FA78 /* ZYLFLiveAudioConfiguration.m */; };
+		7F1F2100265E34E20094FA78 /* ZYLFLiveAudioConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F56265E34E00094FA78 /* ZYLFLiveAudioConfiguration.m */; };
+		7F1F2105265E34E20094FA78 /* ZYLFAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F5C265E34E00094FA78 /* ZYLFAudioCapture.m */; };
+		7F1F2106265E34E20094FA78 /* ZYLFAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F5C265E34E00094FA78 /* ZYLFAudioCapture.m */; };
+		7F1F2107265E34E20094FA78 /* ZYLFAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F5C265E34E00094FA78 /* ZYLFAudioCapture.m */; };
+		7F1F2108265E34E20094FA78 /* ZYLFAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F5C265E34E00094FA78 /* ZYLFAudioCapture.m */; };
 		7F1F2109265E34E20094FA78 /* LFAudioFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F61265E34E00094FA78 /* LFAudioFrame.m */; };
 		7F1F210A265E34E20094FA78 /* LFAudioFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F61265E34E00094FA78 /* LFAudioFrame.m */; };
 		7F1F210B265E34E20094FA78 /* LFAudioFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F61265E34E00094FA78 /* LFAudioFrame.m */; };
@@ -138,22 +138,22 @@
 		7F1F211A265E34E20094FA78 /* LFFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F68265E34E00094FA78 /* LFFrame.m */; };
 		7F1F211B265E34E20094FA78 /* LFFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F68265E34E00094FA78 /* LFFrame.m */; };
 		7F1F211C265E34E20094FA78 /* LFFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F68265E34E00094FA78 /* LFFrame.m */; };
-		7F1F211D265E34E20094FA78 /* LFLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F69265E34E00094FA78 /* LFLiveSession.m */; };
-		7F1F211E265E34E20094FA78 /* LFLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F69265E34E00094FA78 /* LFLiveSession.m */; };
-		7F1F211F265E34E20094FA78 /* LFLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F69265E34E00094FA78 /* LFLiveSession.m */; };
-		7F1F2120265E34E20094FA78 /* LFLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F69265E34E00094FA78 /* LFLiveSession.m */; };
+		7F1F211D265E34E20094FA78 /* ZYLFLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F69265E34E00094FA78 /* ZYLFLiveSession.m */; };
+		7F1F211E265E34E20094FA78 /* ZYLFLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F69265E34E00094FA78 /* ZYLFLiveSession.m */; };
+		7F1F211F265E34E20094FA78 /* ZYLFLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F69265E34E00094FA78 /* ZYLFLiveSession.m */; };
+		7F1F2120265E34E20094FA78 /* ZYLFLiveSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F69265E34E00094FA78 /* ZYLFLiveSession.m */; };
 		7F1F2121265E34E20094FA78 /* NSMutableArray+LFAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6C265E34E00094FA78 /* NSMutableArray+LFAdd.m */; };
 		7F1F2122265E34E20094FA78 /* NSMutableArray+LFAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6C265E34E00094FA78 /* NSMutableArray+LFAdd.m */; };
 		7F1F2123265E34E20094FA78 /* NSMutableArray+LFAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6C265E34E00094FA78 /* NSMutableArray+LFAdd.m */; };
 		7F1F2124265E34E20094FA78 /* NSMutableArray+LFAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6C265E34E00094FA78 /* NSMutableArray+LFAdd.m */; };
-		7F1F2125265E34E20094FA78 /* LFStreamRtmpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6E265E34E00094FA78 /* LFStreamRtmpSocket.m */; };
-		7F1F2126265E34E20094FA78 /* LFStreamRtmpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6E265E34E00094FA78 /* LFStreamRtmpSocket.m */; };
-		7F1F2127265E34E20094FA78 /* LFStreamRtmpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6E265E34E00094FA78 /* LFStreamRtmpSocket.m */; };
-		7F1F2128265E34E20094FA78 /* LFStreamRtmpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6E265E34E00094FA78 /* LFStreamRtmpSocket.m */; };
-		7F1F2129265E34E20094FA78 /* LFStreamingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F71265E34E00094FA78 /* LFStreamingBuffer.m */; };
-		7F1F212A265E34E20094FA78 /* LFStreamingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F71265E34E00094FA78 /* LFStreamingBuffer.m */; };
-		7F1F212B265E34E20094FA78 /* LFStreamingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F71265E34E00094FA78 /* LFStreamingBuffer.m */; };
-		7F1F212C265E34E20094FA78 /* LFStreamingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F71265E34E00094FA78 /* LFStreamingBuffer.m */; };
+		7F1F2125265E34E20094FA78 /* ZYLFStreamRTMPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6E265E34E00094FA78 /* ZYLFStreamRTMPSocket.m */; };
+		7F1F2126265E34E20094FA78 /* ZYLFStreamRTMPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6E265E34E00094FA78 /* ZYLFStreamRTMPSocket.m */; };
+		7F1F2127265E34E20094FA78 /* ZYLFStreamRTMPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6E265E34E00094FA78 /* ZYLFStreamRTMPSocket.m */; };
+		7F1F2128265E34E20094FA78 /* ZYLFStreamRTMPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F6E265E34E00094FA78 /* ZYLFStreamRTMPSocket.m */; };
+		7F1F2129265E34E20094FA78 /* ZYLFStreamingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F71265E34E00094FA78 /* ZYLFStreamingBuffer.m */; };
+		7F1F212A265E34E20094FA78 /* ZYLFStreamingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F71265E34E00094FA78 /* ZYLFStreamingBuffer.m */; };
+		7F1F212B265E34E20094FA78 /* ZYLFStreamingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F71265E34E00094FA78 /* ZYLFStreamingBuffer.m */; };
+		7F1F212C265E34E20094FA78 /* ZYLFStreamingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F71265E34E00094FA78 /* ZYLFStreamingBuffer.m */; };
 		7F1F2135265E34E20094FA78 /* LFHardwareAudioEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7A265E34E00094FA78 /* LFHardwareAudioEncoder.m */; };
 		7F1F2136265E34E20094FA78 /* LFHardwareAudioEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7A265E34E00094FA78 /* LFHardwareAudioEncoder.m */; };
 		7F1F2137265E34E20094FA78 /* LFHardwareAudioEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7A265E34E00094FA78 /* LFHardwareAudioEncoder.m */; };
@@ -162,22 +162,22 @@
 		7F1F213A265E34E20094FA78 /* LFH264VideoEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7B265E34E00094FA78 /* LFH264VideoEncoder.mm */; };
 		7F1F213B265E34E20094FA78 /* LFH264VideoEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7B265E34E00094FA78 /* LFH264VideoEncoder.mm */; };
 		7F1F213C265E34E20094FA78 /* LFH264VideoEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7B265E34E00094FA78 /* LFH264VideoEncoder.mm */; };
-		7F1F213D265E34E20094FA78 /* LFMP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7E265E34E00094FA78 /* LFMP4Atom.m */; };
-		7F1F213E265E34E20094FA78 /* LFMP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7E265E34E00094FA78 /* LFMP4Atom.m */; };
-		7F1F213F265E34E20094FA78 /* LFMP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7E265E34E00094FA78 /* LFMP4Atom.m */; };
-		7F1F2140265E34E20094FA78 /* LFMP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7E265E34E00094FA78 /* LFMP4Atom.m */; };
-		7F1F2141265E34E20094FA78 /* LFNALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F80265E34E00094FA78 /* LFNALUnit.cpp */; };
-		7F1F2142265E34E20094FA78 /* LFNALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F80265E34E00094FA78 /* LFNALUnit.cpp */; };
-		7F1F2143265E34E20094FA78 /* LFNALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F80265E34E00094FA78 /* LFNALUnit.cpp */; };
-		7F1F2144265E34E20094FA78 /* LFNALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F80265E34E00094FA78 /* LFNALUnit.cpp */; };
-		7F1F2145265E34E20094FA78 /* LFVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F81265E34E00094FA78 /* LFVideoEncoder.m */; };
-		7F1F2146265E34E20094FA78 /* LFVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F81265E34E00094FA78 /* LFVideoEncoder.m */; };
-		7F1F2147265E34E20094FA78 /* LFVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F81265E34E00094FA78 /* LFVideoEncoder.m */; };
-		7F1F2148265E34E20094FA78 /* LFVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F81265E34E00094FA78 /* LFVideoEncoder.m */; };
-		7F1F2149265E34E20094FA78 /* LFAVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F84265E34E00094FA78 /* LFAVEncoder.mm */; };
-		7F1F214A265E34E20094FA78 /* LFAVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F84265E34E00094FA78 /* LFAVEncoder.mm */; };
-		7F1F214B265E34E20094FA78 /* LFAVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F84265E34E00094FA78 /* LFAVEncoder.mm */; };
-		7F1F214C265E34E20094FA78 /* LFAVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F84265E34E00094FA78 /* LFAVEncoder.mm */; };
+		7F1F213D265E34E20094FA78 /* ZYLFMP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7E265E34E00094FA78 /* ZYLFMP4Atom.m */; };
+		7F1F213E265E34E20094FA78 /* ZYLFMP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7E265E34E00094FA78 /* ZYLFMP4Atom.m */; };
+		7F1F213F265E34E20094FA78 /* ZYLFMP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7E265E34E00094FA78 /* ZYLFMP4Atom.m */; };
+		7F1F2140265E34E20094FA78 /* ZYLFMP4Atom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F7E265E34E00094FA78 /* ZYLFMP4Atom.m */; };
+		7F1F2141265E34E20094FA78 /* ZYLFNALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F80265E34E00094FA78 /* ZYLFNALUnit.cpp */; };
+		7F1F2142265E34E20094FA78 /* ZYLFNALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F80265E34E00094FA78 /* ZYLFNALUnit.cpp */; };
+		7F1F2143265E34E20094FA78 /* ZYLFNALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F80265E34E00094FA78 /* ZYLFNALUnit.cpp */; };
+		7F1F2144265E34E20094FA78 /* ZYLFNALUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F80265E34E00094FA78 /* ZYLFNALUnit.cpp */; };
+		7F1F2145265E34E20094FA78 /* ZYLFVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F81265E34E00094FA78 /* ZYLFVideoEncoder.m */; };
+		7F1F2146265E34E20094FA78 /* ZYLFVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F81265E34E00094FA78 /* ZYLFVideoEncoder.m */; };
+		7F1F2147265E34E20094FA78 /* ZYLFVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F81265E34E00094FA78 /* ZYLFVideoEncoder.m */; };
+		7F1F2148265E34E20094FA78 /* ZYLFVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F81265E34E00094FA78 /* ZYLFVideoEncoder.m */; };
+		7F1F2149265E34E20094FA78 /* ZYLFAVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F84265E34E00094FA78 /* ZYLFAVEncoder.mm */; };
+		7F1F214A265E34E20094FA78 /* ZYLFAVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F84265E34E00094FA78 /* ZYLFAVEncoder.mm */; };
+		7F1F214B265E34E20094FA78 /* ZYLFAVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F84265E34E00094FA78 /* ZYLFAVEncoder.mm */; };
+		7F1F214C265E34E20094FA78 /* ZYLFAVEncoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F84265E34E00094FA78 /* ZYLFAVEncoder.mm */; };
 		7F1F214D265E34E20094FA78 /* LFHardwareVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F88265E34E00094FA78 /* LFHardwareVideoEncoder.m */; };
 		7F1F214E265E34E20094FA78 /* LFHardwareVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F88265E34E00094FA78 /* LFHardwareVideoEncoder.m */; };
 		7F1F214F265E34E20094FA78 /* LFHardwareVideoEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F1F88265E34E00094FA78 /* LFHardwareVideoEncoder.m */; };
@@ -260,12 +260,12 @@
 		6FF11C9316A877B100E14D71 /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = ShaderUtilities.c; path = Utilities/GL/ShaderUtilities.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
 		6FF11C9416A877B100E14D71 /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = ShaderUtilities.h; path = Utilities/GL/ShaderUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7214DBCD182AEF8900EA3F99 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		7F1F1F54265E34E00094FA78 /* LFLiveAudioConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLiveAudioConfiguration.h; sourceTree = "<group>"; };
-		7F1F1F55265E34E00094FA78 /* LFLiveVideoConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLiveVideoConfiguration.m; sourceTree = "<group>"; };
-		7F1F1F56265E34E00094FA78 /* LFLiveAudioConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLiveAudioConfiguration.m; sourceTree = "<group>"; };
-		7F1F1F57265E34E00094FA78 /* LFLiveVideoConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLiveVideoConfiguration.h; sourceTree = "<group>"; };
-		7F1F1F5A265E34E00094FA78 /* LFAudioCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFAudioCapture.h; sourceTree = "<group>"; };
-		7F1F1F5C265E34E00094FA78 /* LFAudioCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFAudioCapture.m; sourceTree = "<group>"; };
+		7F1F1F54265E34E00094FA78 /* ZYLFLiveAudioConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFLiveAudioConfiguration.h; sourceTree = "<group>"; };
+		7F1F1F55265E34E00094FA78 /* ZYLFLiveVideoConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLFLiveVideoConfiguration.m; sourceTree = "<group>"; };
+		7F1F1F56265E34E00094FA78 /* ZYLFLiveAudioConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLFLiveAudioConfiguration.m; sourceTree = "<group>"; };
+		7F1F1F57265E34E00094FA78 /* ZYLFLiveVideoConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFLiveVideoConfiguration.h; sourceTree = "<group>"; };
+		7F1F1F5A265E34E00094FA78 /* ZYLFAudioCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFAudioCapture.h; sourceTree = "<group>"; };
+		7F1F1F5C265E34E00094FA78 /* ZYLFAudioCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLFAudioCapture.m; sourceTree = "<group>"; };
 		7F1F1F5D265E34E00094FA78 /* LFLiveKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLiveKit.h; sourceTree = "<group>"; };
 		7F1F1F5F265E34E00094FA78 /* LFVideoFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFVideoFrame.h; sourceTree = "<group>"; };
 		7F1F1F60265E34E00094FA78 /* LFLiveDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLiveDebug.h; sourceTree = "<group>"; };
@@ -277,31 +277,31 @@
 		7F1F1F66265E34E00094FA78 /* LFLiveStreamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLiveStreamInfo.h; sourceTree = "<group>"; };
 		7F1F1F67265E34E00094FA78 /* LFAudioFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFAudioFrame.h; sourceTree = "<group>"; };
 		7F1F1F68265E34E00094FA78 /* LFFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFFrame.m; sourceTree = "<group>"; };
-		7F1F1F69265E34E00094FA78 /* LFLiveSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFLiveSession.m; sourceTree = "<group>"; };
-		7F1F1F6B265E34E00094FA78 /* LFStreamRTMPSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFStreamRTMPSocket.h; sourceTree = "<group>"; };
+		7F1F1F69265E34E00094FA78 /* ZYLFLiveSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLFLiveSession.m; sourceTree = "<group>"; };
+		7F1F1F6B265E34E00094FA78 /* ZYLFStreamRTMPSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFStreamRTMPSocket.h; sourceTree = "<group>"; };
 		7F1F1F6C265E34E00094FA78 /* NSMutableArray+LFAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+LFAdd.m"; sourceTree = "<group>"; };
-		7F1F1F6D265E34E00094FA78 /* LFStreamingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFStreamingBuffer.h; sourceTree = "<group>"; };
-		7F1F1F6E265E34E00094FA78 /* LFStreamRtmpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFStreamRtmpSocket.m; sourceTree = "<group>"; };
-		7F1F1F6F265E34E00094FA78 /* LFStreamSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFStreamSocket.h; sourceTree = "<group>"; };
+		7F1F1F6D265E34E00094FA78 /* ZYLFStreamingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFStreamingBuffer.h; sourceTree = "<group>"; };
+		7F1F1F6E265E34E00094FA78 /* ZYLFStreamRTMPSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLFStreamRTMPSocket.m; sourceTree = "<group>"; };
+		7F1F1F6F265E34E00094FA78 /* ZYLFStreamSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFStreamSocket.h; sourceTree = "<group>"; };
 		7F1F1F70265E34E00094FA78 /* NSMutableArray+LFAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+LFAdd.h"; sourceTree = "<group>"; };
-		7F1F1F71265E34E00094FA78 /* LFStreamingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFStreamingBuffer.m; sourceTree = "<group>"; };
+		7F1F1F71265E34E00094FA78 /* ZYLFStreamingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLFStreamingBuffer.m; sourceTree = "<group>"; };
 		7F1F1F78265E34E00094FA78 /* LFAudioEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFAudioEncoding.h; sourceTree = "<group>"; };
 		7F1F1F79265E34E00094FA78 /* LFH264VideoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFH264VideoEncoder.h; sourceTree = "<group>"; };
 		7F1F1F7A265E34E00094FA78 /* LFHardwareAudioEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFHardwareAudioEncoder.m; sourceTree = "<group>"; };
 		7F1F1F7B265E34E00094FA78 /* LFH264VideoEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LFH264VideoEncoder.mm; sourceTree = "<group>"; };
-		7F1F1F7D265E34E00094FA78 /* LFVideoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFVideoEncoder.h; sourceTree = "<group>"; };
-		7F1F1F7E265E34E00094FA78 /* LFMP4Atom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMP4Atom.m; sourceTree = "<group>"; };
-		7F1F1F7F265E34E00094FA78 /* LFAVEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFAVEncoder.h; sourceTree = "<group>"; };
-		7F1F1F80265E34E00094FA78 /* LFNALUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LFNALUnit.cpp; sourceTree = "<group>"; };
-		7F1F1F81265E34E00094FA78 /* LFVideoEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFVideoEncoder.m; sourceTree = "<group>"; };
-		7F1F1F82265E34E00094FA78 /* LFMP4Atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMP4Atom.h; sourceTree = "<group>"; };
-		7F1F1F83265E34E00094FA78 /* LFNALUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFNALUnit.h; sourceTree = "<group>"; };
-		7F1F1F84265E34E00094FA78 /* LFAVEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LFAVEncoder.mm; sourceTree = "<group>"; };
+		7F1F1F7D265E34E00094FA78 /* ZYLFVideoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFVideoEncoder.h; sourceTree = "<group>"; };
+		7F1F1F7E265E34E00094FA78 /* ZYLFMP4Atom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLFMP4Atom.m; sourceTree = "<group>"; };
+		7F1F1F7F265E34E00094FA78 /* ZYLFAVEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFAVEncoder.h; sourceTree = "<group>"; };
+		7F1F1F80265E34E00094FA78 /* ZYLFNALUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZYLFNALUnit.cpp; sourceTree = "<group>"; };
+		7F1F1F81265E34E00094FA78 /* ZYLFVideoEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLFVideoEncoder.m; sourceTree = "<group>"; };
+		7F1F1F82265E34E00094FA78 /* ZYLFMP4Atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFMP4Atom.h; sourceTree = "<group>"; };
+		7F1F1F83265E34E00094FA78 /* ZYLFNALUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFNALUnit.h; sourceTree = "<group>"; };
+		7F1F1F84265E34E00094FA78 /* ZYLFAVEncoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZYLFAVEncoder.mm; sourceTree = "<group>"; };
 		7F1F1F85265E34E00094FA78 /* LFHardwareVideoEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFHardwareVideoEncoder.h; sourceTree = "<group>"; };
 		7F1F1F86265E34E00094FA78 /* LFVideoEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFVideoEncoding.h; sourceTree = "<group>"; };
 		7F1F1F87265E34E00094FA78 /* LFHardwareAudioEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFHardwareAudioEncoder.h; sourceTree = "<group>"; };
 		7F1F1F88265E34E00094FA78 /* LFHardwareVideoEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFHardwareVideoEncoder.m; sourceTree = "<group>"; };
-		7F1F1F89265E34E00094FA78 /* LFLiveSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFLiveSession.h; sourceTree = "<group>"; };
+		7F1F1F89265E34E00094FA78 /* ZYLFLiveSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLFLiveSession.h; sourceTree = "<group>"; };
 		7F1F20E9265E34E20094FA78 /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log.c; sourceTree = "<group>"; };
 		7F1F20EA265E34E20094FA78 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		7F1F20EB265E34E20094FA78 /* http.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http.h; sourceTree = "<group>"; };
@@ -531,14 +531,14 @@
 		7F1F1F52265E34E00094FA78 /* LFLiveKit */ = {
 			isa = PBXGroup;
 			children = (
-				7F1F1F53265E34E00094FA78 /* configuration */,
 				7F1F1F58265E34E00094FA78 /* capture */,
-				7F1F1F5D265E34E00094FA78 /* LFLiveKit.h */,
-				7F1F1F5E265E34E00094FA78 /* objects */,
-				7F1F1F69265E34E00094FA78 /* LFLiveSession.m */,
-				7F1F1F6A265E34E00094FA78 /* publish */,
 				7F1F1F77265E34E00094FA78 /* coder */,
-				7F1F1F89265E34E00094FA78 /* LFLiveSession.h */,
+				7F1F1F53265E34E00094FA78 /* configuration */,
+				7F1F1F5D265E34E00094FA78 /* LFLiveKit.h */,
+				7F1F1F89265E34E00094FA78 /* ZYLFLiveSession.h */,
+				7F1F1F69265E34E00094FA78 /* ZYLFLiveSession.m */,
+				7F1F1F5E265E34E00094FA78 /* objects */,
+				7F1F1F6A265E34E00094FA78 /* publish */,
 				7F1F1F8A265E34E00094FA78 /* Vendor */,
 			);
 			path = LFLiveKit;
@@ -547,10 +547,10 @@
 		7F1F1F53265E34E00094FA78 /* configuration */ = {
 			isa = PBXGroup;
 			children = (
-				7F1F1F54265E34E00094FA78 /* LFLiveAudioConfiguration.h */,
-				7F1F1F55265E34E00094FA78 /* LFLiveVideoConfiguration.m */,
-				7F1F1F56265E34E00094FA78 /* LFLiveAudioConfiguration.m */,
-				7F1F1F57265E34E00094FA78 /* LFLiveVideoConfiguration.h */,
+				7F1F1F57265E34E00094FA78 /* ZYLFLiveVideoConfiguration.h */,
+				7F1F1F55265E34E00094FA78 /* ZYLFLiveVideoConfiguration.m */,
+				7F1F1F54265E34E00094FA78 /* ZYLFLiveAudioConfiguration.h */,
+				7F1F1F56265E34E00094FA78 /* ZYLFLiveAudioConfiguration.m */,
 			);
 			path = configuration;
 			sourceTree = "<group>";
@@ -558,8 +558,8 @@
 		7F1F1F58265E34E00094FA78 /* capture */ = {
 			isa = PBXGroup;
 			children = (
-				7F1F1F5A265E34E00094FA78 /* LFAudioCapture.h */,
-				7F1F1F5C265E34E00094FA78 /* LFAudioCapture.m */,
+				7F1F1F5A265E34E00094FA78 /* ZYLFAudioCapture.h */,
+				7F1F1F5C265E34E00094FA78 /* ZYLFAudioCapture.m */,
 			);
 			path = capture;
 			sourceTree = "<group>";
@@ -567,16 +567,16 @@
 		7F1F1F5E265E34E00094FA78 /* objects */ = {
 			isa = PBXGroup;
 			children = (
-				7F1F1F5F265E34E00094FA78 /* LFVideoFrame.h */,
-				7F1F1F60265E34E00094FA78 /* LFLiveDebug.h */,
+				7F1F1F67265E34E00094FA78 /* LFAudioFrame.h */,
 				7F1F1F61265E34E00094FA78 /* LFAudioFrame.m */,
-				7F1F1F62265E34E00094FA78 /* LFLiveStreamInfo.m */,
 				7F1F1F63265E34E00094FA78 /* LFFrame.h */,
-				7F1F1F64265E34E00094FA78 /* LFVideoFrame.m */,
+				7F1F1F68265E34E00094FA78 /* LFFrame.m */,
+				7F1F1F60265E34E00094FA78 /* LFLiveDebug.h */,
 				7F1F1F65265E34E00094FA78 /* LFLiveDebug.m */,
 				7F1F1F66265E34E00094FA78 /* LFLiveStreamInfo.h */,
-				7F1F1F67265E34E00094FA78 /* LFAudioFrame.h */,
-				7F1F1F68265E34E00094FA78 /* LFFrame.m */,
+				7F1F1F62265E34E00094FA78 /* LFLiveStreamInfo.m */,
+				7F1F1F5F265E34E00094FA78 /* LFVideoFrame.h */,
+				7F1F1F64265E34E00094FA78 /* LFVideoFrame.m */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -584,13 +584,13 @@
 		7F1F1F6A265E34E00094FA78 /* publish */ = {
 			isa = PBXGroup;
 			children = (
-				7F1F1F6B265E34E00094FA78 /* LFStreamRTMPSocket.h */,
-				7F1F1F6C265E34E00094FA78 /* NSMutableArray+LFAdd.m */,
-				7F1F1F6D265E34E00094FA78 /* LFStreamingBuffer.h */,
-				7F1F1F6E265E34E00094FA78 /* LFStreamRtmpSocket.m */,
-				7F1F1F6F265E34E00094FA78 /* LFStreamSocket.h */,
+				7F1F1F6D265E34E00094FA78 /* ZYLFStreamingBuffer.h */,
+				7F1F1F71265E34E00094FA78 /* ZYLFStreamingBuffer.m */,
+				7F1F1F6B265E34E00094FA78 /* ZYLFStreamRTMPSocket.h */,
+				7F1F1F6E265E34E00094FA78 /* ZYLFStreamRTMPSocket.m */,
+				7F1F1F6F265E34E00094FA78 /* ZYLFStreamSocket.h */,
 				7F1F1F70265E34E00094FA78 /* NSMutableArray+LFAdd.h */,
-				7F1F1F71265E34E00094FA78 /* LFStreamingBuffer.m */,
+				7F1F1F6C265E34E00094FA78 /* NSMutableArray+LFAdd.m */,
 			);
 			path = publish;
 			sourceTree = "<group>";
@@ -598,15 +598,15 @@
 		7F1F1F77265E34E00094FA78 /* coder */ = {
 			isa = PBXGroup;
 			children = (
+				7F1F1F7C265E34E00094FA78 /* H264 */,
 				7F1F1F78265E34E00094FA78 /* LFAudioEncoding.h */,
 				7F1F1F79265E34E00094FA78 /* LFH264VideoEncoder.h */,
-				7F1F1F7A265E34E00094FA78 /* LFHardwareAudioEncoder.m */,
 				7F1F1F7B265E34E00094FA78 /* LFH264VideoEncoder.mm */,
-				7F1F1F7C265E34E00094FA78 /* H264 */,
-				7F1F1F85265E34E00094FA78 /* LFHardwareVideoEncoder.h */,
-				7F1F1F86265E34E00094FA78 /* LFVideoEncoding.h */,
 				7F1F1F87265E34E00094FA78 /* LFHardwareAudioEncoder.h */,
+				7F1F1F7A265E34E00094FA78 /* LFHardwareAudioEncoder.m */,
+				7F1F1F85265E34E00094FA78 /* LFHardwareVideoEncoder.h */,
 				7F1F1F88265E34E00094FA78 /* LFHardwareVideoEncoder.m */,
+				7F1F1F86265E34E00094FA78 /* LFVideoEncoding.h */,
 			);
 			path = coder;
 			sourceTree = "<group>";
@@ -614,14 +614,14 @@
 		7F1F1F7C265E34E00094FA78 /* H264 */ = {
 			isa = PBXGroup;
 			children = (
-				7F1F1F7D265E34E00094FA78 /* LFVideoEncoder.h */,
-				7F1F1F7E265E34E00094FA78 /* LFMP4Atom.m */,
-				7F1F1F7F265E34E00094FA78 /* LFAVEncoder.h */,
-				7F1F1F80265E34E00094FA78 /* LFNALUnit.cpp */,
-				7F1F1F81265E34E00094FA78 /* LFVideoEncoder.m */,
-				7F1F1F82265E34E00094FA78 /* LFMP4Atom.h */,
-				7F1F1F83265E34E00094FA78 /* LFNALUnit.h */,
-				7F1F1F84265E34E00094FA78 /* LFAVEncoder.mm */,
+				7F1F1F7F265E34E00094FA78 /* ZYLFAVEncoder.h */,
+				7F1F1F84265E34E00094FA78 /* ZYLFAVEncoder.mm */,
+				7F1F1F82265E34E00094FA78 /* ZYLFMP4Atom.h */,
+				7F1F1F7E265E34E00094FA78 /* ZYLFMP4Atom.m */,
+				7F1F1F80265E34E00094FA78 /* ZYLFNALUnit.cpp */,
+				7F1F1F83265E34E00094FA78 /* ZYLFNALUnit.h */,
+				7F1F1F7D265E34E00094FA78 /* ZYLFVideoEncoder.h */,
+				7F1F1F81265E34E00094FA78 /* ZYLFVideoEncoder.m */,
 			);
 			path = H264;
 			sourceTree = "<group>";
@@ -845,33 +845,33 @@
 			files = (
 				7F1F213B265E34E20094FA78 /* LFH264VideoEncoder.mm in Sources */,
 				7F1F2417265E34E30094FA78 /* amf.c in Sources */,
-				7F1F2143265E34E20094FA78 /* LFNALUnit.cpp in Sources */,
+				7F1F2143265E34E20094FA78 /* ZYLFNALUnit.cpp in Sources */,
 				1756C9D619BE5E1F0080DD55 /* main.m in Sources */,
 				7F1F2123265E34E20094FA78 /* NSMutableArray+LFAdd.m in Sources */,
 				7F1F2117265E34E20094FA78 /* LFLiveDebug.m in Sources */,
 				7F1F2137265E34E20094FA78 /* LFHardwareAudioEncoder.m in Sources */,
 				1756C9D719BE5E1F0080DD55 /* RosyWriterAppDelegate.m in Sources */,
-				7F1F213F265E34E20094FA78 /* LFMP4Atom.m in Sources */,
+				7F1F213F265E34E20094FA78 /* ZYLFMP4Atom.m in Sources */,
 				7F1F214F265E34E20094FA78 /* LFHardwareVideoEncoder.m in Sources */,
 				7F1F211B265E34E20094FA78 /* LFFrame.m in Sources */,
 				7F1F2413265E34E30094FA78 /* parseurl.c in Sources */,
-				7F1F2127265E34E20094FA78 /* LFStreamRtmpSocket.m in Sources */,
+				7F1F2127265E34E20094FA78 /* ZYLFStreamRTMPSocket.m in Sources */,
 				1756C9D819BE5E1F0080DD55 /* RosyWriterViewController.m in Sources */,
 				7F1F210F265E34E20094FA78 /* LFLiveStreamInfo.m in Sources */,
 				7F1F2113265E34E20094FA78 /* LFVideoFrame.m in Sources */,
-				7F1F212B265E34E20094FA78 /* LFStreamingBuffer.m in Sources */,
-				7F1F2147265E34E20094FA78 /* LFVideoEncoder.m in Sources */,
-				7F1F2107265E34E20094FA78 /* LFAudioCapture.m in Sources */,
+				7F1F212B265E34E20094FA78 /* ZYLFStreamingBuffer.m in Sources */,
+				7F1F2147265E34E20094FA78 /* ZYLFVideoEncoder.m in Sources */,
+				7F1F2107265E34E20094FA78 /* ZYLFAudioCapture.m in Sources */,
 				7F1F240B265E34E30094FA78 /* rtmp.c in Sources */,
-				7F1F214B265E34E20094FA78 /* LFAVEncoder.mm in Sources */,
+				7F1F214B265E34E20094FA78 /* ZYLFAVEncoder.mm in Sources */,
 				7F1F240F265E34E30094FA78 /* error.c in Sources */,
 				1756C9DA19BE5E1F0080DD55 /* RosyWriterCapturePipeline.m in Sources */,
 				7F1F210B265E34E20094FA78 /* LFAudioFrame.m in Sources */,
-				7F1F211F265E34E20094FA78 /* LFLiveSession.m in Sources */,
+				7F1F211F265E34E20094FA78 /* ZYLFLiveSession.m in Sources */,
 				1756C9DC19BE5E1F0080DD55 /* MovieRecorder.m in Sources */,
-				7F1F20FF265E34E20094FA78 /* LFLiveAudioConfiguration.m in Sources */,
+				7F1F20FF265E34E20094FA78 /* ZYLFLiveAudioConfiguration.m in Sources */,
 				7F1F2403265E34E30094FA78 /* log.c in Sources */,
-				7F1F20FB265E34E20094FA78 /* LFLiveVideoConfiguration.m in Sources */,
+				7F1F20FB265E34E20094FA78 /* ZYLFLiveVideoConfiguration.m in Sources */,
 				7F1F2407265E34E30094FA78 /* hashswf.c in Sources */,
 				17E79A3619C8AD8A004B709D /* ShaderUtilities.c in Sources */,
 				1756C9DD19BE5E1F0080DD55 /* OpenGLPixelBufferView.m in Sources */,
@@ -885,33 +885,33 @@
 			files = (
 				7F1F213A265E34E20094FA78 /* LFH264VideoEncoder.mm in Sources */,
 				7F1F2416265E34E30094FA78 /* amf.c in Sources */,
-				7F1F2142265E34E20094FA78 /* LFNALUnit.cpp in Sources */,
+				7F1F2142265E34E20094FA78 /* ZYLFNALUnit.cpp in Sources */,
 				1FCCE64819BA80A5009D7A6B /* main.m in Sources */,
 				7F1F2122265E34E20094FA78 /* NSMutableArray+LFAdd.m in Sources */,
 				7F1F2116265E34E20094FA78 /* LFLiveDebug.m in Sources */,
 				7F1F2136265E34E20094FA78 /* LFHardwareAudioEncoder.m in Sources */,
 				1FCCE64919BA80A5009D7A6B /* RosyWriterAppDelegate.m in Sources */,
-				7F1F213E265E34E20094FA78 /* LFMP4Atom.m in Sources */,
+				7F1F213E265E34E20094FA78 /* ZYLFMP4Atom.m in Sources */,
 				7F1F214E265E34E20094FA78 /* LFHardwareVideoEncoder.m in Sources */,
 				7F1F211A265E34E20094FA78 /* LFFrame.m in Sources */,
 				7F1F2412265E34E30094FA78 /* parseurl.c in Sources */,
-				7F1F2126265E34E20094FA78 /* LFStreamRtmpSocket.m in Sources */,
+				7F1F2126265E34E20094FA78 /* ZYLFStreamRTMPSocket.m in Sources */,
 				1FCCE64A19BA80A5009D7A6B /* RosyWriterViewController.m in Sources */,
 				7F1F210E265E34E20094FA78 /* LFLiveStreamInfo.m in Sources */,
 				7F1F2112265E34E20094FA78 /* LFVideoFrame.m in Sources */,
-				7F1F212A265E34E20094FA78 /* LFStreamingBuffer.m in Sources */,
-				7F1F2146265E34E20094FA78 /* LFVideoEncoder.m in Sources */,
-				7F1F2106265E34E20094FA78 /* LFAudioCapture.m in Sources */,
+				7F1F212A265E34E20094FA78 /* ZYLFStreamingBuffer.m in Sources */,
+				7F1F2146265E34E20094FA78 /* ZYLFVideoEncoder.m in Sources */,
+				7F1F2106265E34E20094FA78 /* ZYLFAudioCapture.m in Sources */,
 				7F1F240A265E34E30094FA78 /* rtmp.c in Sources */,
-				7F1F214A265E34E20094FA78 /* LFAVEncoder.mm in Sources */,
+				7F1F214A265E34E20094FA78 /* ZYLFAVEncoder.mm in Sources */,
 				7F1F240E265E34E30094FA78 /* error.c in Sources */,
 				696D282C19CA549100A23D81 /* RosyWriterCPURenderer.m in Sources */,
 				7F1F210A265E34E20094FA78 /* LFAudioFrame.m in Sources */,
-				7F1F211E265E34E20094FA78 /* LFLiveSession.m in Sources */,
+				7F1F211E265E34E20094FA78 /* ZYLFLiveSession.m in Sources */,
 				1FCCE64C19BA80A5009D7A6B /* RosyWriterCapturePipeline.m in Sources */,
-				7F1F20FE265E34E20094FA78 /* LFLiveAudioConfiguration.m in Sources */,
+				7F1F20FE265E34E20094FA78 /* ZYLFLiveAudioConfiguration.m in Sources */,
 				7F1F2402265E34E30094FA78 /* log.c in Sources */,
-				7F1F20FA265E34E20094FA78 /* LFLiveVideoConfiguration.m in Sources */,
+				7F1F20FA265E34E20094FA78 /* ZYLFLiveVideoConfiguration.m in Sources */,
 				7F1F2406265E34E30094FA78 /* hashswf.c in Sources */,
 				17E79A3519C8AD89004B709D /* ShaderUtilities.c in Sources */,
 				1FCCE64E19BA80A5009D7A6B /* MovieRecorder.m in Sources */,
@@ -925,33 +925,33 @@
 			files = (
 				7F1F213C265E34E20094FA78 /* LFH264VideoEncoder.mm in Sources */,
 				7F1F2418265E34E30094FA78 /* amf.c in Sources */,
-				7F1F2144265E34E20094FA78 /* LFNALUnit.cpp in Sources */,
+				7F1F2144265E34E20094FA78 /* ZYLFNALUnit.cpp in Sources */,
 				696D280B19CA539900A23D81 /* main.m in Sources */,
 				7F1F2124265E34E20094FA78 /* NSMutableArray+LFAdd.m in Sources */,
 				7F1F2118265E34E20094FA78 /* LFLiveDebug.m in Sources */,
 				7F1F2138265E34E20094FA78 /* LFHardwareAudioEncoder.m in Sources */,
 				696D280C19CA539900A23D81 /* RosyWriterAppDelegate.m in Sources */,
-				7F1F2140265E34E20094FA78 /* LFMP4Atom.m in Sources */,
+				7F1F2140265E34E20094FA78 /* ZYLFMP4Atom.m in Sources */,
 				7F1F2150265E34E20094FA78 /* LFHardwareVideoEncoder.m in Sources */,
 				7F1F211C265E34E20094FA78 /* LFFrame.m in Sources */,
 				7F1F2414265E34E30094FA78 /* parseurl.c in Sources */,
-				7F1F2128265E34E20094FA78 /* LFStreamRtmpSocket.m in Sources */,
+				7F1F2128265E34E20094FA78 /* ZYLFStreamRTMPSocket.m in Sources */,
 				696D280D19CA539900A23D81 /* RosyWriterViewController.m in Sources */,
 				7F1F2110265E34E20094FA78 /* LFLiveStreamInfo.m in Sources */,
 				7F1F2114265E34E20094FA78 /* LFVideoFrame.m in Sources */,
-				7F1F212C265E34E20094FA78 /* LFStreamingBuffer.m in Sources */,
-				7F1F2148265E34E20094FA78 /* LFVideoEncoder.m in Sources */,
-				7F1F2108265E34E20094FA78 /* LFAudioCapture.m in Sources */,
+				7F1F212C265E34E20094FA78 /* ZYLFStreamingBuffer.m in Sources */,
+				7F1F2148265E34E20094FA78 /* ZYLFVideoEncoder.m in Sources */,
+				7F1F2108265E34E20094FA78 /* ZYLFAudioCapture.m in Sources */,
 				7F1F240C265E34E30094FA78 /* rtmp.c in Sources */,
-				7F1F214C265E34E20094FA78 /* LFAVEncoder.mm in Sources */,
+				7F1F214C265E34E20094FA78 /* ZYLFAVEncoder.mm in Sources */,
 				7F1F2410265E34E30094FA78 /* error.c in Sources */,
 				696D280F19CA539900A23D81 /* RosyWriterCapturePipeline.m in Sources */,
 				7F1F210C265E34E20094FA78 /* LFAudioFrame.m in Sources */,
-				7F1F2120265E34E20094FA78 /* LFLiveSession.m in Sources */,
+				7F1F2120265E34E20094FA78 /* ZYLFLiveSession.m in Sources */,
 				696D281019CA539900A23D81 /* ShaderUtilities.c in Sources */,
-				7F1F2100265E34E20094FA78 /* LFLiveAudioConfiguration.m in Sources */,
+				7F1F2100265E34E20094FA78 /* ZYLFLiveAudioConfiguration.m in Sources */,
 				7F1F2404265E34E30094FA78 /* log.c in Sources */,
-				7F1F20FC265E34E20094FA78 /* LFLiveVideoConfiguration.m in Sources */,
+				7F1F20FC265E34E20094FA78 /* ZYLFLiveVideoConfiguration.m in Sources */,
 				7F1F2408265E34E30094FA78 /* hashswf.c in Sources */,
 				696D281119CA539900A23D81 /* MovieRecorder.m in Sources */,
 				696D281219CA539900A23D81 /* OpenGLPixelBufferView.m in Sources */,
@@ -963,37 +963,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F1F2105265E34E20094FA78 /* LFAudioCapture.m in Sources */,
+				7F1F2105265E34E20094FA78 /* ZYLFAudioCapture.m in Sources */,
 				6F90DDE61395CAAA00125BDA /* main.m in Sources */,
-				7F1F211D265E34E20094FA78 /* LFLiveSession.m in Sources */,
+				7F1F211D265E34E20094FA78 /* ZYLFLiveSession.m in Sources */,
 				7F1F2115265E34E20094FA78 /* LFLiveDebug.m in Sources */,
 				7F1F2415265E34E30094FA78 /* amf.c in Sources */,
 				7F1F214D265E34E20094FA78 /* LFHardwareVideoEncoder.m in Sources */,
 				7F1F2139265E34E20094FA78 /* LFH264VideoEncoder.mm in Sources */,
 				7F1F2401265E34E30094FA78 /* log.c in Sources */,
 				6F90DDEA1395CAAA00125BDA /* RosyWriterAppDelegate.m in Sources */,
-				7F1F213D265E34E20094FA78 /* LFMP4Atom.m in Sources */,
-				7F1F2149265E34E20094FA78 /* LFAVEncoder.mm in Sources */,
+				7F1F213D265E34E20094FA78 /* ZYLFMP4Atom.m in Sources */,
+				7F1F2149265E34E20094FA78 /* ZYLFAVEncoder.mm in Sources */,
 				7F1F2121265E34E20094FA78 /* NSMutableArray+LFAdd.m in Sources */,
 				7F1F240D265E34E30094FA78 /* error.c in Sources */,
 				6F90DDEE1395CAAA00125BDA /* RosyWriterViewController.m in Sources */,
 				6F90DE141395CD9C00125BDA /* RosyWriterCapturePipeline.m in Sources */,
-				7F1F2141265E34E20094FA78 /* LFNALUnit.cpp in Sources */,
+				7F1F2141265E34E20094FA78 /* ZYLFNALUnit.cpp in Sources */,
 				7F1F2119265E34E20094FA78 /* LFFrame.m in Sources */,
 				6FE5A735160BAC8000F6DB2B /* RosyWriterOpenGLRenderer.m in Sources */,
 				6FF11C8E16A8779D00E14D71 /* MovieRecorder.m in Sources */,
 				7F1F210D265E34E20094FA78 /* LFLiveStreamInfo.m in Sources */,
 				7F1F2411265E34E30094FA78 /* parseurl.c in Sources */,
-				7F1F2125265E34E20094FA78 /* LFStreamRtmpSocket.m in Sources */,
-				7F1F2129265E34E20094FA78 /* LFStreamingBuffer.m in Sources */,
+				7F1F2125265E34E20094FA78 /* ZYLFStreamRTMPSocket.m in Sources */,
+				7F1F2129265E34E20094FA78 /* ZYLFStreamingBuffer.m in Sources */,
 				6FF11C8F16A8779D00E14D71 /* OpenGLPixelBufferView.m in Sources */,
-				7F1F20FD265E34E20094FA78 /* LFLiveAudioConfiguration.m in Sources */,
+				7F1F20FD265E34E20094FA78 /* ZYLFLiveAudioConfiguration.m in Sources */,
 				7F1F2109265E34E20094FA78 /* LFAudioFrame.m in Sources */,
 				7F1F2135265E34E20094FA78 /* LFHardwareAudioEncoder.m in Sources */,
-				7F1F2145265E34E20094FA78 /* LFVideoEncoder.m in Sources */,
+				7F1F2145265E34E20094FA78 /* ZYLFVideoEncoder.m in Sources */,
 				6FF11C9516A877B100E14D71 /* matrix.c in Sources */,
 				7F1F2111265E34E20094FA78 /* LFVideoFrame.m in Sources */,
-				7F1F20F9265E34E20094FA78 /* LFLiveVideoConfiguration.m in Sources */,
+				7F1F20F9265E34E20094FA78 /* ZYLFLiveVideoConfiguration.m in Sources */,
 				7F1F2409265E34E30094FA78 /* rtmp.c in Sources */,
 				7F1F2405265E34E30094FA78 /* hashswf.c in Sources */,
 				6FF11C9616A877B100E14D71 /* ShaderUtilities.c in Sources */,

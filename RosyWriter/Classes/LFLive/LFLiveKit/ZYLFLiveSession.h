@@ -12,8 +12,8 @@
 #import "LFLiveStreamInfo.h"
 #import "LFAudioFrame.h"
 #import "LFVideoFrame.h"
-#import "LFLiveAudioConfiguration.h"
-#import "LFLiveVideoConfiguration.h"
+#import "ZYLFLiveAudioConfiguration.h"
+#import "ZYLFLiveVideoConfiguration.h"
 #import "LFLiveDebug.h"
 
 
@@ -39,21 +39,21 @@ typedef NS_ENUM(NSInteger,LFLiveCaptureTypeMask) {
     LFLiveCaptureDefaultMask = LFLiveCaptureMaskAll                                     ///< default is inner capture audio and video
 };
 
-@class LFLiveSession;
+@class ZYLFLiveSession;
 @protocol LFLiveSessionDelegate <NSObject>
 
 @optional
 /** live status changed will callback */
-- (void)liveSession:(nullable LFLiveSession *)session liveStateDidChange:(LFLiveState)state;
+- (void)liveSession:(nullable ZYLFLiveSession *)session liveStateDidChange:(LFLiveState)state;
 /** live debug info callback */
-- (void)liveSession:(nullable LFLiveSession *)session debugInfo:(nullable LFLiveDebug *)debugInfo;
+- (void)liveSession:(nullable ZYLFLiveSession *)session debugInfo:(nullable LFLiveDebug *)debugInfo;
 /** callback socket errorcode */
-- (void)liveSession:(nullable LFLiveSession *)session errorCode:(LFLiveSocketErrorCode)errorCode;
+- (void)liveSession:(nullable ZYLFLiveSession *)session errorCode:(LFLiveSocketErrorCode)errorCode;
 @end
 
 @class LFLiveStreamInfo;
 
-@interface LFLiveSession : NSObject
+@interface ZYLFLiveSession : NSObject
 
 #pragma mark - Attribute
 ///=============================================================================
@@ -101,13 +101,13 @@ typedef NS_ENUM(NSInteger,LFLiveCaptureTypeMask) {
    The designated initializer. Multiple instances with the same configuration will make the
    capture unstable.
  */
-- (nullable instancetype)initWithAudioConfiguration:(nullable LFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable LFLiveVideoConfiguration *)videoConfiguration;
+- (nullable instancetype)initWithAudioConfiguration:(nullable ZYLFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable ZYLFLiveVideoConfiguration *)videoConfiguration;
 
 /**
  The designated initializer. Multiple instances with the same configuration will make the
  capture unstable.
  */
-- (nullable instancetype)initWithAudioConfiguration:(nullable LFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable LFLiveVideoConfiguration *)videoConfiguration captureType:(LFLiveCaptureTypeMask)captureType NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithAudioConfiguration:(nullable ZYLFLiveAudioConfiguration *)audioConfiguration videoConfiguration:(nullable ZYLFLiveVideoConfiguration *)videoConfiguration captureType:(LFLiveCaptureTypeMask)captureType NS_DESIGNATED_INITIALIZER;
 
 /** The start stream .*/
 - (void)startLive:(nonnull LFLiveStreamInfo *)streamInfo;

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LFLiveAudioConfiguration.h"
-#import "LFLiveVideoConfiguration.h"
+#import "ZYLFLiveAudioConfiguration.h"
+#import "ZYLFLiveVideoConfiguration.h"
 
 
 
@@ -46,8 +46,8 @@ typedef NS_ENUM (NSUInteger, LFLiveSocketErrorCode) {
 #pragma mark -- RTMP
 @property (nonatomic, copy) NSString *url;          ///< 上传地址 (RTMP用就好了)
 ///音频配置
-@property (nonatomic, strong) LFLiveAudioConfiguration *audioConfiguration;
+@property (nonatomic, strong) ZYLFLiveAudioConfiguration *audioConfiguration;
 ///视频配置
-@property (nonatomic, strong) LFLiveVideoConfiguration *videoConfiguration;
+@property (nonatomic, strong) ZYLFLiveVideoConfiguration *videoConfiguration;
 
 @end

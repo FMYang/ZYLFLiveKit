@@ -6,7 +6,7 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFStreamingBuffer.h"
+#import "ZYLFStreamingBuffer.h"
 #import "NSMutableArray+LFAdd.h"
 
 static const NSUInteger defaultSortBufferMaxCount = 5;///< 排序10个内
@@ -14,7 +14,7 @@ static const NSUInteger defaultUpdateInterval = 1;///< 更新频率为1s
 static const NSUInteger defaultCallBackInterval = 5;///< 5s计时一次
 static const NSUInteger defaultSendBufferMaxCount = 600;///< 最大缓冲区为600
 
-@interface LFStreamingBuffer (){
+@interface ZYLFStreamingBuffer (){
     dispatch_semaphore_t _lock;
 }
 
@@ -30,7 +30,7 @@ static const NSUInteger defaultSendBufferMaxCount = 600;///< 最大缓冲区为6
 
 @end
 
-@implementation LFStreamingBuffer
+@implementation ZYLFStreamingBuffer
 
 - (instancetype)init {
     if (self = [super init]) {

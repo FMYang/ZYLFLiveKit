@@ -8,20 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "LFLiveAudioConfiguration.h"
+#import "ZYLFLiveAudioConfiguration.h"
 
 #pragma mark -- AudioCaptureNotification
 /** compoentFialed will post the notification */
 extern NSString *_Nullable const LFAudioComponentFailedToCreateNotification;
 
-@class LFAudioCapture;
+@class ZYLFAudioCapture;
 /** LFAudioCapture callback audioData */
 @protocol LFAudioCaptureDelegate <NSObject>
-- (void)captureOutput:(nullable LFAudioCapture *)capture audioData:(nullable NSData*)audioData;
+- (void)captureOutput:(nullable ZYLFAudioCapture *)capture audioData:(nullable NSData*)audioData;
 @end
 
 
-@interface LFAudioCapture : NSObject
+@interface ZYLFAudioCapture : NSObject
 
 #pragma mark - Attribute
 ///=============================================================================
@@ -48,6 +48,6 @@ extern NSString *_Nullable const LFAudioComponentFailedToCreateNotification;
    The designated initializer. Multiple instances with the same configuration will make the
    capture unstable.
  */
-- (nullable instancetype)initWithAudioConfiguration:(nullable LFLiveAudioConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithAudioConfiguration:(nullable ZYLFLiveAudioConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
 
 @end

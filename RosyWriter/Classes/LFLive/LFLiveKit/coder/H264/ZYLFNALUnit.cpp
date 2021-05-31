@@ -10,18 +10,18 @@
 
 
 
-#include "LFNALUnit.h"
+#include "ZYLFNALUnit.h"
 
 
 // --- core NAL Unit implementation ------------------------------
 
-LFNALUnit::LFNALUnit()
+ZYLFNALUnit::ZYLFNALUnit()
     : m_pStart(NULL),
     m_cBytes(0){
 }
 
 bool
-LFNALUnit::GetStartCode(const BYTE *& pBegin, const BYTE *& pStart, int& cRemain){
+ZYLFNALUnit::GetStartCode(const BYTE *& pBegin, const BYTE *& pStart, int& cRemain){
     // start code is any number of 00 followed by 00 00 01
     // We need to record the first 00 in pBegin and the first byte
     // following the startcode in pStart.
@@ -54,7 +54,7 @@ LFNALUnit::GetStartCode(const BYTE *& pBegin, const BYTE *& pStart, int& cRemain
 }
 
 bool
-LFNALUnit::Parse(const BYTE *pBuffer, int cSpace, int LengthSize, bool bEnd){
+ZYLFNALUnit::Parse(const BYTE *pBuffer, int cSpace, int LengthSize, bool bEnd){
     // if we get the start code but not the whole
     // NALU, we can return false but still have the length property valid
     m_cBytes = 0;
@@ -102,14 +102,14 @@ LFNALUnit::Parse(const BYTE *pBuffer, int cSpace, int LengthSize, bool bEnd){
 
 // bitwise access to data
 void
-LFNALUnit::ResetBitstream(){
+ZYLFNALUnit::ResetBitstream(){
     m_idx = 0;
     m_nBits = 0;
     m_cZeros = 0;
 }
 
 void
-LFNALUnit::Skip(int nBits){
+ZYLFNALUnit::Skip(int nBits){
     if (nBits < m_nBits) {
         m_nBits -= nBits;
     } else {
@@ -129,7 +129,7 @@ LFNALUnit::Skip(int nBits){
 
 // get the next byte, removing emulation prevention bytes
 BYTE
-LFNALUnit::GetBYTE(){
+ZYLFNALUnit::GetBYTE(){
     if (m_idx >= m_cBytes) {
         return 0;
     }
@@ -151,7 +151,7 @@ LFNALUnit::GetBYTE(){
 }
 
 unsigned long
-LFNALUnit::GetBit(){
+ZYLFNALUnit::GetBit(){
     if (m_nBits == 0) {
         m_byte = GetBYTE();
         m_nBits = 8;
@@ -161,7 +161,7 @@ LFNALUnit::GetBit(){
 }
 
 unsigned long
-LFNALUnit::GetWord(int nBits){
+ZYLFNALUnit::GetWord(int nBits){
     unsigned long u = 0;
     while (nBits > 0) {
         u <<= 1;
@@ -172,7 +172,7 @@ LFNALUnit::GetWord(int nBits){
 }
 
 unsigned long
-LFNALUnit::GetUE(){
+ZYLFNALUnit::GetUE(){
     // Exp-Golomb entropy coding: leading zeros, then a one, then
     // the data bits. The number of leading zeros is the number of
     // data bits, counting up from that number of 1s as the base.
@@ -188,7 +188,7 @@ LFNALUnit::GetUE(){
 }
 
 long
-LFNALUnit::GetSE(){
+ZYLFNALUnit::GetSE(){
     // same as UE but signed.
     // basically the unsigned numbers are used as codes to indicate signed numbers in pairs
     // in increasing value. Thus the encoded values
@@ -214,7 +214,7 @@ LFSeqParamSet::LFSeqParamSet()
 }
 
 void
-ScalingList(int size, LFNALUnit *pnalu){
+ScalingList(int size, ZYLFNALUnit *pnalu){
     long lastScale = 8;
     long nextScale = 8;
     for (int j = 0; j < size; j++) {
@@ -228,8 +228,8 @@ ScalingList(int size, LFNALUnit *pnalu){
 }
 
 bool
-LFSeqParamSet::Parse(LFNALUnit *pnalu){
-    if (pnalu->Type() != LFNALUnit::NAL_Sequence_Params) {
+LFSeqParamSet::Parse(ZYLFNALUnit *pnalu){
+    if (pnalu->Type() != ZYLFNALUnit::NAL_Sequence_Params) {
         return false;
     }
 
@@ -339,11 +339,11 @@ LFSeqParamSet::Parse(LFNALUnit *pnalu){
 
 // --- slice header --------------------
 bool
-LFSliceHeader::Parse(LFNALUnit *pnalu){
+LFSliceHeader::Parse(ZYLFNALUnit *pnalu){
     switch (pnalu->Type()) {
-    case LFNALUnit::NAL_IDR_Slice:
-    case LFNALUnit::NAL_Slice:
-    case LFNALUnit::NAL_PartitionA:
+    case ZYLFNALUnit::NAL_IDR_Slice:
+    case ZYLFNALUnit::NAL_Slice:
+    case ZYLFNALUnit::NAL_PartitionA:
         // all these begin with a slice header
         break;
 
@@ -366,7 +366,7 @@ LFSliceHeader::Parse(LFNALUnit *pnalu){
 // --- SEI ----------------------
 
 
-LFSEIMessage::LFSEIMessage(LFNALUnit *pnalu){
+LFSEIMessage::LFSEIMessage(ZYLFNALUnit *pnalu){
     m_pnalu = pnalu;
     const BYTE *p = pnalu->Start();
     p++;                // nalu type byte
@@ -405,7 +405,7 @@ LFavcCHeader::LFavcCHeader(const BYTE *header, int cBytes){
             return;
         }
         if (i == 0) {
-            LFNALUnit n(header, cThis);
+            ZYLFNALUnit n(header, cThis);
             m_sps = n;
         }
         header += cThis;
@@ -417,7 +417,7 @@ LFavcCHeader::LFavcCHeader(const BYTE *header, int cBytes){
     if (cPPS > 0) {
         int cThis = (header[1] << 8) + header[2];
         header += 3;
-        LFNALUnit n(header, cThis);
+        ZYLFNALUnit n(header, cThis);
         m_pps = n;
     }
 }

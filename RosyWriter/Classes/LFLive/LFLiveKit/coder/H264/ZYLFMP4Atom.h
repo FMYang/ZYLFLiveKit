@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LFMP4Atom : NSObject
+@interface ZYLFMP4Atom : NSObject
 
 {
     NSFileHandle *_file;
@@ -20,11 +20,11 @@
 @property OSType type;
 @property int64_t length;
 
-+ (LFMP4Atom *)atomAt:(int64_t)offset size:(int)length type:(OSType)fourcc inFile:(NSFileHandle *)handle;
++ (ZYLFMP4Atom *)atomAt:(int64_t)offset size:(int)length type:(OSType)fourcc inFile:(NSFileHandle *)handle;
 - (BOOL)init:(int64_t)offset size:(int)length type:(OSType)fourcc inFile:(NSFileHandle *)handle;
 - (NSData *)readAt:(int64_t)offset size:(int)length;
 - (BOOL)setChildOffset:(int64_t)offset;
-- (LFMP4Atom *)nextChild;
-- (LFMP4Atom *)childOfType:(OSType)fourcc startAt:(int64_t)offset;
+- (ZYLFMP4Atom *)nextChild;
+- (ZYLFMP4Atom *)childOfType:(OSType)fourcc startAt:(int64_t)offset;
 
 @end

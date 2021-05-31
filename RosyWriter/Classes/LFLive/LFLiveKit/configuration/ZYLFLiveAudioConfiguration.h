@@ -48,7 +48,7 @@ typedef NS_ENUM (NSUInteger, LFLiveAudioQuality){
     LFLiveAudioQuality_Default = LFLiveAudioQuality_High
 };
 
-@interface LFLiveAudioConfiguration : NSObject<NSCoding, NSCopying>
+@interface ZYLFLiveAudioConfiguration : NSObject<NSCoding, NSCopying>
 
 /// 默认音频配置
 + (instancetype)defaultConfiguration;

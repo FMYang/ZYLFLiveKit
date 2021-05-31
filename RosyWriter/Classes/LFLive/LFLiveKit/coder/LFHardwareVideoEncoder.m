@@ -17,7 +17,7 @@
     BOOL enabledWriteVideoFile;
 }
 
-@property (nonatomic, strong) LFLiveVideoConfiguration *configuration;
+@property (nonatomic, strong) ZYLFLiveVideoConfiguration *configuration;
 @property (nonatomic, weak) id<LFVideoEncodingDelegate> h264Delegate;
 @property (nonatomic) NSInteger currentVideoBitRate;
 @property (nonatomic) BOOL isBackGround;
@@ -27,7 +27,7 @@
 @implementation LFHardwareVideoEncoder
 
 #pragma mark -- LifeCycle
-- (instancetype)initWithVideoStreamConfiguration:(LFLiveVideoConfiguration *)configuration {
+- (instancetype)initWithVideoStreamConfiguration:(ZYLFLiveVideoConfiguration *)configuration {
     if (self = [super init]) {
         NSLog(@"USE LFHardwareVideoEncoder");
         _configuration = configuration;

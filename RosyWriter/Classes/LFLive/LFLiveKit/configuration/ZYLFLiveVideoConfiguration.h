@@ -43,7 +43,7 @@ typedef NS_ENUM (NSUInteger, LFLiveVideoQuality){
     LFLiveVideoQuality_Default = LFLiveVideoQuality_Low2
 };
 
-@interface LFLiveVideoConfiguration : NSObject<NSCoding, NSCopying>
+@interface ZYLFLiveVideoConfiguration : NSObject<NSCoding, NSCopying>
 
 /// 默认视频配置
 + (instancetype)defaultConfiguration;

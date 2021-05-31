@@ -1,12 +1,12 @@
 //
-//  LFStreamRTMPSocket.m
+//  ZYLFStreamRTMPSocket.m
 //  LFLiveKit
 //
 //  Created by LaiFeng on 16/5/20.
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFStreamRTMPSocket.h"
+#import "ZYLFStreamRTMPSocket.h"
 
 #if __has_include(<pili-librtmp/rtmp.h>)
 #import <pili-librtmp/rtmp.h>
@@ -46,13 +46,13 @@ SAVC(fileSize);
 SAVC(avc1);
 SAVC(mp4a);
 
-@interface LFStreamRTMPSocket ()<LFStreamingBufferDelegate>
+@interface ZYLFStreamRTMPSocket ()<LFStreamingBufferDelegate>
 {
     PILI_RTMP *_rtmp;
 }
-@property (nonatomic, weak) id<LFStreamSocketDelegate> delegate;
+@property (nonatomic, weak) id<ZYLFStreamSocketDelegate> delegate;
 @property (nonatomic, strong) LFLiveStreamInfo *stream;
-@property (nonatomic, strong) LFStreamingBuffer *buffer;
+@property (nonatomic, strong) ZYLFStreamingBuffer *buffer;
 @property (nonatomic, strong) LFLiveDebug *debugInfo;
 @property (nonatomic, strong) dispatch_queue_t rtmpSendQueue;
 //错误信息
@@ -71,15 +71,15 @@ SAVC(mp4a);
 
 @end
 
-@implementation LFStreamRTMPSocket
+@implementation ZYLFStreamRTMPSocket
 
-#pragma mark -- LFStreamSocket
+#pragma mark -- ZYLFStreamSocket
 - (nullable instancetype)initWithStream:(nullable LFLiveStreamInfo *)stream{
     return [self initWithStream:stream reconnectInterval:0 reconnectCount:0];
 }
 
 - (nullable instancetype)initWithStream:(nullable LFLiveStreamInfo *)stream reconnectInterval:(NSInteger)reconnectInterval reconnectCount:(NSInteger)reconnectCount{
-    if (!stream) @throw [NSException exceptionWithName:@"LFStreamRtmpSocket init error" reason:@"stream is nil" userInfo:nil];
+    if (!stream) @throw [NSException exceptionWithName:@"ZYLFStreamRTMPSocket init error" reason:@"stream is nil" userInfo:nil];
     if (self = [super init]) {
         _stream = stream;
         if (reconnectInterval > 0) _reconnectInterval = reconnectInterval;
@@ -152,7 +152,7 @@ SAVC(mp4a);
     }
 }
 
-- (void)setDelegate:(id<LFStreamSocketDelegate>)delegate {
+- (void)setDelegate:(id<ZYLFStreamSocketDelegate>)delegate {
     _delegate = delegate;
 }
 
@@ -532,7 +532,7 @@ Failed:
 
 #pragma mark -- CallBack
 void RTMPErrorCallback(RTMPError *error, void *userData) {
-    LFStreamRTMPSocket *socket = (__bridge LFStreamRTMPSocket *)userData;
+    ZYLFStreamRTMPSocket *socket = (__bridge ZYLFStreamRTMPSocket *)userData;
     if (error->code < 0) {
         [socket reconnect];
     }
@@ -542,7 +542,7 @@ void ConnectionTimeCallback(PILI_CONNECTION_TIME *conn_time, void *userData) {
 }
 
 #pragma mark -- LFStreamingBufferDelegate
-- (void)streamingBuffer:(nullable LFStreamingBuffer *)buffer bufferState:(LFLiveBuffferState)state{
+- (void)streamingBuffer:(nullable ZYLFStreamingBuffer *)buffer bufferState:(LFLiveBuffferState)state{
     if(self.delegate && [self.delegate respondsToSelector:@selector(socketBufferStatus:status:)]){
         [self.delegate socketBufferStatus:self status:state];
     }
@@ -559,9 +559,9 @@ void ConnectionTimeCallback(PILI_CONNECTION_TIME *conn_time, void *userData) {
 
 #pragma mark -- Getter Setter
 
-- (LFStreamingBuffer *)buffer {
+- (ZYLFStreamingBuffer *)buffer {
     if (!_buffer) {
-        _buffer = [[LFStreamingBuffer alloc] init];
+        _buffer = [[ZYLFStreamingBuffer alloc] init];
         _buffer.delegate = self;
 
     }

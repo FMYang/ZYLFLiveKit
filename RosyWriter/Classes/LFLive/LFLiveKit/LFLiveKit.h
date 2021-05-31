@@ -9,9 +9,9 @@
 #ifndef LFLiveKit_h
 #define LFLiveKit_h
 
-#import "LFLiveSession.h"
-#import "LFLiveAudioConfiguration.h"
-#import "LFLiveVideoConfiguration.h"
+#import "ZYLFLiveSession.h"
+#import "ZYLFLiveAudioConfiguration.h"
+#import "ZYLFLiveVideoConfiguration.h"
 #import "LFAudioFrame.h"
 #import "LFFrame.h"
 #import "LFLiveStreamInfo.h"

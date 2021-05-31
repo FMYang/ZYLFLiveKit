@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LFVideoFrame.h"
-#import "LFLiveVideoConfiguration.h"
+#import "ZYLFLiveVideoConfiguration.h"
 
 @protocol LFVideoEncoding;
 /// 编码器编码后回调
@@ -23,7 +23,7 @@
 - (void)encodeVideoData:(nullable CVPixelBufferRef)pixelBuffer timeStamp:(uint64_t)timeStamp;
 @optional
 @property (nonatomic, assign) NSInteger videoBitRate;
-- (nullable instancetype)initWithVideoStreamConfiguration:(nullable LFLiveVideoConfiguration *)configuration;
+- (nullable instancetype)initWithVideoStreamConfiguration:(nullable ZYLFLiveVideoConfiguration *)configuration;
 - (void)setDelegate:(nullable id<LFVideoEncodingDelegate>)delegate;
 - (void)stopEncoder;
 @end

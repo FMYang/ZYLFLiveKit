@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 GDCL http://www.gdcl.co.uk/license.htm
 //
 
-#import "LFVideoEncoder.h"
+#import "ZYLFVideoEncoder.h"
 
-@implementation LFVideoEncoder
+@implementation ZYLFVideoEncoder
 {
     AVAssetWriter *_writer;
     AVAssetWriterInput *_writerInput;
@@ -17,8 +17,8 @@
 
 @synthesize path = _path;
 
-+ (LFVideoEncoder *)encoderForPath:(NSString *)path Height:(int)height andWidth:(int)width bitrate:(int)bitrate {
-    LFVideoEncoder *enc = [LFVideoEncoder alloc];
++ (ZYLFVideoEncoder *)encoderForPath:(NSString *)path Height:(int)height andWidth:(int)width bitrate:(int)bitrate {
+    ZYLFVideoEncoder *enc = [ZYLFVideoEncoder alloc];
     [enc initPath:path Height:height andWidth:width bitrate:bitrate];
     return enc;
 }

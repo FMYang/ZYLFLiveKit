@@ -8,8 +8,8 @@
 
 #import <CoreMedia/CoreMedia.h>
 #import <mach/mach_time.h>
-#import "LFNALUnit.h"
-#import "LFAVEncoder.h"
+#import "ZYLFNALUnit.h"
+#import "ZYLFAVEncoder.h"
 #import "LFH264VideoEncoder.h"
 #import "LFVideoFrame.h"
 
@@ -18,13 +18,13 @@
     NSInteger frameCount;
     BOOL enabledWriteVideoFile;
 }
-@property (nonatomic, strong) LFLiveVideoConfiguration *configuration;
+@property (nonatomic, strong) ZYLFLiveVideoConfiguration *configuration;
 @property (nonatomic, weak) id<LFVideoEncodingDelegate> h264Delegate;
 @property (nonatomic) BOOL isBackGround;
 @property (nonatomic) NSInteger currentVideoBitRate;
 @property (nonatomic, strong) dispatch_queue_t sendQueue;
 
-@property (nonatomic, strong) LFAVEncoder *encoder;
+@property (nonatomic, strong) ZYLFAVEncoder *encoder;
 
 @property (nonatomic, strong) NSData *naluStartCode;
 @property (nonatomic, strong) NSMutableData *videoSPSandPPS;
@@ -40,7 +40,7 @@
 @implementation LFH264VideoEncoder
 
 #pragma mark -- LifeCycle
-- (instancetype)initWithVideoStreamConfiguration:(LFLiveVideoConfiguration *)configuration {
+- (instancetype)initWithVideoStreamConfiguration:(ZYLFLiveVideoConfiguration *)configuration {
     if (self = [super init]) {
         NSLog(@"USE LF264VideoEncoder");
         _configuration = configuration;
@@ -60,7 +60,7 @@
     [self initForFilePath];
 #endif
     
-    _encoder = [LFAVEncoder encoderForHeight:(int)_configuration.videoSize.height andWidth:(int)_configuration.videoSize.width bitrate:(int)_configuration.videoBitRate];
+    _encoder = [ZYLFAVEncoder encoderForHeight:(int)_configuration.videoSize.height andWidth:(int)_configuration.videoSize.width bitrate:(int)_configuration.videoBitRate];
     [_encoder encodeWithBlock:^int(NSArray* dataArray, CMTimeValue ptsValue) {
         [self incomingVideoFrames:dataArray ptsValue:ptsValue];
         return 0;

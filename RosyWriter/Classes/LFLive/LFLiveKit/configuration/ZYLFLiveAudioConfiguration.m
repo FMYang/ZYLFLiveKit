@@ -6,19 +6,19 @@
 //  Copyright © 2016年 LaiFeng All rights reserved.
 //
 
-#import "LFLiveAudioConfiguration.h"
+#import "ZYLFLiveAudioConfiguration.h"
 #import <sys/utsname.h>
 
-@implementation LFLiveAudioConfiguration
+@implementation ZYLFLiveAudioConfiguration
 
 #pragma mark -- LifyCycle
 + (instancetype)defaultConfiguration {
-    LFLiveAudioConfiguration *audioConfig = [LFLiveAudioConfiguration defaultConfigurationForQuality:LFLiveAudioQuality_Default];
+    ZYLFLiveAudioConfiguration *audioConfig = [ZYLFLiveAudioConfiguration defaultConfigurationForQuality:LFLiveAudioQuality_Default];
     return audioConfig;
 }
 
 + (instancetype)defaultConfigurationForQuality:(LFLiveAudioQuality)audioQuality {
-    LFLiveAudioConfiguration *audioConfig = [LFLiveAudioConfiguration new];
+    ZYLFLiveAudioConfiguration *audioConfig = [ZYLFLiveAudioConfiguration new];
     audioConfig.numberOfChannels = 2;
     switch (audioQuality) {
     case LFLiveAudioQuality_Low: {
@@ -153,7 +153,7 @@
     } else if (![super isEqual:other]) {
         return NO;
     } else {
-        LFLiveAudioConfiguration *object = other;
+        ZYLFLiveAudioConfiguration *object = other;
         return object.numberOfChannels == self.numberOfChannels &&
                object.audioBitrate == self.audioBitrate &&
                strcmp(object.asc, self.asc) == 0 &&
@@ -175,7 +175,7 @@
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {
-    LFLiveAudioConfiguration *other = [self.class defaultConfiguration];
+    ZYLFLiveAudioConfiguration *other = [self.class defaultConfiguration];
     return other;
 }
 

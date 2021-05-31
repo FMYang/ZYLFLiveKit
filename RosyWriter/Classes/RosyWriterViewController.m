@@ -31,13 +31,13 @@
 @property(nonatomic, strong) IBOutlet UILabel *dimensionsLabel;
 
 @property (nonatomic, strong) LFLiveDebug *debugInfo;
-@property (nonatomic, strong) LFLiveSession *session;
+@property (nonatomic, strong) ZYLFLiveSession *session;
 
 @end
 
 @implementation RosyWriterViewController
 #pragma mark -- Getter Setter
-- (LFLiveSession *)session {
+- (ZYLFLiveSession *)session {
     if (!_session) {
         /**      发现大家有不会用横屏的请注意啦，横屏需要在ViewController  supportedInterfaceOrientations修改方向  默认竖屏  ****/
         /**      发现大家有不会用横屏的请注意啦，横屏需要在ViewController  supportedInterfaceOrientations修改方向  默认竖屏  ****/
@@ -45,7 +45,7 @@
 
 
         /***   默认分辨率368 ＊ 640  音频：44.1 iphone6以上48  双声道  方向竖屏 ***/
-        LFLiveVideoConfiguration *videoConfiguration = [LFLiveVideoConfiguration new];
+        ZYLFLiveVideoConfiguration *videoConfiguration = [ZYLFLiveVideoConfiguration new];
         videoConfiguration.videoSize = CGSizeMake(640, 360);
         videoConfiguration.videoBitRate = 800*1024;
         videoConfiguration.videoMaxBitRate = 1000*1024;
@@ -56,12 +56,12 @@
         videoConfiguration.autorotate = NO;
         videoConfiguration.sessionPreset = LFCaptureSessionPreset720x1280;
         
-        LFLiveAudioConfiguration *audioConfiguration = [LFLiveAudioConfiguration new];
+        ZYLFLiveAudioConfiguration *audioConfiguration = [ZYLFLiveAudioConfiguration new];
         audioConfiguration.numberOfChannels = 1;
         audioConfiguration.audioBitrate = LFLiveAudioBitRate_64Kbps;
         audioConfiguration.audioSampleRate = LFLiveAudioSampleRate_44100Hz;
 //        _session = [[LFLiveSession alloc] initWithAudioConfiguration:[LFLiveAudioConfiguration defaultConfiguration] videoConfiguration:videoConfiguration captureType:LFLiveInputMaskVideo|LFLiveCaptureMaskAudio];
-        _session = [[LFLiveSession alloc] initWithAudioConfiguration:audioConfiguration videoConfiguration:videoConfiguration captureType:LFLiveInputMaskVideo];
+        _session = [[ZYLFLiveSession alloc] initWithAudioConfiguration:audioConfiguration videoConfiguration:videoConfiguration captureType:LFLiveInputMaskVideo];
 
         _session.delegate = self;
         _session.showDebugInfo = NO;
@@ -72,7 +72,7 @@
 }
 
 /** live status changed will callback */
-- (void)liveSession:(nullable LFLiveSession *)session liveStateDidChange:(LFLiveState)state {
+- (void)liveSession:(nullable ZYLFLiveSession *)session liveStateDidChange:(LFLiveState)state {
     NSLog(@"liveStateDidChange: %ld", state);
     
     switch (state) {
@@ -98,12 +98,12 @@
 }
 
 /** live debug info callback */
-- (void)liveSession:(nullable LFLiveSession *)session debugInfo:(nullable LFLiveDebug *)debugInfo {
+- (void)liveSession:(nullable ZYLFLiveSession *)session debugInfo:(nullable LFLiveDebug *)debugInfo {
 
 }
 
 /** callback socket errorcode */
-- (void)liveSession:(nullable LFLiveSession *)session errorCode:(LFLiveSocketErrorCode)errorCode {
+- (void)liveSession:(nullable ZYLFLiveSession *)session errorCode:(LFLiveSocketErrorCode)errorCode {
     NSLog(@"errorCode: %ld", errorCode);
 }
 
